@@ -53,11 +53,12 @@ logs/
 *.sqlite3
 *.db
 
-# Package Manager Files
-package-lock.json
-yarn.lock
-pnpm-lock.yaml
-Pipfile.lock
+# Note: Lock files should typically be committed for reproducible builds
+# Uncomment specific lock files only if needed for your project
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+# Pipfile.lock
 
 # Environment Variables
 .env

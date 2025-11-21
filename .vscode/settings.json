@@ -4,7 +4,7 @@
   "editor.formatOnSave": true,
   "editor.formatOnPaste": true,
   "git.autofetch": true,
-  "git.confirmSync": false,
+  "git.confirmSync": true,
   "git.enableSmartCommit": true,
   "files.trimTrailingWhitespace": true,
   "files.insertFinalNewline": true,
