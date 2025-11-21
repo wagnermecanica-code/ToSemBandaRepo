@@ -1,0 +1,118 @@
+/// Script para limpar todo o Firestore (desenvolvimento apenas!)
+/// Use apenas em ambiente de dev/staging, NUNCA em produção
+/// 
+/// IMPORTANTE: Este script não pode ser executado diretamente com dart run
+/// porque precisa das configurações do Firebase da plataforma.
+/// 
+/// OPÇÕES PARA LIMPAR O FIRESTORE:
+/// 
+/// 1. Via Firebase Console (MAIS FÁCIL):
+///    - Acesse: https://console.firebase.google.com/project/to-sem-banda-83e19/firestore
+///    - Para cada coleção (users, posts, profiles, etc):
+///      • Click nos 3 pontinhos ao lado do nome
+///      • "Delete collection"
+///      • Confirmar
+/// 
+/// 2. Via Firebase CLI (RECOMENDADO):
+///    Execute no terminal:
+///    firebase firestore:delete --all-collections --project to-sem-banda-83e19
+/// 
+/// 3. Manualmente via código (se tiver poucos docs):
+///    - Abra o Firebase Console
+///    - Delete documentos individuais
+void main() {
+  print('🗑️  COMO LIMPAR O FIRESTORE\n');
+  print('OPÇÃO 1 - Firebase Console (Visual):');
+  print('  1. Acesse: https://console.firebase.google.com/project/to-sem-banda-83e19/firestore');
+  print('  2. Para cada coleção: click nos 3 pontinhos → Delete collection\n');
+  
+  print('OPÇÃO 2 - Firebase CLI (Rápido):');
+  print('  Execute no terminal:');
+  print('  firebase firestore:delete --all-collections --project to-sem-banda-83e19\n');
+  
+  print('⚠️  Após limpar, execute:');
+  print('  1. firebase deploy --only firestore:rules');
+  print('  2. firebase deploy --only firestore:indexes');
+}
+
+    final collections = [
+      'users',
+      'posts',
+      'profiles',
+      'conversations',
+      'notifications',
+      'interests',
+      'bands',
+      'chats',
+    ];
+
+    int totalDeleted = 0;
+
+    for (final collectionName in collections) {
+      try {
+        print('Processando $collectionName/...');
+        final snapshot = await firestore.collection(collectionName).get();
+        
+        if (snapshot.docs.isEmpty) {
+          print('  └─ Vazia, pulando\n');
+          continue;
+        }
+
+        // Deletar documentos em batch de 500 (limite Firestore)
+        final batch = firestore.batch();
+        int batchCount = 0;
+
+        for (final doc in snapshot.docs) {
+          batch.delete(doc.reference);
+          batchCount++;
+          totalDeleted++;
+
+          // Commit batch a cada 500 docs
+          if (batchCount >= 500) {
+            await batch.commit();
+            batchCount = 0;
+          }
+        }
+
+        // Commit batch restante
+        if (batchCount > 0) {
+          await batch.commit();
+        }
+
+        print('  └─ ✓ Deletados ${snapshot.docs.length} documentos\n');
+
+        // Deletar subcoleções (messages dentro de conversations)
+        if (collectionName == 'conversations') {
+          print('  └─ Deletando subcoleção messages/...');
+          int messagesDeleted = 0;
+          
+          for (final conversationDoc in snapshot.docs) {
+            final messagesSnapshot = await conversationDoc.reference
+                .collection('messages')
+                .get();
+            
+            for (final messageDoc in messagesSnapshot.docs) {
+              await messageDoc.reference.delete();
+              messagesDeleted++;
+            }
+          }
+          
+          if (messagesDeleted > 0) {
+            print('  └─ ✓ Deletadas $messagesDeleted mensagens\n');
+            totalDeleted += messagesDeleted;
+          }
+        }
+      } catch (e) {
+        print('  └─ ⚠️  Erro ao deletar $collectionName: $e\n');
+      }
+    }
+
+    print('\n✅ Firestore limpo!');
+    print('📊 Total de documentos deletados: $totalDeleted\n');
+    print('🚀 Próximo passo: firebase deploy --only firestore:rules');
+    print('   Depois: flutter run (app criará estrutura nova)\n');
+  } catch (e) {
+    print('\n❌ Erro fatal: $e');
+    print('💡 Tente limpar manualmente via Firebase Console');
+  }
+}

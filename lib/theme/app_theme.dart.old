@@ -1,0 +1,745 @@
+import 'package:flutter/material.dart';
+import 'app_colors.dart';
+
+class AppTheme {
+  static final ThemeData light = ThemeData(
+    useMaterial3: true,
+    fontFamily: 'Inter',
+    brightness: Brightness.light,
+
+    colorScheme: ColorScheme.light(
+      primary: AppColors.primary,
+      secondary: AppColors.accent,
+      surface: AppColors.surface,
+      background: AppColors.background,
+      error: AppColors.error,
+      onPrimary: Colors.white,
+      onSecondary: Colors.white,
+      onSurface: AppColors.textPrimary,
+      onBackground: AppColors.textPrimary,
+      onError: Colors.white,
+    ),
+
+    scaffoldBackgroundColor: AppColors.background,
+
+    appBarTheme: const AppBarTheme(
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      foregroundColor: AppColors.textPrimary,
+      centerTitle: false,
+      titleTextStyle: TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 20,
+        fontWeight: FontWeight.w600,
+        color: AppColors.textPrimary,
+        letterSpacing: -0.2,
+      ),
+      iconTheme: IconThemeData(color: AppColors.textPrimary),
+    ),
+
+    textTheme: const TextTheme(
+      displayLarge: TextStyle(fontSize: 32, fontWeight: FontWeight.w700, color: AppColors.textPrimary, letterSpacing: -0.5),
+      displayMedium: TextStyle(fontSize: 28, fontWeight: FontWeight.w700, color: AppColors.textPrimary),
+      headlineLarge: TextStyle(fontSize: 24, fontWeight: FontWeight.w600, color: AppColors.textPrimary),
+      headlineMedium: TextStyle(fontSize: 20, fontWeight: FontWeight.w600, color: AppColors.textPrimary),
+      titleLarge: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: AppColors.textPrimary),
+      titleMedium: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: AppColors.textPrimary),
+      bodyLarge: TextStyle(fontSize: 16, fontWeight: FontWeight.normal, color: AppColors.textPrimary, height: 1.5),
+      bodyMedium: TextStyle(fontSize: 14, fontWeight: FontWeight.normal, color: AppColors.textSecondary, height: 1.5),
+      labelLarge: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Colors.white),
+    ),
+
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: AppColors.primary,
+        foregroundColor: Colors.white,
+        elevation: 0,
+        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+      ),
+    ),
+
+    outlinedButtonTheme: OutlinedButtonThemeData(
+      style: OutlinedButton.styleFrom(
+        foregroundColor: AppColors.primary,
+        side: const BorderSide(color: AppColors.primary, width: 1.5),
+        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      ),
+    ),
+
+    inputDecorationTheme: InputDecorationTheme(
+      filled: true,
+      fillColor: AppColors.surfaceVariant,
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: BorderSide.none,
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: BorderSide.none,
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: const BorderSide(color: AppColors.primary, width: 2),
+      ),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+      hintStyle: const TextStyle(color: AppColors.textHint),
+    ),
+
+    cardTheme: CardTheme(
+      elevation: 0,
+      color: AppColors.surface,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      margin: EdgeInsets.zero,
+      clipBehavior: Clip.antiAlias,
+    ),
+
+    dividerTheme: const DividerThemeData(
+      color: AppColors.divider,
+      thickness: 1,
+      space: 0,
+    ),
+
+    iconTheme: const IconThemeData(
+      color: AppColors.textSecondary,
+      size: 24,
+    ),
+
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+      backgroundColor: AppColors.surface,
+      selectedItemColor: AppColors.primary,
+      unselectedItemColor: AppColors.textSecondary,
+      showUnselectedLabels: true,
+      type: BottomNavigationBarType.fixed,
+      elevation: 0,
+    ),
+  );
+}
+
+    
+    // Chip Theme
+    chipTheme: ChipThemeData(
+      backgroundColor: AppColors.background,
+      disabledColor: AppColors.border,
+      selectedColor: AppColors.primary.withOpacity(0.2),
+      secondarySelectedColor: AppColors.secondary.withOpacity(0.2),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      labelStyle: AppTypography.captionLight,
+      secondaryLabelStyle: AppTypography.captionLight,
+      brightness: Brightness.light,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+        side: BorderSide(color: AppColors.border),
+      ),
+    ),
+    
+    // Button Themes
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: AppColors.primary,
+        foregroundColor: Colors.white,
+        elevation: 2,
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        textStyle: AppTypography.buttonLight,
+      ),
+    ),
+    
+    outlinedButtonTheme: OutlinedButtonThemeData(
+      style: OutlinedButton.styleFrom(
+        foregroundColor: AppColors.primary,
+        side: const BorderSide(color: AppColors.primary, width: 1.5),
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        textStyle: AppTypography.buttonLight.copyWith(color: AppColors.primary),
+      ),
+    ),
+    
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(
+        foregroundColor: AppColors.primary,
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        textStyle: AppTypography.buttonLight.copyWith(color: AppColors.primary),
+      ),
+    ),
+    
+    // Input Decoration Theme
+    inputDecorationTheme: InputDecorationTheme(
+      filled: true,
+      fillColor: AppColors.surface,
+      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: BorderSide(color: AppColors.border),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: BorderSide(color: AppColors.border),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: BorderSide(color: AppColors.primary, width: 2),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: BorderSide(color: AppColors.error),
+      ),
+      labelStyle: AppTypography.bodyLight,
+      hintStyle: AppTypography.bodyLight.copyWith(color: AppColors.textSecondary),
+    ),
+    
+    // Icon Theme
+    iconTheme: const IconThemeData(
+      color: AppColors.textPrimary,
+      size: 24,
+    ),
+    
+    // Text Theme
+    textTheme: const TextTheme(
+      displayLarge: AppTypography.h1Light,
+      displayMedium: AppTypography.h2Light,
+      displaySmall: AppTypography.h3Light,
+      titleLarge: AppTypography.subtitleLight,
+      bodyLarge: AppTypography.bodyLight,
+      bodyMedium: AppTypography.captionLight,
+    ),
+    
+    // Divider Theme
+    dividerTheme: const DividerThemeData(
+      color: AppColors.border,
+      thickness: 1,
+      space: 1,
+    ),
+  );
+  
+  // Dark Theme
+  static ThemeData darkTheme = ThemeData(
+    useMaterial3: true,
+    brightness: Brightness.dark,
+    primaryColor: AppColors.primary,
+    scaffoldBackgroundColor: AppColors.backgroundDark,
+    
+    colorScheme: const ColorScheme.dark(
+      primary: AppColors.primary,
+      secondary: AppColors.secondary,
+      surface: AppColors.surfaceDark,
+      error: AppColors.error,
+      onPrimary: Colors.white,
+      onSecondary: Colors.white,
+      onSurface: AppColors.textPrimaryDark,
+      onError: Colors.white,
+    ),
+    
+    // AppBar Theme
+    appBarTheme: const AppBarTheme(
+      backgroundColor: AppColors.surfaceDark,
+      foregroundColor: AppColors.textPrimaryDark,
+      elevation: 0,
+      centerTitle: true,
+      titleTextStyle: TextStyle(
+        fontFamily: AppTypography.fontFamilyHeading,
+        fontSize: 20,
+        fontWeight: FontWeight.bold,
+        color: AppColors.textPrimaryDark,
+      ),
+      iconTheme: IconThemeData(
+        color: AppColors.textPrimaryDark,
+      ),
+    ),
+    
+    // Card Theme
+    cardTheme: CardThemeData(
+      color: AppColors.surfaceDark,
+      elevation: 4,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+      ),
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+    ),
+    
+    // Chip Theme
+    chipTheme: ChipThemeData(
+      backgroundColor: AppColors.surfaceDark,
+      disabledColor: AppColors.borderDark,
+      selectedColor: AppColors.primary.withOpacity(0.3),
+      secondarySelectedColor: AppColors.secondary.withOpacity(0.3),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      labelStyle: AppTypography.captionDark,
+      secondaryLabelStyle: AppTypography.captionDark,
+      brightness: Brightness.dark,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+        side: BorderSide(color: AppColors.borderDark),
+      ),
+    ),
+    
+    // Button Themes
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: AppColors.primary,
+        foregroundColor: Colors.white,
+        elevation: 2,
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        textStyle: AppTypography.buttonDark,
+      ),
+    ),
+    
+    outlinedButtonTheme: OutlinedButtonThemeData(
+      style: OutlinedButton.styleFrom(
+        foregroundColor: AppColors.primary,
+        side: const BorderSide(color: AppColors.primary, width: 1.5),
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        textStyle: AppTypography.buttonDark.copyWith(color: AppColors.primary),
+      ),
+    ),
+    
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(
+        foregroundColor: AppColors.primary,
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        textStyle: AppTypography.buttonDark.copyWith(color: AppColors.primary),
+      ),
+    ),
+    
+    // Input Decoration Theme
+    inputDecorationTheme: InputDecorationTheme(
+      filled: true,
+      fillColor: AppColors.surfaceDark,
+      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: BorderSide(color: AppColors.borderDark),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: BorderSide(color: AppColors.borderDark),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: BorderSide(color: AppColors.primary, width: 2),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: BorderSide(color: AppColors.error),
+      ),
+      labelStyle: AppTypography.bodyDark,
+      hintStyle: AppTypography.bodyDark.copyWith(color: AppColors.textSecondaryDark),
+    ),
+    
+    // Icon Theme
+    iconTheme: const IconThemeData(
+      color: AppColors.textPrimaryDark,
+      size: 24,
+    ),
+    
+    // Text Theme
+    textTheme: const TextTheme(
+      displayLarge: AppTypography.h1Dark,
+      displayMedium: AppTypography.h2Dark,
+      displaySmall: AppTypography.h3Dark,
+      titleLarge: AppTypography.subtitleDark,
+      bodyLarge: AppTypography.bodyDark,
+      bodyMedium: AppTypography.captionDark,
+    ),
+    
+    // Divider Theme
+    dividerTheme: const DividerThemeData(
+      color: AppColors.borderDark,
+      thickness: 1,
+      space: 1,
+    ),
+  );
+}
+
+// ====== COMPONENTES CUSTOMIZADOS ======
+
+/// Botão com gradiente vibrante
+class GradientButton extends StatelessWidget {
+  final String text;
+  final VoidCallback? onPressed;
+  final List<Color> gradientColors;
+  final IconData? icon;
+  final bool loading;
+
+  const GradientButton({
+    super.key,
+    required this.text,
+    this.onPressed,
+    this.gradientColors = const [Color(0xFF6C63FF), Color(0xFFFF9800)],
+    this.icon,
+    this.loading = false,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: gradientColors,
+          begin: Alignment.centerLeft,
+          end: Alignment.centerRight,
+        ),
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: gradientColors[0].withOpacity(0.3),
+            blurRadius: 8,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: loading ? null : onPressed,
+          borderRadius: BorderRadius.circular(12),
+          // Ripple customizado com cor branca
+          splashColor: Colors.white.withOpacity(0.3),
+          highlightColor: Colors.white.withOpacity(0.1),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                if (loading)
+                  const SizedBox(
+                    width: 20,
+                    height: 20,
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2,
+                      valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                    ),
+                  )
+                else if (icon != null)
+                  Icon(icon, color: Colors.white, size: 20),
+                if ((loading || icon != null) && text.isNotEmpty)
+                  const SizedBox(width: 8),
+                if (text.isNotEmpty)
+                  Text(
+                    text,
+                    style: AppTypography.buttonLight.copyWith(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// Chip com animação e ripple customizado
+class AnimatedChipCustom extends StatelessWidget {
+  final String label;
+  final bool selected;
+  final VoidCallback? onTap;
+  final Color? selectedColor;
+  final IconData? icon;
+
+  const AnimatedChipCustom({
+    super.key,
+    required this.label,
+    this.selected = false,
+    this.onTap,
+    this.selectedColor,
+    this.icon,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final color = selectedColor ?? AppColors.primary;
+    
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 200),
+      curve: Curves.easeInOut,
+      decoration: BoxDecoration(
+        color: selected ? color.withOpacity(0.15) : Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(
+          color: selected ? color : AppColors.border,
+          width: selected ? 2 : 1,
+        ),
+      ),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: onTap,
+          borderRadius: BorderRadius.circular(20),
+          splashColor: color.withOpacity(0.2),
+          highlightColor: color.withOpacity(0.1),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                if (icon != null) ...[
+                  Icon(
+                    icon,
+                    size: 16,
+                    color: selected ? color : AppColors.textSecondary,
+                  ),
+                  const SizedBox(width: 6),
+                ],
+                Text(
+                  label,
+                  style: AppTypography.captionLight.copyWith(
+                    color: selected ? color : AppColors.textPrimary,
+                    fontWeight: selected ? FontWeight.w600 : FontWeight.normal,
+                    fontSize: 13,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// Indicador de página (dots) para carrossel
+class PageIndicator extends StatelessWidget {
+  final int currentPage;
+  final int pageCount;
+  final Color activeColor;
+  final Color inactiveColor;
+
+  const PageIndicator({
+    super.key,
+    required this.currentPage,
+    required this.pageCount,
+    this.activeColor = AppColors.primary,
+    this.inactiveColor = AppColors.border,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: List.generate(pageCount, (index) {
+        final isActive = index == currentPage;
+        return AnimatedContainer(
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeInOut,
+          margin: const EdgeInsets.symmetric(horizontal: 4),
+          width: isActive ? 24 : 8,
+          height: 8,
+          decoration: BoxDecoration(
+            color: isActive ? activeColor : inactiveColor,
+            borderRadius: BorderRadius.circular(4),
+          ),
+        );
+      }),
+    );
+  }
+}
+
+/// Botão de ação flutuante com animação pulsante
+class PulsatingActionButton extends StatefulWidget {
+  final String text;
+  final IconData icon;
+  final VoidCallback? onPressed;
+  final Color? backgroundColor;
+
+  const PulsatingActionButton({
+    super.key,
+    required this.text,
+    required this.icon,
+    this.onPressed,
+    this.backgroundColor,
+  });
+
+  @override
+  State<PulsatingActionButton> createState() => _PulsatingActionButtonState();
+}
+
+class _PulsatingActionButtonState extends State<PulsatingActionButton>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _scaleAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: const Duration(milliseconds: 1500),
+      vsync: this,
+    )..repeat(reverse: true);
+    
+    _scaleAnimation = Tween<double>(begin: 1.0, end: 1.1).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ScaleTransition(
+      scale: _scaleAnimation,
+      child: Container(
+        decoration: BoxDecoration(
+          color: widget.backgroundColor ?? Colors.white,
+          borderRadius: BorderRadius.circular(30),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.15),
+              blurRadius: 12,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            onTap: widget.onPressed,
+            borderRadius: BorderRadius.circular(30),
+            splashColor: AppColors.primary.withOpacity(0.2),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    widget.icon,
+                    color: AppColors.primary,
+                    size: 20,
+                  ),
+                  const SizedBox(width: 8),
+                  Text(
+                    widget.text,
+                    style: AppTypography.buttonLight.copyWith(
+                      color: AppColors.primary,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// Badge para indicadores
+class BadgeWidget extends StatelessWidget {
+  final String text;
+  final Color backgroundColor;
+  final Color textColor;
+  final IconData? icon;
+
+  const BadgeWidget({
+    super.key,
+    required this.text,
+    this.backgroundColor = AppColors.success,
+    this.textColor = Colors.white,
+    this.icon,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      decoration: BoxDecoration(
+        color: backgroundColor,
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: backgroundColor.withOpacity(0.3),
+            blurRadius: 4,
+            offset: const Offset(0, 2),
+          ),
+        ],
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (icon != null) ...[
+            Icon(icon, size: 14, color: textColor),
+            const SizedBox(width: 4),
+          ],
+          Text(
+            text,
+            style: AppTypography.captionLight.copyWith(
+              color: textColor,
+              fontWeight: FontWeight.bold,
+              fontSize: 11,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Avatar com indicador de perfil ativo
+class ActiveProfileAvatar extends StatelessWidget {
+  final String? photoUrl;
+  final double radius;
+  final bool isActive;
+  final bool isBand;
+  final VoidCallback? onTap;
+
+  const ActiveProfileAvatar({
+    super.key,
+    this.photoUrl,
+    this.radius = 20,
+    this.isActive = false,
+    this.isBand = false,
+    this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          border: isActive
+              ? Border.all(
+                  color: isBand ? AppColors.accent : AppColors.primary,
+                  width: 3,
+                )
+              : null,
+        ),
+        child: CircleAvatar(
+          radius: radius,
+          backgroundImage: photoUrl != null && photoUrl!.isNotEmpty
+              ? NetworkImage(photoUrl!)
+              : null,
+          backgroundColor: (isBand ? AppColors.accentLight : AppColors.primaryLight),
+          child: photoUrl == null || photoUrl!.isEmpty
+              ? Icon(
+                  isBand ? Icons.groups : Icons.person,
+                  size: radius * 0.8,
+                  color: isBand ? AppColors.accent : AppColors.primary,
+                )
+              : null,
+        ),
+      ),
+    );
+  }
+}
