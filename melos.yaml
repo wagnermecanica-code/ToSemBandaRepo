@@ -1,0 +1,26 @@
+name: wegig
+repository: https://github.com/wagnermecanica-code/ToSemBandaRepo
+
+packages:
+  - packages/**
+
+scripts:
+  get:
+    run: melos exec -- flutter pub get
+    description: Get dependencies for all packages
+
+  analyze:
+    run: melos exec -- flutter analyze
+    description: Run flutter analyze in all packages
+
+  format:
+    run: melos exec -- dart format .
+    description: Format all packages
+
+  test:
+    run: melos exec -- flutter test
+    description: Run tests in all packages
+
+  build_runner:
+    run: melos exec -- dart run build_runner build --delete-conflicting-outputs
+    description: Run build_runner in all packages

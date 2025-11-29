@@ -5,10 +5,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'firebase_options.dart';
-import 'pages/auth_page.dart';
-import 'pages/bottom_nav_scaffold.dart';
-import 'theme/app_theme.dart';
-import 'services/env_service.dart';
+import 'features/auth/presentation/pages/auth_page.dart';
+import 'core/navigation/bottom_nav_scaffold.dart';
+import 'core/theme/app_theme.dart';
+import 'core/services/env_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

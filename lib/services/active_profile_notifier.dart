@@ -1,2 +1,0 @@
-// OBSOLETO: Use o provider de perfil ativo baseado em Riverpod (profileProvider em providers/profile_provider.dart)
-// Este arquivo é mantido apenas para compatibilidade e não deve ser usado em novos códigos.

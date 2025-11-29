@@ -30,7 +30,7 @@ void main() async {
     final postsWithoutLocation = <QueryDocumentSnapshot>[];
     
     for (final doc in snapshot.docs) {
-      final data = doc.data() as Map<String, dynamic>;
+      final data = doc.data();
       if (!data.containsKey('location') || data['location'] == null) {
         postsWithoutLocation.add(doc);
       }

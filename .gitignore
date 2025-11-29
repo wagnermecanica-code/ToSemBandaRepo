@@ -43,6 +43,35 @@ app.*.symbols
 
 # Obfuscation related
 app.*.map.json
+*.map.json
+/build/app/outputs/symbols/
+
+# Debug info (split-debug-info para ofuscação)
+*.symbols
+/build/**/symbols/
+/build/symbols/
+
+# Flavors - Firebase configs (NUNCA commitar)
+# DEV
+android/app/src/dev/google-services.json
+ios/Firebase/dev/GoogleService-Info.plist
+lib/firebase_options_dev.dart
+
+# STAGING
+android/app/src/staging/google-services.json
+ios/Firebase/staging/GoogleService-Info.plist
+lib/firebase_options_staging.dart
+
+# PROD
+android/app/src/prod/google-services.json
+ios/Firebase/prod/GoogleService-Info.plist
+lib/firebase_options_prod.dart
+
+# Flavorizr generated files (podem ser commitados se quiser)
+# Descomente para ignorar:
+# lib/main_dev.dart
+# lib/main_staging.dart
+# lib/main_prod.dart
 
 # Android Studio will place build artifacts here
 /android/app/debug

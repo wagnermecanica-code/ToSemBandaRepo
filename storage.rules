@@ -2,16 +2,39 @@ rules_version = '2';
 service firebase.storage {
   match /b/{bucket}/o {
 
+    // Helper functions
+    function isValidImageSize() {
+      return request.resource.size < 10 * 1024 * 1024; // 10MB limit
+    }
+
+    function isValidImageType() {
+      return request.resource.contentType.matches('image/.*');
+    }
+
     // Users may upload to their own folder; reads allowed for authenticated users
     match /user_photos/{userId}/{allPaths=**} {
-      allow write: if request.auth != null && request.auth.uid == userId;
+      allow write: if request.auth != null 
+                   && request.auth.uid == userId
+                   && isValidImageSize()
+                   && isValidImageType();
       allow read: if request.auth != null;
     }
 
     // Posts photos readable by authenticated users
+    // Write access with size and type validation
     match /posts/{allPaths=**} {
-      allow write: if request.auth != null;
+      allow write: if request.auth != null
+                   && isValidImageSize()
+                   && isValidImageType();
       allow read: if request.auth != null;
+    }
+
+    // Profile photos and gallery - user can write with validation
+    match /profiles/{profileId}/{allPaths=**} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null
+                   && isValidImageSize()
+                   && isValidImageType();
     }
 
     // Public files (thumbnails, public profile images) readable by anyone
