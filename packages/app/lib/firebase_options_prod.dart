@@ -50,21 +50,25 @@ class DefaultFirebaseOptions {
   }
 
   // Production Firebase project (to-sem-banda-83e19)
-  // This is the current production project - keep these credentials
+
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyD_YOUR_PROD_ANDROID_API_KEY',
-    appId: '1:YOUR_PROD_APP_ID:android:YOUR_PROD_ANDROID_APP_ID',
-    messagingSenderId: 'YOUR_PROD_SENDER_ID',
+    apiKey: 'AIzaSyC_QxHROqFRoIzCHBK_NFxu-GG6uMNS0uk',
+    appId: '1:278498777601:android:d7a665f5fd5f93719ebe00',
+    messagingSenderId: '278498777601',
     projectId: 'to-sem-banda-83e19',
-    storageBucket: 'to-sem-banda-83e19.appspot.com',
+    storageBucket: 'to-sem-banda-83e19.firebasestorage.app',
   );
 
+  // This is the current production project - keep these credentials
+
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyD_YOUR_PROD_IOS_API_KEY',
-    appId: '1:YOUR_PROD_APP_ID:ios:YOUR_PROD_IOS_APP_ID',
-    messagingSenderId: 'YOUR_PROD_SENDER_ID',
+    apiKey: 'AIzaSyAe_WwvD3nN-VJlMZf2L_BRpIx-ne3P_-0',
+    appId: '1:278498777601:ios:7aa6ffc0be146b089ebe00',
+    messagingSenderId: '278498777601',
     projectId: 'to-sem-banda-83e19',
-    storageBucket: 'to-sem-banda-83e19.appspot.com',
+    storageBucket: 'to-sem-banda-83e19.firebasestorage.app',
+    iosClientId: '278498777601-qlukbsv2s4aukhlh34v3icqsjj0ho2k7.apps.googleusercontent.com',
     iosBundleId: 'com.tosembanda.wegig',
   );
+
 }

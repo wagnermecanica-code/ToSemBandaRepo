@@ -50,21 +50,25 @@ class DefaultFirebaseOptions {
   }
 
   // TODO: Replace with your STAGING Firebase project configuration
-  // Run: flutterfire configure --project=to-sem-banda-staging --out=lib/firebase_options_staging.dart
+
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'YOUR_STAGING_ANDROID_API_KEY',
-    appId: '1:YOUR_STAGING_APP_ID:android:YOUR_STAGING_ANDROID_APP_ID',
-    messagingSenderId: 'YOUR_STAGING_SENDER_ID',
-    projectId: 'to-sem-banda-staging',
-    storageBucket: 'to-sem-banda-staging.appspot.com',
+    apiKey: 'AIzaSyC_QxHROqFRoIzCHBK_NFxu-GG6uMNS0uk',
+    appId: '1:278498777601:android:d602ae39fc393d199ebe00',
+    messagingSenderId: '278498777601',
+    projectId: 'to-sem-banda-83e19',
+    storageBucket: 'to-sem-banda-83e19.firebasestorage.app',
   );
 
+  // Run: flutterfire configure --project=to-sem-banda-staging --out=lib/firebase_options_staging.dart
+
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'YOUR_STAGING_IOS_API_KEY',
-    appId: '1:YOUR_STAGING_APP_ID:ios:YOUR_STAGING_IOS_APP_ID',
-    messagingSenderId: 'YOUR_STAGING_SENDER_ID',
-    projectId: 'to-sem-banda-staging',
-    storageBucket: 'to-sem-banda-staging.appspot.com',
+    apiKey: 'AIzaSyAe_WwvD3nN-VJlMZf2L_BRpIx-ne3P_-0',
+    appId: '1:278498777601:ios:1ecad15c4cc358329ebe00',
+    messagingSenderId: '278498777601',
+    projectId: 'to-sem-banda-83e19',
+    storageBucket: 'to-sem-banda-83e19.firebasestorage.app',
+    iosClientId: '278498777601-ek3pus3dnu3o5rjb5oc75qgnj4qbdnn0.apps.googleusercontent.com',
     iosBundleId: 'com.tosembanda.wegig.staging',
   );
+
 }

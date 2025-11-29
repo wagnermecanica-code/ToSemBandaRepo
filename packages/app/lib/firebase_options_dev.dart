@@ -50,21 +50,25 @@ class DefaultFirebaseOptions {
   }
 
   // TODO: Replace with your DEV Firebase project configuration
-  // Run: flutterfire configure --project=to-sem-banda-dev --out=lib/firebase_options_dev.dart
+
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'YOUR_DEV_ANDROID_API_KEY',
-    appId: '1:YOUR_DEV_APP_ID:android:YOUR_DEV_ANDROID_APP_ID',
-    messagingSenderId: 'YOUR_DEV_SENDER_ID',
-    projectId: 'to-sem-banda-dev',
-    storageBucket: 'to-sem-banda-dev.appspot.com',
+    apiKey: 'AIzaSyC_QxHROqFRoIzCHBK_NFxu-GG6uMNS0uk',
+    appId: '1:278498777601:android:e53cb79c055240be9ebe00',
+    messagingSenderId: '278498777601',
+    projectId: 'to-sem-banda-83e19',
+    storageBucket: 'to-sem-banda-83e19.firebasestorage.app',
   );
 
+  // Run: flutterfire configure --project=to-sem-banda-dev --out=lib/firebase_options_dev.dart
+
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'YOUR_DEV_IOS_API_KEY',
-    appId: '1:YOUR_DEV_APP_ID:ios:YOUR_DEV_IOS_APP_ID',
-    messagingSenderId: 'YOUR_DEV_SENDER_ID',
-    projectId: 'to-sem-banda-dev',
-    storageBucket: 'to-sem-banda-dev.appspot.com',
+    apiKey: 'AIzaSyAe_WwvD3nN-VJlMZf2L_BRpIx-ne3P_-0',
+    appId: '1:278498777601:ios:cfb059150a3453319ebe00',
+    messagingSenderId: '278498777601',
+    projectId: 'to-sem-banda-83e19',
+    storageBucket: 'to-sem-banda-83e19.firebasestorage.app',
+    iosClientId: '278498777601-ejv3c0b9pb4fhft1i1ok276hrs05g3op.apps.googleusercontent.com',
     iosBundleId: 'com.tosembanda.wegig.dev',
   );
+
 }
