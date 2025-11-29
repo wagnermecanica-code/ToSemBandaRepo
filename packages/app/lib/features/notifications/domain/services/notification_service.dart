@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:core_ui/di/profile_providers.dart';
+import 'package:wegig_app/features/profile/presentation/providers/profile_providers.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:core_ui/features/notifications/domain/entities/notification_entity.dart';

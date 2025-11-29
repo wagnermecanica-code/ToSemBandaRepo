@@ -4,7 +4,9 @@ import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:wegig_app/features/auth/presentation/pages/auth_page.dart';
 import 'package:wegig_app/features/auth/presentation/providers/auth_providers.dart';
-import 'package:wegig_app/features/home/presentation/pages/home_page.dart';
+import 'package:wegig_app/features/profile/presentation/providers/profile_providers.dart';
+import 'package:wegig_app/features/profile/presentation/pages/edit_profile_page.dart';
+import 'package:core_ui/navigation/bottom_nav_scaffold.dart';
 import 'package:wegig_app/features/post/presentation/pages/post_detail_page.dart';
 import 'package:wegig_app/features/profile/presentation/pages/view_profile_page.dart';
 
@@ -14,6 +16,7 @@ part 'app_router.g.dart';
 @riverpod
 GoRouter goRouter(Ref ref) {
   final authState = ref.watch(authStateProvider);
+  final profileState = ref.watch(profileProvider);
 
   return GoRouter(
     initialLocation: '/home',
@@ -21,6 +24,8 @@ GoRouter goRouter(Ref ref) {
     redirect: (BuildContext context, GoRouterState state) {
       final isLoggedIn = authState.value != null;
       final isGoingToAuth = state.matchedLocation == '/auth';
+      final isGoingToCreateProfile = state.matchedLocation == '/create-profile';
+      final hasProfile = profileState.value?.activeProfile != null;
 
       // Se não está logado e não vai para auth, redireciona para auth
       if (!isLoggedIn && !isGoingToAuth) {
@@ -30,6 +35,11 @@ GoRouter goRouter(Ref ref) {
       // Se está logado e vai para auth, redireciona para home
       if (isLoggedIn && isGoingToAuth) {
         return '/home';
+      }
+
+      // Se está logado, mas não tem perfil e não está indo para criar perfil
+      if (isLoggedIn && !hasProfile && !isGoingToCreateProfile) {
+        return '/create-profile';
       }
 
       // Caso contrário, permite navegação
@@ -43,10 +53,16 @@ GoRouter goRouter(Ref ref) {
             const AuthPage(),
       ),
       GoRoute(
+        path: '/create-profile',
+        name: 'createProfile',
+        builder: (BuildContext context, GoRouterState state) =>
+            const EditProfilePage(isNewProfile: true),
+      ),
+      GoRoute(
         path: '/home',
         name: 'home',
         builder: (BuildContext context, GoRouterState state) =>
-            const HomePage(),
+            const BottomNavScaffold(),
       ),
       GoRoute(
         path: '/profile/:profileId',

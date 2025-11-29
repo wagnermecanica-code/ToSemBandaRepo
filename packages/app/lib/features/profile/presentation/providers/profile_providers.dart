@@ -2,17 +2,17 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import '../../features/profile/data/datasources/profile_remote_datasource.dart';
-import '../../features/profile/data/repositories/profile_repository_impl.dart';
-import '../../features/profile/domain/repositories/profile_repository.dart';
+import 'package:wegig_app/features/profile/data/datasources/profile_remote_datasource.dart';
+import 'package:wegig_app/features/profile/data/repositories/profile_repository_impl.dart';
+import 'package:wegig_app/features/profile/domain/repositories/profile_repository.dart';
 import 'package:core_ui/features/profile/domain/entities/profile_entity.dart';
-import '../../features/profile/domain/usecases/create_profile.dart';
-import '../../features/profile/domain/usecases/update_profile.dart';
-import '../../features/profile/domain/usecases/switch_active_profile.dart';
-import '../../features/profile/domain/usecases/delete_profile.dart';
-import '../../features/profile/domain/usecases/load_all_profiles.dart';
-import '../../features/profile/domain/usecases/get_active_profile.dart';
-import '../profile_result.dart';
+import 'package:wegig_app/features/profile/domain/usecases/create_profile.dart';
+import 'package:wegig_app/features/profile/domain/usecases/update_profile.dart';
+import 'package:wegig_app/features/profile/domain/usecases/switch_active_profile.dart';
+import 'package:wegig_app/features/profile/domain/usecases/delete_profile.dart';
+import 'package:wegig_app/features/profile/domain/usecases/load_all_profiles.dart';
+import 'package:wegig_app/features/profile/domain/usecases/get_active_profile.dart';
+import 'package:core_ui/profile_result.dart';
 
 /// ============================================
 /// DATA LAYER - Dependency Injection

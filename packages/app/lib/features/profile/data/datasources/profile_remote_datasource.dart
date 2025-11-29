@@ -128,13 +128,15 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
 
     // Transação atômica: criar perfil + definir como ativo se for o primeiro
     await _firestore.runTransaction((transaction) async {
-      // 1. Criar perfil
-      final profileRef = _profilesRef.doc(profile.profileId);
-      transaction.set(profileRef, profile.toFirestore());
-
-      // 2. Verificar se já existe um perfil ativo
+      // ⚠️ FIRESTORE RULE: Todas as LEITURAS devem vir ANTES de todas as ESCRITAS
+      
+      // 1. PRIMEIRO: Ler documento do usuário (READ)
       final userRef = _usersRef.doc(profile.uid);
       final userDoc = await transaction.get(userRef);
+
+      // 2. DEPOIS: Todas as escritas (WRITES)
+      final profileRef = _profilesRef.doc(profile.profileId);
+      transaction.set(profileRef, profile.toFirestore());
 
       if (!userDoc.exists) {
         // Criar documento users/{uid} com activeProfileId

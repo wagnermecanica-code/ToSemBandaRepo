@@ -2,13 +2,12 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../di/profile_providers.dart';
+import 'package:wegig_app/features/profile/presentation/providers/profile_providers.dart';
 import 'package:wegig_app/features/home/presentation/pages/home_page.dart';
 import 'package:wegig_app/features/post/presentation/pages/post_page.dart';
 import 'package:wegig_app/features/messages/presentation/pages/messages_page.dart';
 import 'package:wegig_app/features/notifications/presentation/pages/notifications_page.dart';
 import 'package:wegig_app/features/profile/presentation/pages/view_profile_page.dart';
-import 'package:wegig_app/features/profile/presentation/pages/edit_profile_page.dart';
 import 'package:wegig_app/features/notifications/domain/services/notification_service.dart';
 import 'package:core_ui/models/search_params.dart';
 import 'package:core_ui/features/notifications/domain/entities/notification_entity.dart';
@@ -56,7 +55,7 @@ class _BottomNavScaffoldState extends ConsumerState<BottomNavScaffold> {
   late final List<Widget> _pages = [
     HomePage(searchNotifier: _searchNotifier),
     const NotificationsPage(),
-    const PostPage(),
+    PostPage(postType: 'musician'), // Default to musician type
     const MessagesPage(),
     // ViewProfilePage without userId shows the current authenticated user's profile
     const ViewProfilePage(),
@@ -81,12 +80,7 @@ class _BottomNavScaffoldState extends ConsumerState<BottomNavScaffold> {
 
   @override
   Widget build(BuildContext context) {
-    final profileState = ref.watch(profileProvider);
-    final activeProfile = profileState.value?.activeProfile;
-    if (activeProfile == null) {
-      // Força criação do primeiro perfil
-      return const EditProfilePage(isNewProfile: true);
-    }
+    // Router garante que só chegamos aqui com perfil ativo
     return ValueListenableBuilder<int>(
       valueListenable: _currentIndexNotifier,
       builder: (context, currentIndex, child) {

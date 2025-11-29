@@ -8,7 +8,7 @@ import 'dart:convert';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
-import 'package:core_ui/di/profile_providers.dart';
+import 'package:wegig_app/features/profile/presentation/providers/profile_providers.dart';
 import 'package:core_ui/services/marker_cache_service.dart';
 import 'package:core_ui/theme/app_colors.dart';
 import 'package:core_ui/theme/app_theme.dart';
@@ -28,7 +28,7 @@ import 'package:wegig_app/features/post/presentation/pages/post_page.dart';
 import 'package:wegig_app/features/post/presentation/providers/post_providers.dart';
 import 'package:core_ui/features/profile/domain/entities/profile_entity.dart';
 import 'package:wegig_app/features/profile/presentation/pages/view_profile_page.dart';
-import 'package:wegig_app/models/search_params.dart';
+import 'package:core_ui/models/search_params.dart';
 
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key, this.searchNotifier, this.onOpenSearch});

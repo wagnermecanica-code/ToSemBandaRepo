@@ -1,0 +1,30 @@
+/// Core UI Package - Barrel Export
+///
+/// Central export file for all shared UI components, theme, services, and domain entities.
+/// Used by wegig_app package to access shared resources.
+library core_ui;
+
+// Theme
+export 'theme/app_colors.dart';
+export 'theme/app_theme.dart';
+export 'theme/app_typography.dart';
+
+// Navigation
+export 'navigation/bottom_nav_scaffold.dart';
+
+// Services
+export 'services/env_service.dart';
+
+// Widgets
+export 'widgets/app_loading_overlay.dart';
+export 'widgets/post_card.dart';
+
+// Domain Entities
+export 'features/profile/domain/entities/profile_entity.dart';
+export 'features/post/domain/entities/post_entity.dart';
+export 'features/messages/domain/entities/message_entity.dart';
+export 'features/messages/domain/entities/conversation_entity.dart';
+export 'features/notifications/domain/entities/notification_entity.dart';
+
+// Models
+export 'models/search_params.dart';
