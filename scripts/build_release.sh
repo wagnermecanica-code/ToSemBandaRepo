@@ -123,7 +123,7 @@ mkdir -p "$SYMBOLS_DIR"
 build_android_apk() {
     print_header "📦 Building Android APK - $FLAVOR_NAME"
     
-    local BUILD_ARGS="--flavor $FLAVOR --release --no-tree-shake-icons"
+    local BUILD_ARGS="--flavor $FLAVOR --target lib/main_$FLAVOR.dart --release --no-tree-shake-icons --dart-define=FLAVOR=$FLAVOR"
     
     if [[ "$OBFUSCATE" == "true" ]]; then
         BUILD_ARGS="$BUILD_ARGS --obfuscate --split-debug-info=$SYMBOLS_DIR/android"
@@ -147,7 +147,7 @@ build_android_apk() {
 build_android_bundle() {
     print_header "📦 Building Android App Bundle - $FLAVOR_NAME"
     
-    local BUILD_ARGS="--flavor $FLAVOR --release --no-tree-shake-icons"
+    local BUILD_ARGS="--flavor $FLAVOR --target lib/main_$FLAVOR.dart --release --no-tree-shake-icons --dart-define=FLAVOR=$FLAVOR"
     
     if [[ "$OBFUSCATE" == "true" ]]; then
         BUILD_ARGS="$BUILD_ARGS --obfuscate --split-debug-info=$SYMBOLS_DIR/android-bundle"
@@ -177,7 +177,7 @@ build_ios() {
         return
     fi
     
-    local BUILD_ARGS="--flavor $FLAVOR --release --no-tree-shake-icons"
+    local BUILD_ARGS="--flavor $FLAVOR --target lib/main_$FLAVOR.dart --release --no-tree-shake-icons --dart-define=FLAVOR=$FLAVOR"
     
     if [[ "$OBFUSCATE" == "true" ]]; then
         BUILD_ARGS="$BUILD_ARGS --obfuscate --split-debug-info=$SYMBOLS_DIR/ios"

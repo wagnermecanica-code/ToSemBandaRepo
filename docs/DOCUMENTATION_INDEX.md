@@ -5,6 +5,7 @@ Este documento organiza toda a documentação técnica do projeto por categoria.
 ## 📁 Estrutura
 
 ### `/sessions/` - Notas de Desenvolvimento (15 arquivos)
+
 Logs cronológicos de sessões de desenvolvimento com decisões técnicas, bugs resolvidos e evoluções do código.
 
 - `SESSION_7_CHAT_OPTIMIZATION.md` - Otimização do chat
@@ -25,6 +26,7 @@ Logs cronológicos de sessões de desenvolvimento com decisões técnicas, bugs 
 - `SESSION_ATUAL_29_NOV_2025.md` - Sessão de desenvolvimento atual
 
 ### `/architecture/` - Documentação de Arquitetura (5 arquivos)
+
 Designs de sistema, guias de migração e gestão de estado.
 
 - `ARCHITECTURE.md` - Documento principal de arquitetura
@@ -34,6 +36,7 @@ Designs de sistema, guias de migração e gestão de estado.
 - `PROXIMOS_PASSOS_MIGRACAO.md` - Próximos passos para migração
 
 ### `/guides/` - Guias e Tutoriais (15 arquivos)
+
 Instruções passo-a-passo para configuração, implementação e uso de funcionalidades.
 
 - `DEPENDENCY_OPTIMIZATION_GUIDE.md` - Otimização de dependências
@@ -53,6 +56,7 @@ Instruções passo-a-passo para configuração, implementação e uso de funcion
 - `PROJECT_STRUCTURE_COMPLETE_2025-11-29.md` - Estrutura completa do projeto
 
 ### `/reports/` - Relatórios e Análises (10 arquivos)
+
 Relatórios de status, resumos de progresso e resultados de testes.
 
 - `API_KEYS_SUMMARY.md` - Resumo de chaves de API
@@ -67,6 +71,7 @@ Relatórios de status, resumos de progresso e resultados de testes.
 - `WEBSITE_READY.md` - Status de prontidão do website
 
 ### `/deployment/` - Guias de Deploy (3 arquivos)
+
 Instruções de deployment, Cloud Functions e notificações.
 
 - `DEPLOY_CLOUD_FUNCTIONS.md` - Deploy de Cloud Functions
@@ -74,6 +79,7 @@ Instruções de deployment, Cloud Functions e notificações.
 - `NEARBY_POST_NOTIFICATIONS.md` - Notificações de posts próximos
 
 ### `/security/` - Documentação de Segurança (4 arquivos)
+
 Auditorias de segurança, checklists e implementações.
 
 - `API_KEYS_CHECKLIST.md` - Checklist de chaves de API
@@ -82,6 +88,7 @@ Auditorias de segurança, checklists e implementações.
 - `SECURITY_IMPLEMENTATION_2025-11-27.md` - Implementação geral de segurança
 
 ### `/legacy/` - Documentação Descontinuada (10 arquivos)
+
 Documentos antigos, supersedidos ou descontinuados mantidos para referência histórica.
 
 - `CLEANUP_LEGACY_FINAL.md` - Limpeza final do código legado
@@ -96,12 +103,14 @@ Documentos antigos, supersedidos ou descontinuados mantidos para referência his
 - `EDIT_POST_UI_IMPROVEMENTS.md` - Melhorias antigas de UI de edição de posts
 
 ### `/design/` - Design e UX (2 arquivos)
+
 Wireframes, design pins e documentação de UI/UX.
 
 - `DESIGN_PINS.md` - Pins de design
 - `WIREFRAME.md` - Wireframes da aplicação
 
 ### `/legal/` - Documentos Legais (2 arquivos)
+
 Políticas de privacidade e termos de serviço.
 
 - `PRIVACY_POLICY.md` - Política de privacidade
