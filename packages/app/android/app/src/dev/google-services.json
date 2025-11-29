@@ -1,187 +1,26 @@
 {
   "project_info": {
-    "project_number": "278498777601",
-    "project_id": "to-sem-banda-83e19",
-    "storage_bucket": "to-sem-banda-83e19.firebasestorage.app"
+    "project_number": "963929089370",
+    "project_id": "wegig-dev",
+    "storage_bucket": "wegig-dev.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:278498777601:android:3cb8437111dd6c5f9ebe00",
-        "android_client_info": {
-          "package_name": "com.example.to_sem_banda"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "278498777601-t9pqcb80j1uui7pm7aakaej3p2cusdfp.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyC_QxHROqFRoIzCHBK_NFxu-GG6uMNS0uk"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "278498777601-t9pqcb80j1uui7pm7aakaej3p2cusdfp.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "278498777601-2eaedp3uosbo09atol1m3nqd8d3h1men.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.example.toSemBanda"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:278498777601:android:9edd9deb1dd4a1429ebe00",
-        "android_client_info": {
-          "package_name": "com.example.to_sem_banda_novo"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "278498777601-t9pqcb80j1uui7pm7aakaej3p2cusdfp.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyC_QxHROqFRoIzCHBK_NFxu-GG6uMNS0uk"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "278498777601-t9pqcb80j1uui7pm7aakaej3p2cusdfp.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "278498777601-2eaedp3uosbo09atol1m3nqd8d3h1men.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.example.toSemBanda"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:278498777601:android:d7a665f5fd5f93719ebe00",
-        "android_client_info": {
-          "package_name": "com.tosembanda.wegig"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "278498777601-t9pqcb80j1uui7pm7aakaej3p2cusdfp.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyC_QxHROqFRoIzCHBK_NFxu-GG6uMNS0uk"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "278498777601-t9pqcb80j1uui7pm7aakaej3p2cusdfp.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "278498777601-2eaedp3uosbo09atol1m3nqd8d3h1men.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.example.toSemBanda"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:278498777601:android:e53cb79c055240be9ebe00",
+        "mobilesdk_app_id": "1:963929089370:android:1a6d15efd0ca5ecfec7f63",
         "android_client_info": {
           "package_name": "com.tosembanda.wegig.dev"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "278498777601-t9pqcb80j1uui7pm7aakaej3p2cusdfp.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyC_QxHROqFRoIzCHBK_NFxu-GG6uMNS0uk"
+          "current_key": "AIzaSyCBPov3Sy9P2M3u5ckWW4fqWdMuo7OBHNA"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "278498777601-t9pqcb80j1uui7pm7aakaej3p2cusdfp.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "278498777601-2eaedp3uosbo09atol1m3nqd8d3h1men.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.example.toSemBanda"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:278498777601:android:d602ae39fc393d199ebe00",
-        "android_client_info": {
-          "package_name": "com.tosembanda.wegig.staging"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "278498777601-t9pqcb80j1uui7pm7aakaej3p2cusdfp.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyC_QxHROqFRoIzCHBK_NFxu-GG6uMNS0uk"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "278498777601-t9pqcb80j1uui7pm7aakaej3p2cusdfp.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "278498777601-2eaedp3uosbo09atol1m3nqd8d3h1men.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.example.toSemBanda"
-              }
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

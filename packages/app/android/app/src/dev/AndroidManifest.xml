@@ -1,7 +1,9 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- Production Flavor Configuration -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <!-- Dev Flavor Configuration -->
     <application
-        android:label="WeGig"
-        android:icon="@mipmap/ic_launcher">
+        android:label="WeGig DEV"
+        android:icon="@mipmap/ic_launcher"
+        tools:replace="android:label">
     </application>
 </manifest>

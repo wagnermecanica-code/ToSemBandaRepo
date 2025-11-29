@@ -52,22 +52,21 @@ class DefaultFirebaseOptions {
   // TODO: Replace with your STAGING Firebase project configuration
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyC_QxHROqFRoIzCHBK_NFxu-GG6uMNS0uk',
-    appId: '1:278498777601:android:d602ae39fc393d199ebe00',
-    messagingSenderId: '278498777601',
-    projectId: 'to-sem-banda-83e19',
-    storageBucket: 'to-sem-banda-83e19.firebasestorage.app',
+    apiKey: 'AIzaSyCSdKys9izCKHrkGlxlNCnuTqcU7Xjcoaw',
+    appId: '1:27906769066:android:1dfb4c1cff7bbfbdbcd0d3',
+    messagingSenderId: '27906769066',
+    projectId: 'wegig-staging',
+    storageBucket: 'wegig-staging.firebasestorage.app',
   );
 
   // Run: flutterfire configure --project=to-sem-banda-staging --out=lib/firebase_options_staging.dart
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAe_WwvD3nN-VJlMZf2L_BRpIx-ne3P_-0',
-    appId: '1:278498777601:ios:1ecad15c4cc358329ebe00',
-    messagingSenderId: '278498777601',
-    projectId: 'to-sem-banda-83e19',
-    storageBucket: 'to-sem-banda-83e19.firebasestorage.app',
-    iosClientId: '278498777601-ek3pus3dnu3o5rjb5oc75qgnj4qbdnn0.apps.googleusercontent.com',
+    apiKey: 'AIzaSyAca3GkAy6euZ0QeO55TZ71gFQlM1c0c5Y',
+    appId: '1:27906769066:ios:e18b9605552d60e5bcd0d3',
+    messagingSenderId: '27906769066',
+    projectId: 'wegig-staging',
+    storageBucket: 'wegig-staging.firebasestorage.app',
     iosBundleId: 'com.tosembanda.wegig.staging',
   );
 

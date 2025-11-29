@@ -1,4 +1,5 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
     <!-- Permissão de internet para Firebase e carregamento de imagens -->
     <uses-permission android:name="android.permission.INTERNET"/>
     
@@ -18,7 +19,8 @@
     <application
         android:label="WeGig"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+        tools:replace="android:label">
         
         <!-- Google Maps API key - Browser key (auto created by Firebase) -->
         <meta-data
