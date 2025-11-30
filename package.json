@@ -1,0 +1,36 @@
+{
+  "name": "to_sem_banda",
+  "version": "1.0.0",
+  "description": "App Flutter para conectar músicos e bandas usando arquitetura multi-perfil estilo Instagram.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky",
+    "lint": "cd packages/app && flutter analyze",
+    "format": "cd packages/app && dart format .",
+    "test:flutter": "cd packages/app && flutter test",
+    "test:coverage": "cd packages/app && flutter test --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wagnermecanica-code/ToSemBandaRepo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/wagnermecanica-code/ToSemBandaRepo/issues"
+  },
+  "homepage": "https://github.com/wagnermecanica-code/ToSemBandaRepo#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^20.1.0",
+    "@commitlint/config-conventional": "^20.0.0",
+    "husky": "^9.1.7"
+  }
+}

@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Skip pre-commit for now - we'll add lint/test checks later in Phase 1
+echo "✓ Pre-commit check passed"

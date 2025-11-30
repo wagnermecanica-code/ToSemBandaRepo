@@ -77,3 +77,10 @@ lib/firebase_options_prod.dart
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# FVM Version Cache
+.fvm/
+
+# Node modules (commitlint, husky)
+node_modules/
+package-lock.json
