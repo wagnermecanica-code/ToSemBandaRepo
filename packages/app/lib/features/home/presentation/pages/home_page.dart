@@ -233,14 +233,11 @@ class _HomePageState extends ConsumerState<HomePage>
 
         try {
           final position = await Geolocator.getCurrentPosition(
-            locationSettings: const LocationSettings(
-              accuracy: LocationAccuracy.high,
-              timeLimit: Duration(seconds: 8),
-            ),
-          );
+            desiredAccuracy: LocationAccuracy.high,
+          ).timeout(const Duration(seconds: 8));
           targetPos = LatLng(position.latitude, position.longitude);
           if (mounted) {
-            setState(() => _mapControllerWrapper.setCurrentPosition(targetPos));
+            setState(() => _mapControllerWrapper.setCurrentPosition(targetPos!));
           }
           debugPrint(
               '📍 Localização obtida: ${targetPos.latitude}, ${targetPos.longitude}');
@@ -253,7 +250,7 @@ class _HomePageState extends ConsumerState<HomePage>
           if (lastPosition != null) {
             targetPos = LatLng(lastPosition.latitude, lastPosition.longitude);
             if (mounted) {
-              setState(() => _mapControllerWrapper.setCurrentPosition(targetPos));
+              setState(() => _mapControllerWrapper.setCurrentPosition(targetPos!));
             }
             debugPrint('📍 Usando última posição conhecida');
 
@@ -1100,24 +1097,22 @@ class _HomePageState extends ConsumerState<HomePage>
 
       debugPrint('📍 _determinePosition: Obtendo posição atual...');
       final position = await Geolocator.getCurrentPosition(
-        locationSettings: const LocationSettings(
-          accuracy: LocationAccuracy.high,
-          timeLimit: Duration(seconds: 10),
-        ),
-      );
+        desiredAccuracy: LocationAccuracy.high,
+      ).timeout(const Duration(seconds: 10));
 
       debugPrint(
           '✅ _determinePosition: Posição obtida: ${position.latitude}, ${position.longitude}');
 
+      final newPos = LatLng(position.latitude, position.longitude);
       if (mounted) {
         setState(() {
-          _mapControllerWrapper.setCurrentPosition(LatLng(position.latitude, position.longitude));
+          _mapControllerWrapper.setCurrentPosition(newPos);
         });
 
         // Animar câmera apenas se o mapa já estiver pronto
         if (_mapControllerWrapper.controller != null) {
           await _mapControllerWrapper.controller!
-              .animateCamera(CameraUpdate.newLatLng(_mapControllerWrapper.currentPosition!));
+              .animateCamera(CameraUpdate.newLatLng(newPos));
           debugPrint(
               '✅ _determinePosition: Câmera animada para posição inicial');
         }
