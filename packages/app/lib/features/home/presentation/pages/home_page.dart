@@ -591,7 +591,7 @@ class _HomePageState extends ConsumerState<HomePage>
                   );
                   if (result == true) {
                     // Recarregar posts
-                    ref.invalidate(postProvider);
+                    ref.invalidate(postNotifierProvider);
                   }
                 },
               ),
@@ -692,7 +692,7 @@ class _HomePageState extends ConsumerState<HomePage>
 
       // Recarregar posts
       if (mounted) {
-        ref.invalidate(postProvider);
+        ref.invalidate(postNotifierProvider);
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('Post deletado com sucesso'),
@@ -717,7 +717,7 @@ class _HomePageState extends ConsumerState<HomePage>
 
   @override
   Widget build(BuildContext context) {
-    final postsAsync = ref.watch(postProvider);
+    final postsAsync = ref.watch(postNotifierProvider);
     final profileAsync = ref.watch(profileProvider);
 
     // Recalcular distâncias quando o perfil ativo mudar
@@ -1038,7 +1038,7 @@ class _HomePageState extends ConsumerState<HomePage>
   }
 
   Future<void> _onMapIdle() async {
-    final postsAsync = ref.read(postProvider);
+    final postsAsync = ref.read(postNotifierProvider);
     final allPosts = postsAsync.when(
       data: (postState) => postState.posts,
       loading: () => <PostEntity>[],

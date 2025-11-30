@@ -173,7 +173,7 @@ final getActiveProfileUseCaseProvider =
 // ignore: unused_element
 typedef GetActiveProfileUseCaseRef
     = AutoDisposeProviderRef<GetActiveProfileUseCase>;
-String _$activeProfileHash() => r'fc32903c544b43733e9d3f4461b6cd74ff589c64';
+String _$activeProfileHash() => r'9ff2dcf7b3dd38b54e43a88933e81bf8348f6486';
 
 /// ============================================
 /// GLOBAL PROVIDERS - Mantidos para compatibilidade
@@ -195,7 +195,7 @@ final activeProfileProvider = AutoDisposeProvider<ProfileEntity?>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef ActiveProfileRef = AutoDisposeProviderRef<ProfileEntity?>;
-String _$profileListHash() => r'a196080eb12c5133c03a19ecf282af1b946898b8';
+String _$profileListHash() => r'752e1c2cd10b6c295fc1185406f610e5d0cf37e2';
 
 /// Provider para lista de perfis
 ///

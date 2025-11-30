@@ -5,6 +5,7 @@ import 'package:core_ui/profile_result.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:wegig_app/features/profile/data/datasources/profile_remote_datasource.dart';
 import 'package:wegig_app/features/profile/data/repositories/profile_repository_impl.dart';
@@ -16,6 +17,7 @@ import 'package:wegig_app/features/profile/domain/usecases/load_all_profiles.dar
 import 'package:wegig_app/features/profile/domain/usecases/switch_active_profile.dart';
 import 'package:wegig_app/features/profile/domain/usecases/update_profile.dart';
 
+part 'profile_providers.freezed.dart';
 part 'profile_providers.g.dart';
 
 /// ============================================
@@ -79,33 +81,15 @@ GetActiveProfileUseCase getActiveProfileUseCase(Ref ref) {
 /// PRESENTATION LAYER - State Management
 /// ============================================
 
-/// State do perfil (migrado para ProfileEntity)
-class ProfileState {
-
-  ProfileState({
-    this.activeProfile,
-    this.profiles = const [],
-    this.isLoading = false,
-    this.error,
-  });
-  final ProfileEntity? activeProfile;
-  final List<ProfileEntity> profiles;
-  final bool isLoading;
-  final String? error;
-
-  ProfileState copyWith({
+/// State do perfil (migrado para ProfileEntity + Freezed)
+@freezed
+class ProfileState with _$ProfileState {
+  const factory ProfileState({
     ProfileEntity? activeProfile,
-    List<ProfileEntity>? profiles,
-    bool? isLoading,
+    @Default([]) List<ProfileEntity> profiles,
+    @Default(false) bool isLoading,
     String? error,
-  }) {
-    return ProfileState(
-      activeProfile: activeProfile ?? this.activeProfile,
-      profiles: profiles ?? this.profiles,
-      isLoading: isLoading ?? this.isLoading,
-      error: error,
-    );
-  }
+  }) = _ProfileState;
 }
 
 /// ProfileNotifier - Gerencia estado global de perfis (Riverpod 2.x AutoDisposeAsyncNotifier)

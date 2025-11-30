@@ -6,6 +6,7 @@ import 'package:core_ui/post_result.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:wegig_app/features/post/data/datasources/post_remote_datasource.dart';
 import 'package:wegig_app/features/post/data/repositories/post_repository_impl.dart';
@@ -16,6 +17,7 @@ import 'package:wegig_app/features/post/domain/usecases/load_interested_users.da
 import 'package:wegig_app/features/post/domain/usecases/toggle_interest.dart';
 import 'package:wegig_app/features/post/domain/usecases/update_post.dart';
 
+part 'post_providers.freezed.dart';
 part 'post_providers.g.dart';
 
 /// ============================================
@@ -74,27 +76,13 @@ LoadInterestedUsers loadInterestedUsersUseCase(Ref ref) {
 /// ============================================
 
 /// State para PostNotifier
-class PostState {
-  const PostState({
-    this.posts = const [],
-    this.isLoading = false,
-    this.error,
-  });
-  final List<PostEntity> posts;
-  final bool isLoading;
-  final String? error;
-
-  PostState copyWith({
-    List<PostEntity>? posts,
-    bool? isLoading,
+@freezed
+class PostState with _$PostState {
+  const factory PostState({
+    @Default([]) List<PostEntity> posts,
+    @Default(false) bool isLoading,
     String? error,
-  }) {
-    return PostState(
-      posts: posts ?? this.posts,
-      isLoading: isLoading ?? this.isLoading,
-      error: error,
-    );
-  }
+  }) = _PostState;
 }
 
 /// PostNotifier - Manages post state with Clean Architecture
