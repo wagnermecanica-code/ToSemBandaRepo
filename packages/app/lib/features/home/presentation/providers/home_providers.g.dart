@@ -247,6 +247,116 @@ final class SearchProfilesUseCaseProvider extends $FunctionalProvider<
 String _$searchProfilesUseCaseHash() =>
     r'a8911d5395c1dc73af420d36cf214388745e67be';
 
+/// Notifier para gerenciar feed de posts
+
+@ProviderFor(FeedNotifier)
+const feedProvider = FeedNotifierProvider._();
+
+/// Notifier para gerenciar feed de posts
+final class FeedNotifierProvider
+    extends $NotifierProvider<FeedNotifier, FeedState> {
+  /// Notifier para gerenciar feed de posts
+  const FeedNotifierProvider._()
+      : super(
+          from: null,
+          argument: null,
+          retry: null,
+          name: r'feedProvider',
+          isAutoDispose: true,
+          dependencies: null,
+          $allTransitiveDependencies: null,
+        );
+
+  @override
+  String debugGetCreateSourceHash() => _$feedNotifierHash();
+
+  @$internal
+  @override
+  FeedNotifier create() => FeedNotifier();
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(FeedState value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<FeedState>(value),
+    );
+  }
+}
+
+String _$feedNotifierHash() => r'22815cc7b7bf72f9888a0df4655222fcde6ab7ff';
+
+/// Notifier para gerenciar feed de posts
+
+abstract class _$FeedNotifier extends $Notifier<FeedState> {
+  FeedState build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final created = build();
+    final ref = this.ref as $Ref<FeedState, FeedState>;
+    final element = ref.element as $ClassProviderElement<
+        AnyNotifier<FeedState, FeedState>, FeedState, Object?, Object?>;
+    element.handleValue(ref, created);
+  }
+}
+
+/// Notifier para busca de perfis
+
+@ProviderFor(ProfileSearchNotifier)
+const profileSearchProvider = ProfileSearchNotifierProvider._();
+
+/// Notifier para busca de perfis
+final class ProfileSearchNotifierProvider
+    extends $NotifierProvider<ProfileSearchNotifier, ProfileSearchState> {
+  /// Notifier para busca de perfis
+  const ProfileSearchNotifierProvider._()
+      : super(
+          from: null,
+          argument: null,
+          retry: null,
+          name: r'profileSearchProvider',
+          isAutoDispose: true,
+          dependencies: null,
+          $allTransitiveDependencies: null,
+        );
+
+  @override
+  String debugGetCreateSourceHash() => _$profileSearchNotifierHash();
+
+  @$internal
+  @override
+  ProfileSearchNotifier create() => ProfileSearchNotifier();
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(ProfileSearchState value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<ProfileSearchState>(value),
+    );
+  }
+}
+
+String _$profileSearchNotifierHash() =>
+    r'4f2b8672b4088fc9ea47fee6a150b9db886e5e06';
+
+/// Notifier para busca de perfis
+
+abstract class _$ProfileSearchNotifier extends $Notifier<ProfileSearchState> {
+  ProfileSearchState build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final created = build();
+    final ref = this.ref as $Ref<ProfileSearchState, ProfileSearchState>;
+    final element = ref.element as $ClassProviderElement<
+        AnyNotifier<ProfileSearchState, ProfileSearchState>,
+        ProfileSearchState,
+        Object?,
+        Object?>;
+    element.handleValue(ref, created);
+  }
+}
+
 /// Provider para stream de posts próximos (tempo real)
 
 @ProviderFor(nearbyPostsStream)

@@ -333,15 +333,72 @@ final class LoadInterestedUsersUseCaseProvider extends $FunctionalProvider<
 String _$loadInterestedUsersUseCaseHash() =>
     r'c0e86387876da18d9df64b02bab5c729c7482eab';
 
+/// PostNotifier - Manages post state with Clean Architecture
+
+@ProviderFor(PostNotifier)
+const postProvider = PostNotifierProvider._();
+
+/// PostNotifier - Manages post state with Clean Architecture
+final class PostNotifierProvider
+    extends $AsyncNotifierProvider<PostNotifier, PostState> {
+  /// PostNotifier - Manages post state with Clean Architecture
+  const PostNotifierProvider._()
+      : super(
+          from: null,
+          argument: null,
+          retry: null,
+          name: r'postProvider',
+          isAutoDispose: true,
+          dependencies: null,
+          $allTransitiveDependencies: null,
+        );
+
+  @override
+  String debugGetCreateSourceHash() => _$postNotifierHash();
+
+  @$internal
+  @override
+  PostNotifier create() => PostNotifier();
+}
+
+String _$postNotifierHash() => r'd0d6ed4c1d20a6e5910a40101c246dc012c17fed';
+
+/// PostNotifier - Manages post state with Clean Architecture
+
+abstract class _$PostNotifier extends $AsyncNotifier<PostState> {
+  FutureOr<PostState> build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final created = build();
+    final ref = this.ref as $Ref<AsyncValue<PostState>, PostState>;
+    final element = ref.element as $ClassProviderElement<
+        AnyNotifier<AsyncValue<PostState>, PostState>,
+        AsyncValue<PostState>,
+        Object?,
+        Object?>;
+    element.handleValue(ref, created);
+  }
+}
+
+/// ============================================
+/// GLOBAL PROVIDERS
+/// ============================================
 /// Helper provider to get just the posts list
 
 @ProviderFor(postList)
 const postListProvider = PostListProvider._();
 
+/// ============================================
+/// GLOBAL PROVIDERS
+/// ============================================
 /// Helper provider to get just the posts list
 
 final class PostListProvider extends $FunctionalProvider<List<PostEntity>,
     List<PostEntity>, List<PostEntity>> with $Provider<List<PostEntity>> {
+  /// ============================================
+  /// GLOBAL PROVIDERS
+  /// ============================================
   /// Helper provider to get just the posts list
   const PostListProvider._()
       : super(

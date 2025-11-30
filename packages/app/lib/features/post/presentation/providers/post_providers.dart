@@ -98,7 +98,8 @@ class PostState {
 }
 
 /// PostNotifier - Manages post state with Clean Architecture
-class PostNotifier extends AsyncNotifier<PostState> {
+@riverpod
+class PostNotifier extends _$PostNotifier {
   @override
   FutureOr<PostState> build() async {
     return PostState(posts: await _loadPosts());
@@ -230,11 +231,6 @@ class PostNotifier extends AsyncNotifier<PostState> {
 /// ============================================
 /// GLOBAL PROVIDERS
 /// ============================================
-
-/// Main post provider
-final postProvider = AsyncNotifierProvider<PostNotifier, PostState>(
-  PostNotifier.new,
-);
 
 /// Helper provider to get just the posts list
 @riverpod

@@ -90,7 +90,8 @@ class FeedState {
 }
 
 /// Notifier para gerenciar feed de posts
-class FeedNotifier extends Notifier<FeedState> {
+@riverpod
+class FeedNotifier extends _$FeedNotifier {
   late final LoadNearbyPostsUseCase _loadNearbyPostsUseCase;
   late final LoadPostsByGenresUseCase _loadPostsByGenresUseCase;
 
@@ -214,7 +215,8 @@ class ProfileSearchState {
 }
 
 /// Notifier para busca de perfis
-class ProfileSearchNotifier extends Notifier<ProfileSearchState> {
+@riverpod
+class ProfileSearchNotifier extends _$ProfileSearchNotifier {
   late final SearchProfilesUseCase _searchProfilesUseCase;
 
   @override
