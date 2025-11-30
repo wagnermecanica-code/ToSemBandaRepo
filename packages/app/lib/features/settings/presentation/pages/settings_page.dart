@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:core_ui/features/profile/domain/entities/profile_entity.dart';
 import 'package:core_ui/theme/app_colors.dart';
 import 'package:core_ui/theme/app_typography.dart';
@@ -10,11 +9,13 @@ import 'package:wegig_app/features/auth/presentation/providers/auth_providers.da
 import 'package:wegig_app/features/post/presentation/providers/post_providers.dart';
 import 'package:wegig_app/features/profile/presentation/pages/edit_profile_page.dart';
 import 'package:wegig_app/features/profile/presentation/providers/profile_providers.dart';
+import 'package:wegig_app/features/settings/presentation/providers/settings_providers.dart';
 import 'package:wegig_app/features/settings/presentation/widgets/settings_section.dart';
 import 'package:wegig_app/features/settings/presentation/widgets/settings_tile.dart';
 
 /// Tela de Configurações do perfil ativo
 /// Design Airbnb 2025: Clean, minimalista, switches e botões bem organizados
+/// Migrated to Riverpod AsyncNotifier (no setState!)
 class SettingsPage extends ConsumerStatefulWidget {
   const SettingsPage({super.key});
 
@@ -23,67 +24,19 @@ class SettingsPage extends ConsumerStatefulWidget {
 }
 
 class _SettingsPageState extends ConsumerState<SettingsPage> {
-  bool _notifyInterests = true;
-  bool _notifyMessages = true;
-  bool _notifyNearbyPosts = true;
-  double _nearbyRadiusKm = 20;
-  bool _isLoading = true;
-  bool _isLoggingOut = false;
-
   @override
   void initState() {
     super.initState();
-    _loadSettings();
-  }
-
-  Future<void> _loadSettings() async {
-    final profileState = ref.read(profileProvider);
-    final activeProfile = profileState.value?.activeProfile;
-    if (activeProfile == null) {
-      if (mounted) setState(() => _isLoading = false);
-      return;
-    }
-
-    try {
-      final doc = await FirebaseFirestore.instance
-          .collection('profiles')
-          .doc(activeProfile.profileId)
-          .get();
-
-      if (doc.exists && mounted) {
-        final data = doc.data();
-        setState(() {
-          _notifyNearbyPosts =
-              data?['notificationRadiusEnabled'] as bool? ?? true;
-          _nearbyRadiusKm =
-              ((data?['notificationRadius'] as num?) ?? 20.0).toDouble();
-          _isLoading = false;
-        });
+    // Load settings when page initializes
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final profileState = ref.read(profileProvider);
+      final activeProfile = profileState.value?.activeProfile;
+      if (activeProfile != null) {
+        ref
+            .read(userSettingsProvider.notifier)
+            .loadSettings(activeProfile.profileId);
       }
-    } catch (e) {
-      if (mounted) {
-        setState(() => _isLoading = false);
-      }
-    }
-  }
-
-  Future<void> _updateNotificationSettings() async {
-    final profileState = ref.read(profileProvider);
-    final activeProfile = profileState.value?.activeProfile;
-    if (activeProfile == null) return;
-
-    try {
-      await FirebaseFirestore.instance
-          .collection('profiles')
-          .doc(activeProfile.profileId)
-          .update({
-        'notificationRadiusEnabled': _notifyNearbyPosts,
-        'notificationRadius': _nearbyRadiusKm,
-        'updatedAt': FieldValue.serverTimestamp(),
-      });
-    } catch (e) {
-      _showError('Erro ao salvar configurações');
-    }
+    });
   }
 
   @override
@@ -129,7 +82,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
               if (result is String && result.isNotEmpty) {
                 await ref.read(profileProvider.notifier).refresh();
                 // Invalida posts para garantir que posts do perfil sejam atualizados
-                ref.invalidate(postProvider);
+                ref.invalidate(postNotifierProvider);
               }
 
               if (mounted) {
@@ -164,29 +117,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
           const SettingsSection(
               title: 'Notificações', icon: Icons.notifications_outlined),
           const SizedBox(height: 12),
-          SettingsSwitchTile(
-            icon: Icons.favorite_outline,
-            title: 'Interesses',
-            subtitle: 'Notificação quando alguém demonstra interesse',
-            value: _notifyInterests,
-            onChanged: (value) {
-              setState(() => _notifyInterests = value);
-              _showSnackBar('Preferência salva');
-            },
-          ),
-          const SizedBox(height: 8),
-          SettingsSwitchTile(
-            icon: Icons.message_outlined,
-            title: 'Mensagens',
-            subtitle: 'Notificação de novas mensagens',
-            value: _notifyMessages,
-            onChanged: (value) {
-              setState(() => _notifyMessages = value);
-              _showSnackBar('Preferência salva');
-            },
-          ),
-          const SizedBox(height: 8),
-          _buildNearbyPostsCard(),
+          _buildNotificationSettings(),
 
           const SizedBox(height: 32),
           const Divider(),
@@ -202,7 +133,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
             subtitle: 'Desconectar do aplicativo',
             iconColor: AppColors.error,
             textColor: AppColors.error,
-            onTap: _isLoggingOut ? null : _showLogoutDialog,
+            onTap: _showLogoutDialog,
           ),
 
           const SizedBox(height: 40),
@@ -212,8 +143,182 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
   }
 
   Widget _buildNearbyPostsCard() {
-    if (_isLoading) {
-      return Card(
+    final settingsAsync = ref.watch(userSettingsProvider);
+
+    return settingsAsync.when(
+      data: (settings) {
+        if (settings == null) {
+          return const SizedBox.shrink();
+        }
+
+        return Card(
+          elevation: 0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+            side: const BorderSide(color: AppColors.border),
+          ),
+          child: Column(
+            children: [
+              SwitchListTile(
+                contentPadding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                secondary: Container(
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color: AppColors.primary.withValues(alpha: 0.1),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: const Icon(
+                    Icons.location_on_outlined,
+                    color: AppColors.primary,
+                    size: 24,
+                  ),
+                ),
+                title: Text(
+                  'Posts Próximos',
+                  style: AppTypography.titleMedium.copyWith(
+                    color: AppColors.textPrimary,
+                  ),
+                ),
+                subtitle: Text(
+                  'Notificação de novos posts perto de você',
+                  style: AppTypography.caption.copyWith(
+                    color: AppColors.textSecondary,
+                  ),
+                ),
+                value: settings.notifyNearbyPosts,
+                activeThumbColor: AppColors.primary,
+                onChanged: (value) {
+                  ref
+                      .read(userSettingsProvider.notifier)
+                      .toggleNotifyNearbyPosts(value);
+                  _showSnackBar(value
+                      ? 'Você receberá notificações de posts próximos'
+                      : 'Notificações de posts próximos desativadas');
+                },
+              ),
+
+              // Slider animado (aparece quando toggle está ativo)
+              AnimatedSize(
+                duration: const Duration(milliseconds: 200),
+                curve: Curves.easeInOut,
+                child: settings.notifyNearbyPosts
+                    ? Padding(
+                        padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Divider(),
+                            const SizedBox(height: 12),
+                            Row(
+                              children: [
+                                const Icon(
+                                  Icons.map_outlined,
+                                  color: AppColors.primary,
+                                  size: 18,
+                                ),
+                                const SizedBox(width: 8),
+                                Expanded(
+                                  child: Text(
+                                    'Raio de Notificação',
+                                    style: AppTypography.bodyMedium.copyWith(
+                                      color: AppColors.textPrimary,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 12, vertical: 6),
+                                  decoration: BoxDecoration(
+                                    color:
+                                        AppColors.primary.withValues(alpha: 0.1),
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                  child: Text(
+                                    '${settings.nearbyRadiusKm.toInt()} km',
+                                    style: AppTypography.bodyMedium.copyWith(
+                                      color: AppColors.primary,
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 16),
+                            Text(
+                              'Notificar quando houver novos posts até ${settings.nearbyRadiusKm.toInt()} km de você',
+                              style: AppTypography.caption.copyWith(
+                                color: AppColors.textSecondary,
+                                height: 1.4,
+                              ),
+                            ),
+                            const SizedBox(height: 12),
+                            SliderTheme(
+                              data: SliderTheme.of(context).copyWith(
+                            activeTrackColor: AppColors.primary,
+                            inactiveTrackColor:
+                                AppColors.primary.withValues(alpha: 0.2),
+                            thumbColor: AppColors.primary,
+                            overlayColor:
+                                AppColors.primary.withValues(alpha: 0.2),
+                            thumbShape: const RoundSliderThumbShape(),
+                                overlayShape: const RoundSliderOverlayShape(
+                                    overlayRadius: 20),
+                                trackHeight: 4,
+                                valueIndicatorColor: AppColors.primary,
+                                valueIndicatorTextStyle: const TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              child: Slider(
+                                value: settings.nearbyRadiusKm,
+                                min: 5,
+                                max: 100,
+                                divisions: 19, // 5, 10, 15, ..., 100
+                                label: '${settings.nearbyRadiusKm.toInt()} km',
+                                onChanged: (value) {
+                                  // Optimistic UI update via provider
+                                  ref
+                                      .read(userSettingsProvider.notifier)
+                                      .updateNearbyRadius(value);
+                                },
+                                onChangeEnd: (value) {
+                                  _showSnackBar(
+                                      'Raio atualizado para ${value.toInt()} km');
+                                },
+                              ),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  '5 km',
+                                  style: AppTypography.caption.copyWith(
+                                    color: AppColors.textSecondary,
+                                    fontSize: 11,
+                                  ),
+                                ),
+                                Text(
+                                  '100 km',
+                                  style: AppTypography.caption.copyWith(
+                                    color: AppColors.textSecondary,
+                                    fontSize: 11,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      )
+                    : const SizedBox.shrink(),
+              ),
+            ],
+          ),
+        );
+      },
+      loading: () => Card(
         elevation: 0,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
@@ -223,177 +328,92 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
           padding: EdgeInsets.all(20),
           child: Center(
             child: CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation<Color>(Color(0xFFE47911)),
+              valueColor: AlwaysStoppedAnimation<Color>(AppColors.primary),
             ),
           ),
         ),
-      );
-    }
-
-    return Card(
-      elevation: 0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
-        side: const BorderSide(color: AppColors.border),
       ),
-      child: Column(
-        children: [
-          SwitchListTile(
-            contentPadding:
-                const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-            secondary: Container(
-              padding: const EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                color: AppColors.primary.withValues(alpha: 0.1),
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: const Icon(
-                Icons.location_on_outlined,
-                color: AppColors.primary,
-                size: 24,
-              ),
-            ),
-            title: Text(
-              'Posts Próximos',
-              style: AppTypography.titleMedium.copyWith(
-                color: AppColors.textPrimary,
-              ),
-            ),
-            subtitle: Text(
-              'Notificação de novos posts perto de você',
-              style: AppTypography.caption.copyWith(
-                color: AppColors.textSecondary,
-              ),
-            ),
-            value: _notifyNearbyPosts,
-            activeThumbColor: AppColors.primary,
-            onChanged: (value) {
-              setState(() => _notifyNearbyPosts = value);
-              _updateNotificationSettings();
-              _showSnackBar(_notifyNearbyPosts
-                  ? 'Você receberá notificações de posts próximos'
-                  : 'Notificações de posts próximos desativadas');
-            },
+      error: (error, stack) => Card(
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+          side: const BorderSide(color: AppColors.error),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Text(
+            'Erro ao carregar configurações',
+            style: AppTypography.bodyMedium.copyWith(color: AppColors.error),
           ),
-
-          // Slider animado (aparece quando toggle está ativo)
-          AnimatedSize(
-            duration: const Duration(milliseconds: 200),
-            curve: Curves.easeInOut,
-            child: _notifyNearbyPosts
-                ? Padding(
-                    padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Divider(),
-                        const SizedBox(height: 12),
-                        Row(
-                          children: [
-                            const Icon(
-                              Icons.map_outlined,
-                              color: AppColors.primary,
-                              size: 18,
-                            ),
-                            const SizedBox(width: 8),
-                            Expanded(
-                              child: Text(
-                                'Raio de Notificação',
-                                style: AppTypography.bodyMedium.copyWith(
-                                  color: AppColors.textPrimary,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ),
-                            Container(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 12, vertical: 6),
-                              decoration: BoxDecoration(
-                                color: AppColors.primary.withValues(alpha: 0.1),
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              child: Text(
-                                '${_nearbyRadiusKm.toInt()} km',
-                                style: AppTypography.bodyMedium.copyWith(
-                                  color: AppColors.primary,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 16),
-                        Text(
-                          'Notificar quando houver novos posts até ${_nearbyRadiusKm.toInt()} km de você',
-                          style: AppTypography.caption.copyWith(
-                            color: AppColors.textSecondary,
-                            height: 1.4,
-                          ),
-                        ),
-                        const SizedBox(height: 12),
-                        SliderTheme(
-                          data: SliderTheme.of(context).copyWith(
-                            activeTrackColor: AppColors.primary,
-                            inactiveTrackColor:
-                                AppColors.primary.withValues(alpha: 0.2),
-                            thumbColor: AppColors.primary,
-                            overlayColor:
-                                AppColors.primary.withValues(alpha: 0.2),
-                            thumbShape: const RoundSliderThumbShape(),
-                            overlayShape: const RoundSliderOverlayShape(
-                                overlayRadius: 20),
-                            trackHeight: 4,
-                            valueIndicatorColor: AppColors.primary,
-                            valueIndicatorTextStyle: const TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                          child: Slider(
-                            value: _nearbyRadiusKm,
-                            min: 5,
-                            max: 100,
-                            divisions: 19, // 5, 10, 15, ..., 100
-                            label: '${_nearbyRadiusKm.toInt()} km',
-                            onChanged: (value) {
-                              setState(() => _nearbyRadiusKm = value);
-                            },
-                            onChangeEnd: (value) {
-                              _updateNotificationSettings();
-                              _showSnackBar(
-                                  'Raio atualizado para ${value.toInt()} km');
-                            },
-                          ),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              '5 km',
-                              style: AppTypography.caption.copyWith(
-                                color: AppColors.textSecondary,
-                                fontSize: 11,
-                              ),
-                            ),
-                            Text(
-                              '100 km',
-                              style: AppTypography.caption.copyWith(
-                                color: AppColors.textSecondary,
-                                fontSize: 11,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  )
-                : const SizedBox.shrink(),
-          ),
-        ],
+        ),
       ),
     );
   }
 
+  Widget _buildNotificationSettings() {
+    final settingsAsync = ref.watch(userSettingsProvider);
+
+    return settingsAsync.when(
+      data: (settings) {
+        if (settings == null) {
+          return const SizedBox.shrink();
+        }
+
+        return Column(
+          children: [
+            SettingsSwitchTile(
+              icon: Icons.favorite_outline,
+              title: 'Interesses',
+              subtitle: 'Notificação quando alguém demonstra interesse',
+              value: settings.notifyInterests,
+              onChanged: (value) {
+                ref
+                    .read(userSettingsProvider.notifier)
+                    .toggleNotifyInterests(value);
+                _showSnackBar('Preferência salva');
+              },
+            ),
+            const SizedBox(height: 8),
+            SettingsSwitchTile(
+              icon: Icons.message_outlined,
+              title: 'Mensagens',
+              subtitle: 'Notificação de novas mensagens',
+              value: settings.notifyMessages,
+              onChanged: (value) {
+                ref
+                    .read(userSettingsProvider.notifier)
+                    .toggleNotifyMessages(value);
+                _showSnackBar('Preferência salva');
+              },
+            ),
+            const SizedBox(height: 8),
+            _buildNearbyPostsCard(),
+          ],
+        );
+      },
+      loading: () => const Column(
+        children: [
+          SizedBox(height: 40),
+          Center(
+            child: CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation<Color>(AppColors.primary),
+            ),
+          ),
+          SizedBox(height: 40),
+        ],
+      ),
+      error: (error, stack) => Padding(
+        padding: const EdgeInsets.all(16),
+        child: Text(
+          'Erro ao carregar preferências de notificação',
+          style: AppTypography.bodyMedium.copyWith(color: AppColors.error),
+          textAlign: TextAlign.center,
+        ),
+      ),
+    );
+  }
+
+  /// Compartilha o deep link do perfil via WhatsApp, Instagram, etc
   void _shareProfile(ProfileEntity? profile) {
     if (profile == null) {
       _showError('Perfil não encontrado');
@@ -414,9 +434,6 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
   }
 
   void _showLogoutDialog() {
-    // Prevenir múltiplos dialogs
-    if (_isLoggingOut) return;
-
     showDialog(
       context: context,
       barrierDismissible: false, // Prevenir fechar acidentalmente
@@ -455,15 +472,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
   }
 
   Future<void> _performLogout() async {
-    // Prevenir múltiplos logouts simultâneos
-    if (_isLoggingOut) {
-      debugPrint('⚠️ SettingsPage: Logout já em andamento, ignorando...');
-      return;
-    }
-
     if (!mounted) return;
-
-    setState(() => _isLoggingOut = true);
 
     // Capturar navigator e messenger ANTES de operações async
     final navigator = Navigator.of(context);
@@ -484,7 +493,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
       // Invalidar todos os providers ANTES do logout para limpar cache
       debugPrint('🧹 SettingsPage: Invalidando providers...');
       ref.invalidate(profileProvider);
-      ref.invalidate(postProvider);
+      ref.invalidate(postNotifierProvider);
 
       // Aguardar mais um frame para garantir que invalidação foi processada
       await Future.delayed(const Duration(milliseconds: 150));
@@ -502,7 +511,6 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
 
       // Tratar erro apenas se widget ainda estiver montado
       if (mounted) {
-        setState(() => _isLoggingOut = false);
         messenger.showSnackBar(
           SnackBar(
             content: Row(
@@ -519,11 +527,6 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
             ),
           ),
         );
-      }
-    } finally {
-      // Garantir que flag é resetada mesmo se houver erro
-      if (mounted) {
-        setState(() => _isLoggingOut = false);
       }
     }
   }
