@@ -1089,6 +1089,7 @@ firebase deploy --only functions
 **Roadmap de Qualidade de Código (PLANO_ACAO_100_BOAS_PRATICAS.md):**
 
 **Fase 1: Quick Wins** (1 semana → 92% das boas práticas)
+
 - [x] Task 1.1: Conventional Commits (2h) ✅ **COMPLETO 30/11**
   - commitlint + husky configurados
   - CONTRIBUTING.md criado (700+ linhas)
@@ -1100,10 +1101,12 @@ firebase deploy --only functions
 - [ ] Task 1.3: Testes Básicos (30h) - Post/Messages/Home use cases
 
 **Fase 2: Fundação** (2 semanas → 98% das boas práticas)
+
 - [ ] Code Generation completo (Entities + DTOs)
 - [ ] Testes avançados (Providers + Integration)
 
 **Fase 3: Excelência** (1 semana → 100% das boas práticas)
+
 - [ ] Refactor Settings + Home
 - [ ] Code generation final
 - [ ] CI/CD setup
