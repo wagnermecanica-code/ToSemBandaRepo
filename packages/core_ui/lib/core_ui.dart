@@ -28,3 +28,7 @@ export 'features/notifications/domain/entities/notification_entity.dart';
 
 // Models
 export 'models/search_params.dart';
+
+// Core Types
+export 'core/ui_state.dart';
+export 'core/result.dart';
