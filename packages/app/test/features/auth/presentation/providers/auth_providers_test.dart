@@ -24,56 +24,121 @@ void main() {
   });
 
   group('Auth Providers - Data Layer', () {
-    test('authRemoteDataSourceProvider returns AuthRemoteDataSource instance',
-        () {
+    test('authRemoteDataSourceProvider can be overridden', () {
+      // Arrange - Override with mock to avoid Firebase initialization
+      final mockDataSource = _MockAuthRemoteDataSource();
+      final testContainer = ProviderContainer(
+        overrides: [
+          authRemoteDataSourceProvider.overrideWithValue(mockDataSource),
+        ],
+      );
+
       // Act
-      final dataSource = container.read(authRemoteDataSourceProvider);
+      final dataSource = testContainer.read(authRemoteDataSourceProvider);
 
       // Assert
-      expect(dataSource, isA<AuthRemoteDataSource>());
+      expect(dataSource, equals(mockDataSource));
+
+      testContainer.dispose();
     });
 
     test('authRemoteDataSourceProvider returns singleton (same instance)', () {
+      // Arrange - Override with mock
+      final mockDataSource = _MockAuthRemoteDataSource();
+      final testContainer = ProviderContainer(
+        overrides: [
+          authRemoteDataSourceProvider.overrideWithValue(mockDataSource),
+        ],
+      );
+
       // Act
-      final dataSource1 = container.read(authRemoteDataSourceProvider);
-      final dataSource2 = container.read(authRemoteDataSourceProvider);
+      final dataSource1 = testContainer.read(authRemoteDataSourceProvider);
+      final dataSource2 = testContainer.read(authRemoteDataSourceProvider);
 
       // Assert
       expect(identical(dataSource1, dataSource2), isTrue);
+
+      testContainer.dispose();
     });
 
     test('authRepositoryProvider returns AuthRepository instance', () {
+      // Arrange - Override datasource to avoid Firebase
+      final mockDataSource = _MockAuthRemoteDataSource();
+      final testContainer = ProviderContainer(
+        overrides: [
+          authRemoteDataSourceProvider.overrideWithValue(mockDataSource),
+        ],
+      );
+
       // Act
-      final repository = container.read(authRepositoryProvider);
+      final repository = testContainer.read(authRepositoryProvider);
 
       // Assert
       expect(repository, isA<AuthRepository>());
+
+      testContainer.dispose();
     });
 
     test('authRepositoryProvider depends on authRemoteDataSourceProvider', () {
+      // Arrange - Override datasource
+      final mockDataSource = _MockAuthRemoteDataSource();
+      final testContainer = ProviderContainer(
+        overrides: [
+          authRemoteDataSourceProvider.overrideWithValue(mockDataSource),
+        ],
+      );
+
       // Act
-      final repository = container.read(authRepositoryProvider);
-      final dataSource = container.read(authRemoteDataSourceProvider);
+      final repository = testContainer.read(authRepositoryProvider);
+      final dataSource = testContainer.read(authRemoteDataSourceProvider);
 
       // Assert - Repository should exist and use the same datasource instance
       expect(repository, isNotNull);
       expect(dataSource, isNotNull);
+
+      testContainer.dispose();
     });
 
     test('authRepositoryProvider returns singleton (same instance)', () {
+      // Arrange - Override datasource
+      final mockDataSource = _MockAuthRemoteDataSource();
+      final testContainer = ProviderContainer(
+        overrides: [
+          authRemoteDataSourceProvider.overrideWithValue(mockDataSource),
+        ],
+      );
+
       // Act
-      final repository1 = container.read(authRepositoryProvider);
-      final repository2 = container.read(authRepositoryProvider);
+      final repository1 = testContainer.read(authRepositoryProvider);
+      final repository2 = testContainer.read(authRepositoryProvider);
 
       // Assert
       expect(identical(repository1, repository2), isTrue);
+
+      testContainer.dispose();
     });
   });
 
   group('Auth Providers - UseCases', () {
+    late ProviderContainer testContainer;
+
+    setUp(() {
+      // Override datasource to avoid Firebase initialization in all UseCase tests
+      final mockDataSource = _MockAuthRemoteDataSource();
+      testContainer = ProviderContainer(
+        overrides: [
+          authRemoteDataSourceProvider.overrideWithValue(mockDataSource),
+        ],
+      );
+    });
+
+    tearDown(() {
+      testContainer.dispose();
+    });
+
     test('signInWithEmailUseCaseProvider returns SignInWithEmailUseCase', () {
       // Act
-      final useCase = container.read(signInWithEmailUseCaseProvider);
+      final useCase = testContainer.read(signInWithEmailUseCaseProvider);
 
       // Assert
       expect(useCase, isA<SignInWithEmailUseCase>());
@@ -81,7 +146,7 @@ void main() {
 
     test('signUpWithEmailUseCaseProvider returns SignUpWithEmailUseCase', () {
       // Act
-      final useCase = container.read(signUpWithEmailUseCaseProvider);
+      final useCase = testContainer.read(signUpWithEmailUseCaseProvider);
 
       // Assert
       expect(useCase, isA<SignUpWithEmailUseCase>());
@@ -90,7 +155,7 @@ void main() {
     test('signInWithGoogleUseCaseProvider returns SignInWithGoogleUseCase',
         () {
       // Act
-      final useCase = container.read(signInWithGoogleUseCaseProvider);
+      final useCase = testContainer.read(signInWithGoogleUseCaseProvider);
 
       // Assert
       expect(useCase, isA<SignInWithGoogleUseCase>());
@@ -98,7 +163,7 @@ void main() {
 
     test('signInWithAppleUseCaseProvider returns SignInWithAppleUseCase', () {
       // Act
-      final useCase = container.read(signInWithAppleUseCaseProvider);
+      final useCase = testContainer.read(signInWithAppleUseCaseProvider);
 
       // Assert
       expect(useCase, isA<SignInWithAppleUseCase>());
@@ -106,7 +171,7 @@ void main() {
 
     test('signOutUseCaseProvider returns SignOutUseCase', () {
       // Act
-      final useCase = container.read(signOutUseCaseProvider);
+      final useCase = testContainer.read(signOutUseCaseProvider);
 
       // Assert
       expect(useCase, isA<SignOutUseCase>());
@@ -116,7 +181,7 @@ void main() {
         'sendPasswordResetEmailUseCaseProvider returns SendPasswordResetEmailUseCase',
         () {
       // Act
-      final useCase = container.read(sendPasswordResetEmailUseCaseProvider);
+      final useCase = testContainer.read(sendPasswordResetEmailUseCaseProvider);
 
       // Assert
       expect(useCase, isA<SendPasswordResetEmailUseCase>());
@@ -126,7 +191,7 @@ void main() {
         'sendEmailVerificationUseCaseProvider returns SendEmailVerificationUseCase',
         () {
       // Act
-      final useCase = container.read(sendEmailVerificationUseCaseProvider);
+      final useCase = testContainer.read(sendEmailVerificationUseCaseProvider);
 
       // Assert
       expect(useCase, isA<SendEmailVerificationUseCase>());
@@ -134,17 +199,33 @@ void main() {
   });
 
   group('Auth Providers - UseCases Dependencies', () {
+    late ProviderContainer testContainer;
+
+    setUp(() {
+      // Override datasource to avoid Firebase initialization
+      final mockDataSource = _MockAuthRemoteDataSource();
+      testContainer = ProviderContainer(
+        overrides: [
+          authRemoteDataSourceProvider.overrideWithValue(mockDataSource),
+        ],
+      );
+    });
+
+    tearDown(() {
+      testContainer.dispose();
+    });
+
     test('all UseCases should depend on authRepositoryProvider', () {
       // Act - Force creation of all use cases
-      container.read(signInWithEmailUseCaseProvider);
-      container.read(signUpWithEmailUseCaseProvider);
-      container.read(signInWithGoogleUseCaseProvider);
-      container.read(signInWithAppleUseCaseProvider);
-      container.read(signOutUseCaseProvider);
-      container.read(sendPasswordResetEmailUseCaseProvider);
-      container.read(sendEmailVerificationUseCaseProvider);
+      testContainer.read(signInWithEmailUseCaseProvider);
+      testContainer.read(signUpWithEmailUseCaseProvider);
+      testContainer.read(signInWithGoogleUseCaseProvider);
+      testContainer.read(signInWithAppleUseCaseProvider);
+      testContainer.read(signOutUseCaseProvider);
+      testContainer.read(sendPasswordResetEmailUseCaseProvider);
+      testContainer.read(sendEmailVerificationUseCaseProvider);
 
-      final repository = container.read(authRepositoryProvider);
+      final repository = testContainer.read(authRepositoryProvider);
 
       // Assert - Repository should be created and shared
       expect(repository, isNotNull);
@@ -152,8 +233,8 @@ void main() {
 
     test('UseCases should return same instance (singleton)', () {
       // Act
-      final useCase1 = container.read(signInWithEmailUseCaseProvider);
-      final useCase2 = container.read(signInWithEmailUseCaseProvider);
+      final useCase1 = testContainer.read(signInWithEmailUseCaseProvider);
+      final useCase2 = testContainer.read(signInWithEmailUseCaseProvider);
 
       // Assert
       expect(identical(useCase1, useCase2), isTrue);
@@ -234,18 +315,29 @@ void main() {
 
   group('Auth Providers - Auto-Dispose Behavior', () {
     test('providers should auto-dispose when container is disposed', () {
-      // Arrange
-      final testContainer = ProviderContainer();
+      // Arrange - Override datasource to avoid Firebase
+      final mockDataSource = _MockAuthRemoteDataSource();
+      final testContainer = ProviderContainer(
+        overrides: [
+          authRemoteDataSourceProvider.overrideWithValue(mockDataSource),
+        ],
+      );
       testContainer.read(authRepositoryProvider);
       testContainer.read(signInWithEmailUseCaseProvider);
 
       // Act
       testContainer.dispose();
 
-      // Assert - Should not throw after disposal
+      // Assert - Should throw StateError after disposal
       expect(() => testContainer.read(authRepositoryProvider), throwsStateError);
     });
   });
+}
+
+/// Mock class for AuthRemoteDataSource
+class _MockAuthRemoteDataSource implements AuthRemoteDataSource {
+  @override
+  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
 }
 
 /// Mock class for testing provider overrides
