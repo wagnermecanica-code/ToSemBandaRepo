@@ -1,63 +1,23 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-/// Resultado de operações de autenticação
+part 'auth_result.freezed.dart';
+
+/// Resultado de operações de autenticação com Freezed
 ///
 /// Sealed class para type-safety e exhaustive pattern matching
-sealed class AuthResult {
-  const AuthResult();
-}
+@freezed
+sealed class AuthResult with _$AuthResult {
+  const factory AuthResult.success({
+    required User user,
+    @Default(false) bool requiresEmailVerification,
+    @Default(false) bool requiresProfileCreation,
+  }) = AuthSuccess;
 
-/// Autenticação bem-sucedida
-class AuthSuccess extends AuthResult {
-  const AuthSuccess({
-    required this.user,
-    this.requiresEmailVerification = false,
-    this.requiresProfileCreation = false,
-  });
-  final User user;
-  final bool requiresEmailVerification;
-  final bool requiresProfileCreation;
-}
+  const factory AuthResult.failure({
+    required String message,
+    String? code,
+  }) = AuthFailure;
 
-/// Falha na autenticação
-class AuthFailure extends AuthResult {
-  const AuthFailure({
-    required this.message,
-    this.code,
-  });
-  final String message;
-  final String? code;
-}
-
-/// Operação cancelada pelo usuário
-class AuthCancelled extends AuthResult {
-  const AuthCancelled();
-}
-
-/// Extension para facilitar pattern matching
-extension AuthResultX on AuthResult {
-  T when<T>({
-    required T Function(AuthSuccess) success,
-    required T Function(AuthFailure) failure,
-    required T Function(AuthCancelled) cancelled,
-  }) {
-    final result = this;
-    if (result is AuthSuccess) return success(result);
-    if (result is AuthFailure) return failure(result);
-    if (result is AuthCancelled) return cancelled(result);
-    throw Exception('Unhandled AuthResult type: $runtimeType');
-  }
-
-  T maybeWhen<T>({
-    required T Function() orElse,
-    T Function(AuthSuccess)? success,
-    T Function(AuthFailure)? failure,
-    T Function(AuthCancelled)? cancelled,
-  }) {
-    final result = this;
-    if (result is AuthSuccess && success != null) return success(result);
-    if (result is AuthFailure && failure != null) return failure(result);
-    if (result is AuthCancelled && cancelled != null) return cancelled(result);
-    return orElse();
-  }
+  const factory AuthResult.cancelled() = AuthCancelled;
 }
