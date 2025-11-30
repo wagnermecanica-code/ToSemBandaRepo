@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:core_ui/features/notifications/domain/entities/notification_entity.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:wegig_app/features/notifications/data/datasources/notifications_remote_datasource.dart';
 import 'package:wegig_app/features/notifications/data/repositories/notifications_repository_impl.dart';
