@@ -84,7 +84,8 @@ void main() {
           text: text,
         ),
         throwsA(
-          predicate((e) => e.toString().contains('Mensagem não pode ser vazia')),
+          predicate(
+              (e) => e.toString().contains('Mensagem não pode ser vazia')),
         ),
       );
     });
@@ -105,7 +106,8 @@ void main() {
           text: text,
         ),
         throwsA(
-          predicate((e) => e.toString().contains('Mensagem não pode ser vazia')),
+          predicate(
+              (e) => e.toString().contains('Mensagem não pode ser vazia')),
         ),
       );
     });
@@ -168,7 +170,8 @@ void main() {
           text: text,
         ),
         throwsA(
-          predicate((e) => e.toString().contains('ID da conversa é obrigatório')),
+          predicate(
+              (e) => e.toString().contains('ID da conversa é obrigatório')),
         ),
       );
     });
@@ -189,7 +192,8 @@ void main() {
           text: text,
         ),
         throwsA(
-          predicate((e) => e.toString().contains('ID do remetente é obrigatório')),
+          predicate(
+              (e) => e.toString().contains('ID do remetente é obrigatório')),
         ),
       );
     });
@@ -210,7 +214,8 @@ void main() {
           text: text,
         ),
         throwsA(
-          predicate((e) => e.toString().contains('ID do perfil remetente é obrigatório')),
+          predicate((e) =>
+              e.toString().contains('ID do perfil remetente é obrigatório')),
         ),
       );
     });
@@ -223,7 +228,8 @@ void main() {
       const senderId = 'user-1';
       const senderProfileId = 'profile-1';
       const text = 'Olá';
-      mockRepository.setupSendMessageFailure('Erro ao enviar mensagem para o Firestore');
+      mockRepository
+          .setupSendMessageFailure('Erro ao enviar mensagem para o Firestore');
 
       // when & then
       expect(
@@ -234,7 +240,9 @@ void main() {
           text: text,
         ),
         throwsA(
-          predicate((e) => e.toString().contains('Erro ao enviar mensagem para o Firestore')),
+          predicate((e) => e
+              .toString()
+              .contains('Erro ao enviar mensagem para o Firestore')),
         ),
       );
     });

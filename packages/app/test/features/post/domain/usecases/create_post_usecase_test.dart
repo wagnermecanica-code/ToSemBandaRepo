@@ -262,7 +262,8 @@ void main() {
       expect(
         () => useCase(invalidPost),
         throwsA(
-          predicate((e) => e.toString().contains('Selecione pelo menos um instrumento')),
+          predicate((e) =>
+              e.toString().contains('Selecione pelo menos um instrumento')),
         ),
       );
     });
@@ -317,7 +318,8 @@ void main() {
       expect(
         () => useCase(invalidPost),
         throwsA(
-          predicate((e) => e.toString().contains('Selecione pelo menos um gênero musical')),
+          predicate((e) =>
+              e.toString().contains('Selecione pelo menos um gênero musical')),
         ),
       );
     });
@@ -346,7 +348,8 @@ void main() {
       expect(
         () => useCase(invalidPost),
         throwsA(
-          predicate((e) => e.toString().contains('Selecione o nível de experiência')),
+          predicate(
+              (e) => e.toString().contains('Selecione o nível de experiência')),
         ),
       );
     });
@@ -373,7 +376,8 @@ void main() {
       expect(
         () => useCase(invalidPost),
         throwsA(
-          predicate((e) => e.toString().contains('Selecione o nível de experiência')),
+          predicate(
+              (e) => e.toString().contains('Selecione o nível de experiência')),
         ),
       );
     });

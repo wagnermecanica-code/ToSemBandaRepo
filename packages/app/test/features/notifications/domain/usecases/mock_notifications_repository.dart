@@ -8,38 +8,40 @@ class MockNotificationsRepository implements NotificationsRepository {
   // Test data storage
   final Map<String, NotificationEntity> _notifications = {};
   final Map<String, int> _unreadCounts = {};
-  
+
   // Setup responses
   String? _createNotificationFailure;
   String? _markAsReadFailure;
   String? _markAllAsReadFailure;
   String? _deleteNotificationFailure;
   String? _getNotificationsFailure;
-  
+
   // Call tracking
   bool createNotificationCalled = false;
   bool markAsReadCalled = false;
   bool markAllAsReadCalled = false;
   bool deleteNotificationCalled = false;
   bool getNotificationsCalled = false;
-  
+
   String? lastCreatedNotificationId;
   String? lastMarkedAsReadNotificationId;
   String? lastDeletedNotificationId;
   String? lastMarkAllAsReadProfileId;
 
   // Setup methods
-  void setupNotifications(String profileId, List<NotificationEntity> notifications) {
+  void setupNotifications(
+      String profileId, List<NotificationEntity> notifications) {
     for (var notification in notifications) {
       _notifications[notification.notificationId] = notification;
     }
-    
+
     // Calculate unread count
     final unread = notifications.where((n) => !n.read).length;
     _unreadCounts[profileId] = unread;
   }
 
-  void setupNotificationById(String notificationId, NotificationEntity? notification) {
+  void setupNotificationById(
+      String notificationId, NotificationEntity? notification) {
     if (notification != null) {
       _notifications[notificationId] = notification;
     }
@@ -76,11 +78,11 @@ class MockNotificationsRepository implements NotificationsRepository {
     NotificationEntity? startAfter,
   }) async {
     getNotificationsCalled = true;
-    
+
     if (_getNotificationsFailure != null) {
       throw Exception(_getNotificationsFailure);
     }
-    
+
     return _notifications.values
         .where((n) => n.recipientProfileId == profileId)
         .toList();
@@ -98,11 +100,11 @@ class MockNotificationsRepository implements NotificationsRepository {
   }) async {
     markAsReadCalled = true;
     lastMarkedAsReadNotificationId = notificationId;
-    
+
     if (_markAsReadFailure != null) {
       throw Exception(_markAsReadFailure);
     }
-    
+
     final notification = _notifications[notificationId];
     if (notification != null) {
       _notifications[notificationId] = NotificationEntity(
@@ -118,7 +120,7 @@ class MockNotificationsRepository implements NotificationsRepository {
         actionType: notification.actionType,
         actionData: notification.actionData,
       );
-      
+
       // Update unread count
       if (_unreadCounts[profileId] != null && _unreadCounts[profileId]! > 0) {
         _unreadCounts[profileId] = _unreadCounts[profileId]! - 1;
@@ -132,16 +134,16 @@ class MockNotificationsRepository implements NotificationsRepository {
   }) async {
     markAllAsReadCalled = true;
     lastMarkAllAsReadProfileId = profileId;
-    
+
     if (_markAllAsReadFailure != null) {
       throw Exception(_markAllAsReadFailure);
     }
-    
+
     // Mark all notifications for this profile as read
     final profileNotifications = _notifications.values
         .where((n) => n.recipientProfileId == profileId)
         .toList();
-    
+
     for (var notification in profileNotifications) {
       _notifications[notification.notificationId] = NotificationEntity(
         notificationId: notification.notificationId,
@@ -157,7 +159,7 @@ class MockNotificationsRepository implements NotificationsRepository {
         actionData: notification.actionData,
       );
     }
-    
+
     // Reset unread count
     _unreadCounts[profileId] = 0;
   }
@@ -169,31 +171,32 @@ class MockNotificationsRepository implements NotificationsRepository {
   }) async {
     deleteNotificationCalled = true;
     lastDeletedNotificationId = notificationId;
-    
+
     if (_deleteNotificationFailure != null) {
       throw Exception(_deleteNotificationFailure);
     }
-    
+
     _notifications.remove(notificationId);
   }
 
   @override
-  Future<NotificationEntity> createNotification(NotificationEntity notification) async {
+  Future<NotificationEntity> createNotification(
+      NotificationEntity notification) async {
     createNotificationCalled = true;
     lastCreatedNotificationId = notification.notificationId;
-    
+
     if (_createNotificationFailure != null) {
       throw Exception(_createNotificationFailure);
     }
-    
+
     _notifications[notification.notificationId] = notification;
-    
+
     // Update unread count if notification is unread
     if (!notification.read) {
       final currentCount = _unreadCounts[notification.recipientProfileId] ?? 0;
       _unreadCounts[notification.recipientProfileId] = currentCount + 1;
     }
-    
+
     return notification;
   }
 

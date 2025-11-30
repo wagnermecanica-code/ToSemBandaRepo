@@ -6,50 +6,23 @@ part of 'app_router.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-// GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: type=lint, type=warning
-/// Provider do GoRouter com auth guard e redirect logic
+String _$goRouterHash() => r'bdc7c43f8f04bab60b3d338cec5008468301e5e7';
 
+/// Provider do GoRouter com auth guard e redirect logic usando rotas tipadas
+///
+/// Copied from [goRouter].
 @ProviderFor(goRouter)
-const goRouterProvider = GoRouterProvider._();
+final goRouterProvider = AutoDisposeProvider<GoRouter>.internal(
+  goRouter,
+  name: r'goRouterProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$goRouterHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
-/// Provider do GoRouter com auth guard e redirect logic
-
-final class GoRouterProvider
-    extends $FunctionalProvider<GoRouter, GoRouter, GoRouter>
-    with $Provider<GoRouter> {
-  /// Provider do GoRouter com auth guard e redirect logic
-  const GoRouterProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'goRouterProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
-
-  @override
-  String debugGetCreateSourceHash() => _$goRouterHash();
-
-  @$internal
-  @override
-  $ProviderElement<GoRouter> $createElement($ProviderPointer pointer) =>
-      $ProviderElement(pointer);
-
-  @override
-  GoRouter create(Ref ref) {
-    return goRouter(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(GoRouter value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<GoRouter>(value),
-    );
-  }
-}
-
-String _$goRouterHash() => r'69766d0036f06cf0864c938ce0f7a1711a8460f7';
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef GoRouterRef = AutoDisposeProviderRef<GoRouter>;
+// ignore_for_file: type=lint
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

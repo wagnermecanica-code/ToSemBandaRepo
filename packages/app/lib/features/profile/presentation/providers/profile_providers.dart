@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:wegig_app/features/profile/data/datasources/profile_remote_datasource.dart';
@@ -50,8 +51,7 @@ UpdateProfileUseCase updateProfileUseCase(Ref ref) {
 }
 
 @riverpod
-SwitchActiveProfileUseCase switchActiveProfileUseCase(
-    Ref ref) {
+SwitchActiveProfileUseCase switchActiveProfileUseCase(Ref ref) {
   final repository = ref.watch(profileRepositoryNewProvider);
   return SwitchActiveProfileUseCase(repository);
 }
@@ -107,13 +107,13 @@ class ProfileState {
   }
 }
 
-/// ProfileNotifier - Gerencia estado global de perfis
-@riverpod
-class ProfileNotifier extends _$ProfileNotifier {
+/// ProfileNotifier - Gerencia estado global de perfis (Riverpod 2.x AutoDisposeAsyncNotifier)
+class ProfileNotifier extends AutoDisposeAsyncNotifier<ProfileState> {
   /// Stream para observar mudanças no perfil ativo
   Stream<ProfileState> get stream => _streamController.stream;
 
-  final StreamController<ProfileState> _streamController = StreamController.broadcast();
+  final StreamController<ProfileState> _streamController =
+      StreamController.broadcast();
 
   @override
   set state(AsyncValue<ProfileState> value) {
@@ -136,7 +136,7 @@ class ProfileNotifier extends _$ProfileNotifier {
   Future<ProfileState> _loadProfiles() async {
     try {
       debugPrint('🔄 ProfileNotifier: Carregando perfis...');
-      
+
       final uid = FirebaseAuth.instance.currentUser?.uid;
       if (uid == null) {
         debugPrint('⚠️ ProfileNotifier: Usuário não autenticado');
@@ -149,7 +149,8 @@ class ProfileNotifier extends _$ProfileNotifier {
       final List<ProfileEntity> profiles = await loadAllProfiles(uid);
       final ProfileEntity? activeProfile = await getActiveProfile(uid);
 
-      debugPrint('✅ ProfileNotifier: ${profiles.length} perfis carregados, ativo: ${activeProfile?.name ?? "nenhum"}');
+      debugPrint(
+          '✅ ProfileNotifier: ${profiles.length} perfis carregados, ativo: ${activeProfile?.name ?? "nenhum"}');
 
       return ProfileState(
         activeProfile: activeProfile,
@@ -188,7 +189,8 @@ class ProfileNotifier extends _$ProfileNotifier {
         return const ProfileFailure(message: 'Usuário não autenticado');
       }
 
-      final CreateProfileUseCase createUseCase = ref.read(createProfileUseCaseProvider);
+      final CreateProfileUseCase createUseCase =
+          ref.read(createProfileUseCaseProvider);
       await createUseCase(profile, uid);
 
       state = AsyncValue.data(await _loadProfiles());
@@ -209,7 +211,8 @@ class ProfileNotifier extends _$ProfileNotifier {
         return const ProfileFailure(message: 'Usuário não autenticado');
       }
 
-      final UpdateProfileUseCase updateUseCase = ref.read(updateProfileUseCaseProvider);
+      final UpdateProfileUseCase updateUseCase =
+          ref.read(updateProfileUseCaseProvider);
       await updateUseCase(profile, uid);
 
       state = AsyncValue.data(await _loadProfiles());
@@ -280,3 +283,13 @@ Stream<ProfileState> profileStream(Ref ref) {
   final notifier = ref.watch(profileProvider.notifier);
   return notifier.stream;
 }
+
+/// ============================================
+/// MANUAL PROVIDERS (Riverpod 2.x compatibility)
+/// ============================================
+
+/// Provider para ProfileNotifier (manual - Riverpod 2.x não suporta @riverpod class)
+final profileProvider =
+    AutoDisposeAsyncNotifierProvider<ProfileNotifier, ProfileState>(
+  ProfileNotifier.new,
+);

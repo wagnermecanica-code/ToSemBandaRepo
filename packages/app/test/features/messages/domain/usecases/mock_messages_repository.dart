@@ -10,7 +10,7 @@ class MockMessagesRepository implements MessagesRepository {
   final Map<String, ConversationEntity> _conversations = {};
   final Map<String, List<MessageEntity>> _messages = {};
   final Map<String, int> _unreadCounts = {};
-  
+
   // Setup responses
   String? _sendMessageFailure;
   String? _sendImageFailure;
@@ -19,7 +19,7 @@ class MockMessagesRepository implements MessagesRepository {
   String? _getConversationsFailure;
   String? _getMessagesFailure;
   String? _getOrCreateConversationFailure;
-  
+
   // Call tracking
   bool sendMessageCalled = false;
   bool sendImageMessageCalled = false;
@@ -29,21 +29,23 @@ class MockMessagesRepository implements MessagesRepository {
   bool getConversationsCalled = false;
   bool getMessagesCalled = false;
   bool getOrCreateConversationCalled = false;
-  
+
   String? lastSendMessageConversationId;
   String? lastSendMessageText;
   String? lastMarkAsReadConversationId;
   String? lastDeletedConversationId;
 
   // Setup methods
-  void setupConversations(String profileId, List<ConversationEntity> conversations) {
+  void setupConversations(
+      String profileId, List<ConversationEntity> conversations) {
     // Store all conversations for this profile
     for (var conv in conversations) {
       _conversations[conv.id] = conv;
     }
   }
 
-  void setupConversationById(String conversationId, ConversationEntity? conversation) {
+  void setupConversationById(
+      String conversationId, ConversationEntity? conversation) {
     if (conversation != null) {
       _conversations[conversationId] = conversation;
     }
@@ -92,11 +94,11 @@ class MockMessagesRepository implements MessagesRepository {
     ConversationEntity? startAfter,
   }) async {
     getConversationsCalled = true;
-    
+
     if (_getConversationsFailure != null) {
       throw Exception(_getConversationsFailure);
     }
-    
+
     // Return all conversations for this profile
     return _conversations.values
         .where((conv) => conv.participantProfiles.contains(profileId))
@@ -116,24 +118,25 @@ class MockMessagesRepository implements MessagesRepository {
     required String otherUid,
   }) async {
     getOrCreateConversationCalled = true;
-    
+
     if (_getOrCreateConversationFailure != null) {
       throw Exception(_getOrCreateConversationFailure);
     }
-    
+
     // Find existing conversation
-    final existing = _conversations.values.cast<ConversationEntity?>().firstWhere(
-      (conv) =>
-          conv != null &&
-          conv.participantProfiles.contains(currentProfileId) &&
-          conv.participantProfiles.contains(otherProfileId),
-      orElse: () => null,
-    );
-    
+    final existing =
+        _conversations.values.cast<ConversationEntity?>().firstWhere(
+              (conv) =>
+                  conv != null &&
+                  conv.participantProfiles.contains(currentProfileId) &&
+                  conv.participantProfiles.contains(otherProfileId),
+              orElse: () => null,
+            );
+
     if (existing != null) {
       return existing;
     }
-    
+
     // Create new conversation
     final newConv = ConversationEntity(
       id: 'conv-${DateTime.now().millisecondsSinceEpoch}',
@@ -144,7 +147,7 @@ class MockMessagesRepository implements MessagesRepository {
       unreadCount: {currentProfileId: 0, otherProfileId: 0},
       createdAt: DateTime.now(),
     );
-    
+
     _conversations[newConv.id] = newConv;
     return newConv;
   }
@@ -156,11 +159,11 @@ class MockMessagesRepository implements MessagesRepository {
     MessageEntity? startAfter,
   }) async {
     getMessagesCalled = true;
-    
+
     if (_getMessagesFailure != null) {
       throw Exception(_getMessagesFailure);
     }
-    
+
     return _messages[conversationId] ?? [];
   }
 
@@ -175,11 +178,11 @@ class MockMessagesRepository implements MessagesRepository {
     sendMessageCalled = true;
     lastSendMessageConversationId = conversationId;
     lastSendMessageText = text;
-    
+
     if (_sendMessageFailure != null) {
       throw Exception(_sendMessageFailure);
     }
-    
+
     final message = MessageEntity(
       messageId: 'msg-${DateTime.now().millisecondsSinceEpoch}',
       senderId: senderId,
@@ -189,12 +192,12 @@ class MockMessagesRepository implements MessagesRepository {
       read: false,
       replyTo: replyTo,
     );
-    
+
     if (_messages[conversationId] == null) {
       _messages[conversationId] = [];
     }
     _messages[conversationId]!.add(message);
-    
+
     return message;
   }
 
@@ -209,11 +212,11 @@ class MockMessagesRepository implements MessagesRepository {
   }) async {
     sendImageMessageCalled = true;
     lastSendMessageConversationId = conversationId;
-    
+
     if (_sendImageFailure != null) {
       throw Exception(_sendImageFailure);
     }
-    
+
     final message = MessageEntity(
       messageId: 'msg-${DateTime.now().millisecondsSinceEpoch}',
       senderId: senderId,
@@ -224,12 +227,12 @@ class MockMessagesRepository implements MessagesRepository {
       read: false,
       replyTo: replyTo,
     );
-    
+
     if (_messages[conversationId] == null) {
       _messages[conversationId] = [];
     }
     _messages[conversationId]!.add(message);
-    
+
     return message;
   }
 
@@ -240,11 +243,11 @@ class MockMessagesRepository implements MessagesRepository {
   }) async {
     markAsReadCalled = true;
     lastMarkAsReadConversationId = conversationId;
-    
+
     if (_markAsReadFailure != null) {
       throw Exception(_markAsReadFailure);
     }
-    
+
     // Mark all messages as read
     if (_messages[conversationId] != null) {
       for (var i = 0; i < _messages[conversationId]!.length; i++) {
@@ -264,7 +267,7 @@ class MockMessagesRepository implements MessagesRepository {
         }
       }
     }
-    
+
     // Reset unread count
     if (_unreadCounts.containsKey(profileId)) {
       _unreadCounts[profileId] = 0;
@@ -277,7 +280,7 @@ class MockMessagesRepository implements MessagesRepository {
     required String profileId,
   }) async {
     markAsUnreadCalled = true;
-    
+
     // Increment unread count
     _unreadCounts[profileId] = (_unreadCounts[profileId] ?? 0) + 1;
   }
@@ -289,11 +292,11 @@ class MockMessagesRepository implements MessagesRepository {
   }) async {
     deleteConversationCalled = true;
     lastDeletedConversationId = conversationId;
-    
+
     if (_deleteConversationFailure != null) {
       throw Exception(_deleteConversationFailure);
     }
-    
+
     _conversations.remove(conversationId);
     _messages.remove(conversationId);
   }

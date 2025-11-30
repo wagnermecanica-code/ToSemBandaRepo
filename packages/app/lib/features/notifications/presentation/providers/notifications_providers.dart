@@ -25,15 +25,13 @@ FirebaseFirestore firestore(Ref ref) {
 
 /// Provider para NotificationsRemoteDataSource
 @riverpod
-INotificationsRemoteDataSource notificationsRemoteDataSource(
-    Ref ref) {
+INotificationsRemoteDataSource notificationsRemoteDataSource(Ref ref) {
   return NotificationsRemoteDataSource();
 }
 
 /// Provider para NotificationsRepository (nova implementação Clean Architecture)
 @riverpod
-NotificationsRepository notificationsRepositoryNew(
-    Ref ref) {
+NotificationsRepository notificationsRepositoryNew(Ref ref) {
   final dataSource = ref.watch(notificationsRemoteDataSourceProvider);
   return NotificationsRepositoryImpl(remoteDataSource: dataSource);
 }
@@ -49,15 +47,13 @@ LoadNotifications loadNotificationsUseCase(Ref ref) {
 }
 
 @riverpod
-MarkNotificationAsRead markNotificationAsReadUseCase(
-    Ref ref) {
+MarkNotificationAsRead markNotificationAsReadUseCase(Ref ref) {
   final repository = ref.watch(notificationsRepositoryNewProvider);
   return MarkNotificationAsRead(repository);
 }
 
 @riverpod
-MarkAllNotificationsAsRead markAllNotificationsAsReadUseCase(
-    Ref ref) {
+MarkAllNotificationsAsRead markAllNotificationsAsReadUseCase(Ref ref) {
   final repository = ref.watch(notificationsRepositoryNewProvider);
   return MarkAllNotificationsAsRead(repository);
 }
@@ -75,8 +71,7 @@ CreateNotification createNotificationUseCase(Ref ref) {
 }
 
 @riverpod
-GetUnreadNotificationCount getUnreadNotificationCountUseCase(
-    Ref ref) {
+GetUnreadNotificationCount getUnreadNotificationCountUseCase(Ref ref) {
   final repository = ref.watch(notificationsRepositoryNewProvider);
   return GetUnreadNotificationCount(repository);
 }

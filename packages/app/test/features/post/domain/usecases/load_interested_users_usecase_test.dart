@@ -88,13 +88,16 @@ void main() {
     test('should propagate exception when repository fails', () async {
       // given
       const postId = 'post-1';
-      mockRepository.setupInterestedProfilesFailure('Erro ao carregar interessados do Firestore');
+      mockRepository.setupInterestedProfilesFailure(
+          'Erro ao carregar interessados do Firestore');
 
       // when & then
       expect(
         () => useCase(postId),
         throwsA(
-          predicate((e) => e.toString().contains('Erro ao carregar interessados do Firestore')),
+          predicate((e) => e
+              .toString()
+              .contains('Erro ao carregar interessados do Firestore')),
         ),
       );
     });

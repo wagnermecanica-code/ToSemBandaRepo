@@ -1,13 +1,16 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
+// ignore_for_file: type=lint, invalid_annotation_target
+
 part of 'conversation_entity.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_ConversationEntity _$ConversationEntityFromJson(Map<String, dynamic> json) =>
-    _ConversationEntity(
+_$ConversationEntityImpl _$$ConversationEntityImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ConversationEntityImpl(
       id: json['id'] as String,
       participants: (json['participants'] as List<dynamic>)
           .map((e) => e as String)
@@ -26,7 +29,8 @@ _ConversationEntity _$ConversationEntityFromJson(Map<String, dynamic> json) =>
           : DateTime.parse(json['updatedAt'] as String),
     );
 
-Map<String, dynamic> _$ConversationEntityToJson(_ConversationEntity instance) =>
+Map<String, dynamic> _$$ConversationEntityImplToJson(
+        _$ConversationEntityImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'participants': instance.participants,

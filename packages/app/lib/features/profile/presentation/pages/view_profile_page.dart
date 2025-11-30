@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:wegig_app/app/router/app_router.dart';
 import 'package:wegig_app/features/profile/presentation/providers/profile_providers.dart';
 import 'package:core_ui/theme/app_colors.dart';
 import 'package:core_ui/utils/deep_link_generator.dart';
@@ -2104,13 +2105,7 @@ class _ViewProfilePageState extends ConsumerState<ViewProfilePage>
                 title: const Text('Ver Perfil'),
                 onTap: () {
                   Navigator.pop(ctx);
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (_) => ViewProfilePage(
-                        profileId: authorProfileId,
-                      ),
-                    ),
-                  );
+                  context.pushProfile(authorProfileId);
                 },
               ),
             ],
@@ -2169,12 +2164,7 @@ class _ViewProfilePageState extends ConsumerState<ViewProfilePage>
       ),
       child: InkWell(
         onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (_) => PostDetailPage(postId: postId),
-            ),
-          );
+          context.pushPostDetail(postId);
         },
         child: Stack(
           children: [

@@ -158,7 +158,7 @@ class App extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(goRouterProvider);
-    
+
     // Show debug banner only for dev/staging
     final showDebugBanner = flavor != 'prod';
 
@@ -172,7 +172,7 @@ class App extends ConsumerWidget {
       // Limita textScale para acessibilidade (0.8x - 1.5x)
       builder: (context, child) {
         final mediaQuery = MediaQuery.of(context);
-        
+
         // Add flavor banner in dev/staging
         Widget result = MediaQuery(
           data: mediaQuery.copyWith(
@@ -181,7 +181,7 @@ class App extends ConsumerWidget {
           ),
           child: child!,
         );
-        
+
         if (showDebugBanner) {
           result = Banner(
             message: flavor.toUpperCase(),
@@ -190,7 +190,7 @@ class App extends ConsumerWidget {
             child: result,
           );
         }
-        
+
         return result;
       },
     );

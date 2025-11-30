@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:core_ui/post_result.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:wegig_app/features/post/data/datasources/post_remote_datasource.dart';
 import 'package:wegig_app/features/post/data/repositories/post_repository_impl.dart';
@@ -63,8 +64,7 @@ ToggleInterest toggleInterestUseCase(Ref ref) {
 }
 
 @riverpod
-LoadInterestedUsers loadInterestedUsersUseCase(
-    Ref ref) {
+LoadInterestedUsers loadInterestedUsersUseCase(Ref ref) {
   final repository = ref.read(postRepositoryNewProvider);
   return LoadInterestedUsers(repository);
 }

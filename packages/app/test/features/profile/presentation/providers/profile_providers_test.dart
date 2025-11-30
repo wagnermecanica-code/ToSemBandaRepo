@@ -14,7 +14,16 @@ void main() {
   late ProviderContainer container;
 
   setUp(() {
-    container = ProviderContainer();
+    // Use mocks to avoid Firebase initialization
+    final mockDataSource = _MockProfileRemoteDataSource();
+    final mockRepository = _MockProfileRepository();
+
+    container = ProviderContainer(
+      overrides: [
+        profileRemoteDataSourceProvider.overrideWithValue(mockDataSource),
+        profileRepositoryNewProvider.overrideWithValue(mockRepository),
+      ],
+    );
   });
 
   tearDown(() {
@@ -47,7 +56,8 @@ void main() {
       expect(repository, isA<ProfileRepository>());
     });
 
-    test('profileRepositoryNewProvider depends on profileRemoteDataSourceProvider',
+    test(
+        'profileRepositoryNewProvider depends on profileRemoteDataSourceProvider',
         () {
       // Act
       final repository = container.read(profileRepositoryNewProvider);
@@ -85,7 +95,8 @@ void main() {
       expect(useCase, isA<UpdateProfileUseCase>());
     });
 
-    test('switchActiveProfileUseCaseProvider returns SwitchActiveProfileUseCase',
+    test(
+        'switchActiveProfileUseCaseProvider returns SwitchActiveProfileUseCase',
         () {
       // Act
       final useCase = container.read(switchActiveProfileUseCaseProvider);
@@ -155,7 +166,8 @@ void main() {
       expect(activeProfile, isNull);
     });
 
-    test('profileListProvider returns empty list when profileProvider is loading',
+    test(
+        'profileListProvider returns empty list when profileProvider is loading',
         () {
       // Act
       final profileList = container.read(profileListProvider);
@@ -213,8 +225,15 @@ void main() {
 
   group('Profile Providers - Auto-Dispose Behavior', () {
     test('providers should auto-dispose when container is disposed', () {
-      // Arrange
-      final testContainer = ProviderContainer();
+      // Arrange - Use mocks to avoid Firebase
+      final mockDataSource = _MockProfileRemoteDataSource();
+      final mockRepository = _MockProfileRepository();
+      final testContainer = ProviderContainer(
+        overrides: [
+          profileRemoteDataSourceProvider.overrideWithValue(mockDataSource),
+          profileRepositoryNewProvider.overrideWithValue(mockRepository),
+        ],
+      );
       testContainer.read(profileRepositoryNewProvider);
       testContainer.read(createProfileUseCaseProvider);
 
@@ -222,8 +241,8 @@ void main() {
       testContainer.dispose();
 
       // Assert
-      expect(
-          () => testContainer.read(profileRepositoryNewProvider), throwsStateError);
+      expect(() => testContainer.read(profileRepositoryNewProvider),
+          throwsStateError);
     });
   });
 

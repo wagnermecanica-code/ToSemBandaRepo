@@ -110,7 +110,8 @@ void main() {
       expect(
         () => useCase(notification),
         throwsA(
-          predicate((e) => e.toString().contains('recipientProfileId é obrigatório')),
+          predicate(
+              (e) => e.toString().contains('recipientProfileId é obrigatório')),
         ),
       );
     });
@@ -251,13 +252,15 @@ void main() {
         priority: NotificationPriority.medium,
         actionType: NotificationActionType.viewPost,
       );
-      mockRepository.setupCreateNotificationFailure('Erro ao salvar notificação no Firestore');
+      mockRepository.setupCreateNotificationFailure(
+          'Erro ao salvar notificação no Firestore');
 
       // when & then
       expect(
         () => useCase(notification),
         throwsA(
-          predicate((e) => e.toString().contains('Erro ao salvar notificação no Firestore')),
+          predicate((e) =>
+              e.toString().contains('Erro ao salvar notificação no Firestore')),
         ),
       );
     });

@@ -1,13 +1,16 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
+// ignore_for_file: type=lint, invalid_annotation_target
+
 part of 'notification_entity.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_NotificationEntity _$NotificationEntityFromJson(Map<String, dynamic> json) =>
-    _NotificationEntity(
+_$NotificationEntityImpl _$$NotificationEntityImplFromJson(
+        Map<String, dynamic> json) =>
+    _$NotificationEntityImpl(
       notificationId: json['notificationId'] as String,
       type: const NotificationTypeConverter().fromJson(json['type'] as String),
       recipientUid: json['recipientUid'] as String,
@@ -33,7 +36,8 @@ _NotificationEntity _$NotificationEntityFromJson(Map<String, dynamic> json) =>
       expiresAt: const NullableTimestampConverter().fromJson(json['expiresAt']),
     );
 
-Map<String, dynamic> _$NotificationEntityToJson(_NotificationEntity instance) =>
+Map<String, dynamic> _$$NotificationEntityImplToJson(
+        _$NotificationEntityImpl instance) =>
     <String, dynamic>{
       'notificationId': instance.notificationId,
       'type': const NotificationTypeConverter().toJson(instance.type),

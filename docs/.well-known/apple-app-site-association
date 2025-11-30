@@ -1,0 +1,21 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "YOUR_TEAM_ID.com.example.wegig",
+        "paths": [
+          "/profile/*",
+          "/post/*",
+          "/conversation/*",
+          "/"
+        ]
+      }
+    ]
+  },
+  "webcredentials": {
+    "apps": [
+      "YOUR_TEAM_ID.com.example.wegig"
+    ]
+  }
+}

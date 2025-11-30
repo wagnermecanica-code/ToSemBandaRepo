@@ -29,7 +29,8 @@ void main() {
       notificationRadiusEnabled: true,
     );
 
-    test('should switch active profile when profile exists and user is owner', () async {
+    test('should switch active profile when profile exists and user is owner',
+        () async {
       // Arrange
       mockRepository.setupProfileById(tProfileId, tProfile);
       mockRepository.setupOwnership(tProfileId, tUid, isOwner: true);
@@ -59,7 +60,8 @@ void main() {
     test('should throw when user is not the owner', () async {
       // Arrange
       mockRepository.setupProfileById(tProfileId, tProfile);
-      mockRepository.setupOwnership(tProfileId, tUid, isOwner: false); // Não é dono
+      mockRepository.setupOwnership(tProfileId, tUid,
+          isOwner: false); // Não é dono
 
       // Act & Assert
       expect(

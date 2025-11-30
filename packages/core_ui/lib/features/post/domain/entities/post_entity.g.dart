@@ -1,12 +1,15 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
+// ignore_for_file: type=lint, invalid_annotation_target
+
 part of 'post_entity.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_PostEntity _$PostEntityFromJson(Map<String, dynamic> json) => _PostEntity(
+_$PostEntityImpl _$$PostEntityImplFromJson(Map<String, dynamic> json) =>
+    _$PostEntityImpl(
       id: json['id'] as String,
       authorProfileId: json['authorProfileId'] as String,
       authorUid: json['authorUid'] as String,
@@ -39,7 +42,7 @@ _PostEntity _$PostEntityFromJson(Map<String, dynamic> json) => _PostEntity(
       distanceKm: (json['distanceKm'] as num?)?.toDouble(),
     );
 
-Map<String, dynamic> _$PostEntityToJson(_PostEntity instance) =>
+Map<String, dynamic> _$$PostEntityImplToJson(_$PostEntityImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'authorProfileId': instance.authorProfileId,

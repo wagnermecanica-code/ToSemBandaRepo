@@ -152,8 +152,7 @@ void main() {
       expect(useCase, isA<SignUpWithEmailUseCase>());
     });
 
-    test('signInWithGoogleUseCaseProvider returns SignInWithGoogleUseCase',
-        () {
+    test('signInWithGoogleUseCaseProvider returns SignInWithGoogleUseCase', () {
       // Act
       final useCase = testContainer.read(signInWithGoogleUseCaseProvider);
 
@@ -329,7 +328,8 @@ void main() {
       testContainer.dispose();
 
       // Assert - Should throw StateError after disposal
-      expect(() => testContainer.read(authRepositoryProvider), throwsStateError);
+      expect(
+          () => testContainer.read(authRepositoryProvider), throwsStateError);
     });
   });
 }

@@ -33,7 +33,8 @@ class MockPostRepository implements PostRepository {
   final Map<String, bool> _ownershipMap = {};
   String? _ownershipCheckFailure;
 
-  void setupOwnership(String postId, String profileId, {required bool isOwner}) {
+  void setupOwnership(String postId, String profileId,
+      {required bool isOwner}) {
     _ownershipMap['$postId-$profileId'] = isOwner;
   }
 
@@ -95,11 +96,11 @@ class MockPostRepository implements PostRepository {
     isPostOwnerCalled = true;
     lastOwnershipCheckPostId = postId;
     lastOwnershipCheckProfileId = profileId;
-    
+
     if (_ownershipCheckFailure != null) {
       throw Exception(_ownershipCheckFailure);
     }
-    
+
     return _ownershipMap['$postId-$profileId'] ?? false;
   }
 
@@ -126,11 +127,11 @@ class MockPostRepository implements PostRepository {
   @override
   Future<void> addInterest(String postId, String profileId) async {
     toggleInterestCalled = true;
-    
+
     if (_toggleInterestFailure != null) {
       throw Exception(_toggleInterestFailure);
     }
-    
+
     if (_interestedProfiles[postId] == null) {
       _interestedProfiles[postId] = [];
     }
@@ -142,11 +143,11 @@ class MockPostRepository implements PostRepository {
   @override
   Future<void> removeInterest(String postId, String profileId) async {
     toggleInterestCalled = true;
-    
+
     if (_toggleInterestFailure != null) {
       throw Exception(_toggleInterestFailure);
     }
-    
+
     _interestedProfiles[postId]?.remove(profileId);
   }
 
@@ -155,27 +156,39 @@ class MockPostRepository implements PostRepository {
     if (_interestedProfilesFailure != null) {
       throw Exception(_interestedProfilesFailure);
     }
-    
+
     return _interestedProfiles[postId] ?? [];
   }
 
   @override
   Future<List<PostEntity>> getAllPosts(String uid) async {
-    return _postsById.values.whereType<PostEntity>().where((p) => p.authorUid == uid).toList();
+    return _postsById.values
+        .whereType<PostEntity>()
+        .where((p) => p.authorUid == uid)
+        .toList();
   }
 
   @override
   Future<List<PostEntity>> getPostsByProfile(String profileId) async {
-    return _postsById.values.whereType<PostEntity>().where((p) => p.authorProfileId == profileId).toList();
+    return _postsById.values
+        .whereType<PostEntity>()
+        .where((p) => p.authorProfileId == profileId)
+        .toList();
   }
 
   @override
   Stream<List<PostEntity>> watchPosts(String uid) {
-    return Stream.value(_postsById.values.whereType<PostEntity>().where((p) => p.authorUid == uid).toList());
+    return Stream.value(_postsById.values
+        .whereType<PostEntity>()
+        .where((p) => p.authorUid == uid)
+        .toList());
   }
 
   @override
   Stream<List<PostEntity>> watchPostsByProfile(String profileId) {
-    return Stream.value(_postsById.values.whereType<PostEntity>().where((p) => p.authorProfileId == profileId).toList());
+    return Stream.value(_postsById.values
+        .whereType<PostEntity>()
+        .where((p) => p.authorProfileId == profileId)
+        .toList());
   }
 }

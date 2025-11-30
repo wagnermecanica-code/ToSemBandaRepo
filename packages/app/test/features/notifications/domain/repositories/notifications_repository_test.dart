@@ -75,7 +75,11 @@ void main() {
     test('should not modify already-read notifications', () {
       // Arrange
       final notifications = [
-        {'notificationId': 'n1', 'read': true, 'readAt': DateTime(2025, 11, 28)},
+        {
+          'notificationId': 'n1',
+          'read': true,
+          'readAt': DateTime(2025, 11, 28)
+        },
       ];
 
       // Act
@@ -143,7 +147,8 @@ void main() {
       );
 
       // Assert
-      expect(canDelete, isFalse, reason: 'Só pode deletar próprias notificações');
+      expect(canDelete, isFalse,
+          reason: 'Só pode deletar próprias notificações');
     });
 
     test('should allow deleting own notification', () {
@@ -200,13 +205,15 @@ void main() {
       };
 
       // Act & Assert
-      expect(() => _validateNotificationData(validNotification), returnsNormally);
+      expect(
+          () => _validateNotificationData(validNotification), returnsNormally);
     });
   });
 }
 
 /// Helper: Marca notificação como lida
-Map<String, dynamic> _markNotificationAsRead(Map<String, dynamic> notification) {
+Map<String, dynamic> _markNotificationAsRead(
+    Map<String, dynamic> notification) {
   return {
     ...notification,
     'read': true,
@@ -215,7 +222,8 @@ Map<String, dynamic> _markNotificationAsRead(Map<String, dynamic> notification) 
 }
 
 /// Helper: Marca todas as notificações como lidas
-List<Map<String, dynamic>> _markAllAsRead(List<Map<String, dynamic>> notifications) {
+List<Map<String, dynamic>> _markAllAsRead(
+    List<Map<String, dynamic>> notifications) {
   return notifications.map((notif) {
     if (notif['read'] == true) return notif; // Já lida
     return {
@@ -232,7 +240,8 @@ int _calculateUnreadCount(List<Map<String, dynamic>> notifications) {
 }
 
 /// Helper: Valida ownership para deletar
-bool _canDeleteNotification(String notificationProfileId, String requestingProfileId) {
+bool _canDeleteNotification(
+    String notificationProfileId, String requestingProfileId) {
   return notificationProfileId == requestingProfileId;
 }
 

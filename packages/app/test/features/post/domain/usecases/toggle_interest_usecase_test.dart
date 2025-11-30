@@ -31,7 +31,8 @@ void main() {
       expiresAt: DateTime.now().add(const Duration(days: 30)),
     );
 
-    test('should add interest when profile has not expressed interest yet', () async {
+    test('should add interest when profile has not expressed interest yet',
+        () async {
       // given
       const postId = 'post-1';
       const profileId = 'profile-2';
@@ -46,7 +47,8 @@ void main() {
       expect(mockRepository.toggleInterestCalled, true);
     });
 
-    test('should remove interest when profile has already expressed interest', () async {
+    test('should remove interest when profile has already expressed interest',
+        () async {
       // given
       const postId = 'post-1';
       const profileId = 'profile-2';
@@ -134,7 +136,8 @@ void main() {
       expect(
         () => useCase(postId, profileId),
         throwsA(
-          predicate((e) => e.toString().contains('Você não pode demonstrar interesse no seu próprio post')),
+          predicate((e) => e.toString().contains(
+              'Você não pode demonstrar interesse no seu próprio post')),
         ),
       );
     });
@@ -161,13 +164,15 @@ void main() {
         expiresAt: DateTime.now().add(const Duration(days: 30)),
       );
       mockRepository.setupPostById(postId, tPost);
-      mockRepository.setupToggleInterestFailure('Erro ao salvar interesse no Firestore');
+      mockRepository
+          .setupToggleInterestFailure('Erro ao salvar interesse no Firestore');
 
       // when & then
       expect(
         () => useCase(postId, profileId),
         throwsA(
-          predicate((e) => e.toString().contains('Erro ao salvar interesse no Firestore')),
+          predicate((e) =>
+              e.toString().contains('Erro ao salvar interesse no Firestore')),
         ),
       );
     });

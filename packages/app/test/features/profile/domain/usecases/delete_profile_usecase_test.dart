@@ -18,7 +18,7 @@ void main() {
     const tUid = 'user-123';
     const tProfileId = 'profile-1';
     const tNewActiveProfileId = 'profile-2';
-    
+
     final tProfile = ProfileEntity(
       profileId: tProfileId,
       uid: tUid,
@@ -43,12 +43,15 @@ void main() {
       notificationRadiusEnabled: true,
     );
 
-    test('should delete profile when user is owner and has other profiles', () async {
+    test('should delete profile when user is owner and has other profiles',
+        () async {
       // Arrange
       mockRepository.setupProfileById(tProfileId, tProfile);
       mockRepository.setupOwnership(tProfileId, tUid, isOwner: true);
-      mockRepository.setupExistingProfiles([tProfile, tOtherProfile]); // 2 perfis
-      mockRepository.setupActiveProfile(tOtherProfile); // Outro perfil é o ativo
+      mockRepository
+          .setupExistingProfiles([tProfile, tOtherProfile]); // 2 perfis
+      mockRepository
+          .setupActiveProfile(tOtherProfile); // Outro perfil é o ativo
 
       // Act
       await useCase(tProfileId, tUid);
@@ -74,7 +77,8 @@ void main() {
     test('should throw when user is not the owner', () async {
       // Arrange
       mockRepository.setupProfileById(tProfileId, tProfile);
-      mockRepository.setupOwnership(tProfileId, tUid, isOwner: false); // Não é dono
+      mockRepository.setupOwnership(tProfileId, tUid,
+          isOwner: false); // Não é dono
 
       // Act & Assert
       expect(
@@ -100,7 +104,8 @@ void main() {
       );
     });
 
-    test('should throw when deleting active profile without newActiveProfileId', () async {
+    test('should throw when deleting active profile without newActiveProfileId',
+        () async {
       // Arrange
       mockRepository.setupProfileById(tProfileId, tProfile);
       mockRepository.setupOwnership(tProfileId, tUid, isOwner: true);
@@ -116,7 +121,8 @@ void main() {
       );
     });
 
-    test('should delete active profile when newActiveProfileId is provided', () async {
+    test('should delete active profile when newActiveProfileId is provided',
+        () async {
       // Arrange
       mockRepository.setupProfileById(tProfileId, tProfile);
       mockRepository.setupOwnership(tProfileId, tUid, isOwner: true);

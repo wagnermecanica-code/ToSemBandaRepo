@@ -6,707 +6,655 @@ part of 'messages_providers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-// GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: type=lint, type=warning
-/// Provider para FirebaseFirestore instance
-
-@ProviderFor(firestore)
-const firestoreProvider = FirestoreProvider._();
-
-/// Provider para FirebaseFirestore instance
-
-final class FirestoreProvider extends $FunctionalProvider<FirebaseFirestore,
-    FirebaseFirestore, FirebaseFirestore> with $Provider<FirebaseFirestore> {
-  /// Provider para FirebaseFirestore instance
-  const FirestoreProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'firestoreProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
-
-  @override
-  String debugGetCreateSourceHash() => _$firestoreHash();
-
-  @$internal
-  @override
-  $ProviderElement<FirebaseFirestore> $createElement(
-          $ProviderPointer pointer) =>
-      $ProviderElement(pointer);
-
-  @override
-  FirebaseFirestore create(Ref ref) {
-    return firestore(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(FirebaseFirestore value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<FirebaseFirestore>(value),
-    );
-  }
-}
-
 String _$firestoreHash() => r'0e25e335c5657f593fc1baf3d9fd026e70bca7fa';
 
-/// Provider para MessagesRemoteDataSource
+/// Provider para FirebaseFirestore instance
+///
+/// Copied from [firestore].
+@ProviderFor(firestore)
+final firestoreProvider = AutoDisposeProvider<FirebaseFirestore>.internal(
+  firestore,
+  name: r'firestoreProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$firestoreHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
-@ProviderFor(messagesRemoteDataSource)
-const messagesRemoteDataSourceProvider = MessagesRemoteDataSourceProvider._();
-
-/// Provider para MessagesRemoteDataSource
-
-final class MessagesRemoteDataSourceProvider extends $FunctionalProvider<
-    IMessagesRemoteDataSource,
-    IMessagesRemoteDataSource,
-    IMessagesRemoteDataSource> with $Provider<IMessagesRemoteDataSource> {
-  /// Provider para MessagesRemoteDataSource
-  const MessagesRemoteDataSourceProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'messagesRemoteDataSourceProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
-
-  @override
-  String debugGetCreateSourceHash() => _$messagesRemoteDataSourceHash();
-
-  @$internal
-  @override
-  $ProviderElement<IMessagesRemoteDataSource> $createElement(
-          $ProviderPointer pointer) =>
-      $ProviderElement(pointer);
-
-  @override
-  IMessagesRemoteDataSource create(Ref ref) {
-    return messagesRemoteDataSource(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(IMessagesRemoteDataSource value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<IMessagesRemoteDataSource>(value),
-    );
-  }
-}
-
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef FirestoreRef = AutoDisposeProviderRef<FirebaseFirestore>;
 String _$messagesRemoteDataSourceHash() =>
     r'e174e14509da3e6a224b3506938ec74fa839a711';
 
-/// Provider para MessagesRepository (nova implementação Clean Architecture)
+/// Provider para MessagesRemoteDataSource
+///
+/// Copied from [messagesRemoteDataSource].
+@ProviderFor(messagesRemoteDataSource)
+final messagesRemoteDataSourceProvider =
+    AutoDisposeProvider<IMessagesRemoteDataSource>.internal(
+  messagesRemoteDataSource,
+  name: r'messagesRemoteDataSourceProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$messagesRemoteDataSourceHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
-@ProviderFor(messagesRepositoryNew)
-const messagesRepositoryNewProvider = MessagesRepositoryNewProvider._();
-
-/// Provider para MessagesRepository (nova implementação Clean Architecture)
-
-final class MessagesRepositoryNewProvider extends $FunctionalProvider<
-    MessagesRepository,
-    MessagesRepository,
-    MessagesRepository> with $Provider<MessagesRepository> {
-  /// Provider para MessagesRepository (nova implementação Clean Architecture)
-  const MessagesRepositoryNewProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'messagesRepositoryNewProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
-
-  @override
-  String debugGetCreateSourceHash() => _$messagesRepositoryNewHash();
-
-  @$internal
-  @override
-  $ProviderElement<MessagesRepository> $createElement(
-          $ProviderPointer pointer) =>
-      $ProviderElement(pointer);
-
-  @override
-  MessagesRepository create(Ref ref) {
-    return messagesRepositoryNew(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(MessagesRepository value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<MessagesRepository>(value),
-    );
-  }
-}
-
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef MessagesRemoteDataSourceRef
+    = AutoDisposeProviderRef<IMessagesRemoteDataSource>;
 String _$messagesRepositoryNewHash() =>
     r'cea8b4b2b4822d5f4279b4ee9b4a15e2aeceb19c';
 
-@ProviderFor(loadConversationsUseCase)
-const loadConversationsUseCaseProvider = LoadConversationsUseCaseProvider._();
+/// Provider para MessagesRepository (nova implementação Clean Architecture)
+///
+/// Copied from [messagesRepositoryNew].
+@ProviderFor(messagesRepositoryNew)
+final messagesRepositoryNewProvider =
+    AutoDisposeProvider<MessagesRepository>.internal(
+  messagesRepositoryNew,
+  name: r'messagesRepositoryNewProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$messagesRepositoryNewHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
-final class LoadConversationsUseCaseProvider extends $FunctionalProvider<
-    LoadConversations,
-    LoadConversations,
-    LoadConversations> with $Provider<LoadConversations> {
-  const LoadConversationsUseCaseProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'loadConversationsUseCaseProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
-
-  @override
-  String debugGetCreateSourceHash() => _$loadConversationsUseCaseHash();
-
-  @$internal
-  @override
-  $ProviderElement<LoadConversations> $createElement(
-          $ProviderPointer pointer) =>
-      $ProviderElement(pointer);
-
-  @override
-  LoadConversations create(Ref ref) {
-    return loadConversationsUseCase(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(LoadConversations value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<LoadConversations>(value),
-    );
-  }
-}
-
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef MessagesRepositoryNewRef = AutoDisposeProviderRef<MessagesRepository>;
 String _$loadConversationsUseCaseHash() =>
     r'df8b29966d479a8de4805a0de14840f2814626f9';
 
-@ProviderFor(loadMessagesUseCase)
-const loadMessagesUseCaseProvider = LoadMessagesUseCaseProvider._();
+/// See also [loadConversationsUseCase].
+@ProviderFor(loadConversationsUseCase)
+final loadConversationsUseCaseProvider =
+    AutoDisposeProvider<LoadConversations>.internal(
+  loadConversationsUseCase,
+  name: r'loadConversationsUseCaseProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$loadConversationsUseCaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
-final class LoadMessagesUseCaseProvider
-    extends $FunctionalProvider<LoadMessages, LoadMessages, LoadMessages>
-    with $Provider<LoadMessages> {
-  const LoadMessagesUseCaseProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'loadMessagesUseCaseProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
-
-  @override
-  String debugGetCreateSourceHash() => _$loadMessagesUseCaseHash();
-
-  @$internal
-  @override
-  $ProviderElement<LoadMessages> $createElement($ProviderPointer pointer) =>
-      $ProviderElement(pointer);
-
-  @override
-  LoadMessages create(Ref ref) {
-    return loadMessagesUseCase(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(LoadMessages value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<LoadMessages>(value),
-    );
-  }
-}
-
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef LoadConversationsUseCaseRef = AutoDisposeProviderRef<LoadConversations>;
 String _$loadMessagesUseCaseHash() =>
     r'429b58cd1bca9a603f1881eb4266d529dc40d07b';
 
-@ProviderFor(sendMessageUseCase)
-const sendMessageUseCaseProvider = SendMessageUseCaseProvider._();
+/// See also [loadMessagesUseCase].
+@ProviderFor(loadMessagesUseCase)
+final loadMessagesUseCaseProvider = AutoDisposeProvider<LoadMessages>.internal(
+  loadMessagesUseCase,
+  name: r'loadMessagesUseCaseProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$loadMessagesUseCaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
-final class SendMessageUseCaseProvider
-    extends $FunctionalProvider<SendMessage, SendMessage, SendMessage>
-    with $Provider<SendMessage> {
-  const SendMessageUseCaseProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'sendMessageUseCaseProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
-
-  @override
-  String debugGetCreateSourceHash() => _$sendMessageUseCaseHash();
-
-  @$internal
-  @override
-  $ProviderElement<SendMessage> $createElement($ProviderPointer pointer) =>
-      $ProviderElement(pointer);
-
-  @override
-  SendMessage create(Ref ref) {
-    return sendMessageUseCase(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(SendMessage value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<SendMessage>(value),
-    );
-  }
-}
-
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef LoadMessagesUseCaseRef = AutoDisposeProviderRef<LoadMessages>;
 String _$sendMessageUseCaseHash() =>
     r'6b5c609feca234fcc58462801ea68592138639ce';
 
-@ProviderFor(sendImageUseCase)
-const sendImageUseCaseProvider = SendImageUseCaseProvider._();
+/// See also [sendMessageUseCase].
+@ProviderFor(sendMessageUseCase)
+final sendMessageUseCaseProvider = AutoDisposeProvider<SendMessage>.internal(
+  sendMessageUseCase,
+  name: r'sendMessageUseCaseProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$sendMessageUseCaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
-final class SendImageUseCaseProvider
-    extends $FunctionalProvider<SendImage, SendImage, SendImage>
-    with $Provider<SendImage> {
-  const SendImageUseCaseProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'sendImageUseCaseProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
-
-  @override
-  String debugGetCreateSourceHash() => _$sendImageUseCaseHash();
-
-  @$internal
-  @override
-  $ProviderElement<SendImage> $createElement($ProviderPointer pointer) =>
-      $ProviderElement(pointer);
-
-  @override
-  SendImage create(Ref ref) {
-    return sendImageUseCase(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(SendImage value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<SendImage>(value),
-    );
-  }
-}
-
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef SendMessageUseCaseRef = AutoDisposeProviderRef<SendMessage>;
 String _$sendImageUseCaseHash() => r'ca82319922166ea491899f776c13c24bd9815aa4';
 
-@ProviderFor(markAsReadUseCase)
-const markAsReadUseCaseProvider = MarkAsReadUseCaseProvider._();
+/// See also [sendImageUseCase].
+@ProviderFor(sendImageUseCase)
+final sendImageUseCaseProvider = AutoDisposeProvider<SendImage>.internal(
+  sendImageUseCase,
+  name: r'sendImageUseCaseProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$sendImageUseCaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
-final class MarkAsReadUseCaseProvider
-    extends $FunctionalProvider<MarkAsRead, MarkAsRead, MarkAsRead>
-    with $Provider<MarkAsRead> {
-  const MarkAsReadUseCaseProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'markAsReadUseCaseProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
-
-  @override
-  String debugGetCreateSourceHash() => _$markAsReadUseCaseHash();
-
-  @$internal
-  @override
-  $ProviderElement<MarkAsRead> $createElement($ProviderPointer pointer) =>
-      $ProviderElement(pointer);
-
-  @override
-  MarkAsRead create(Ref ref) {
-    return markAsReadUseCase(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(MarkAsRead value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<MarkAsRead>(value),
-    );
-  }
-}
-
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef SendImageUseCaseRef = AutoDisposeProviderRef<SendImage>;
 String _$markAsReadUseCaseHash() => r'fcaa6f4bb6b3e4430d1b6af556e2e43eed6bc225';
 
-@ProviderFor(markAsUnreadUseCase)
-const markAsUnreadUseCaseProvider = MarkAsUnreadUseCaseProvider._();
+/// See also [markAsReadUseCase].
+@ProviderFor(markAsReadUseCase)
+final markAsReadUseCaseProvider = AutoDisposeProvider<MarkAsRead>.internal(
+  markAsReadUseCase,
+  name: r'markAsReadUseCaseProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$markAsReadUseCaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
-final class MarkAsUnreadUseCaseProvider
-    extends $FunctionalProvider<MarkAsUnread, MarkAsUnread, MarkAsUnread>
-    with $Provider<MarkAsUnread> {
-  const MarkAsUnreadUseCaseProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'markAsUnreadUseCaseProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
-
-  @override
-  String debugGetCreateSourceHash() => _$markAsUnreadUseCaseHash();
-
-  @$internal
-  @override
-  $ProviderElement<MarkAsUnread> $createElement($ProviderPointer pointer) =>
-      $ProviderElement(pointer);
-
-  @override
-  MarkAsUnread create(Ref ref) {
-    return markAsUnreadUseCase(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(MarkAsUnread value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<MarkAsUnread>(value),
-    );
-  }
-}
-
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef MarkAsReadUseCaseRef = AutoDisposeProviderRef<MarkAsRead>;
 String _$markAsUnreadUseCaseHash() =>
     r'40426050458c583578db5886d833e3de3b506721';
 
-@ProviderFor(deleteConversationUseCase)
-const deleteConversationUseCaseProvider = DeleteConversationUseCaseProvider._();
+/// See also [markAsUnreadUseCase].
+@ProviderFor(markAsUnreadUseCase)
+final markAsUnreadUseCaseProvider = AutoDisposeProvider<MarkAsUnread>.internal(
+  markAsUnreadUseCase,
+  name: r'markAsUnreadUseCaseProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$markAsUnreadUseCaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
-final class DeleteConversationUseCaseProvider extends $FunctionalProvider<
-    DeleteConversation,
-    DeleteConversation,
-    DeleteConversation> with $Provider<DeleteConversation> {
-  const DeleteConversationUseCaseProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'deleteConversationUseCaseProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
-
-  @override
-  String debugGetCreateSourceHash() => _$deleteConversationUseCaseHash();
-
-  @$internal
-  @override
-  $ProviderElement<DeleteConversation> $createElement(
-          $ProviderPointer pointer) =>
-      $ProviderElement(pointer);
-
-  @override
-  DeleteConversation create(Ref ref) {
-    return deleteConversationUseCase(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(DeleteConversation value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<DeleteConversation>(value),
-    );
-  }
-}
-
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef MarkAsUnreadUseCaseRef = AutoDisposeProviderRef<MarkAsUnread>;
 String _$deleteConversationUseCaseHash() =>
     r'5febffe04ac53b5ce2c243cf74385a21bcb05e36';
 
-/// Stream de conversas em tempo real
+/// See also [deleteConversationUseCase].
+@ProviderFor(deleteConversationUseCase)
+final deleteConversationUseCaseProvider =
+    AutoDisposeProvider<DeleteConversation>.internal(
+  deleteConversationUseCase,
+  name: r'deleteConversationUseCaseProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$deleteConversationUseCaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
-@ProviderFor(conversationsStream)
-const conversationsStreamProvider = ConversationsStreamFamily._();
-
-/// Stream de conversas em tempo real
-
-final class ConversationsStreamProvider extends $FunctionalProvider<
-        AsyncValue<List<ConversationEntity>>,
-        List<ConversationEntity>,
-        Stream<List<ConversationEntity>>>
-    with
-        $FutureModifier<List<ConversationEntity>>,
-        $StreamProvider<List<ConversationEntity>> {
-  /// Stream de conversas em tempo real
-  const ConversationsStreamProvider._(
-      {required ConversationsStreamFamily super.from,
-      required String super.argument})
-      : super(
-          retry: null,
-          name: r'conversationsStreamProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
-
-  @override
-  String debugGetCreateSourceHash() => _$conversationsStreamHash();
-
-  @override
-  String toString() {
-    return r'conversationsStreamProvider'
-        ''
-        '($argument)';
-  }
-
-  @$internal
-  @override
-  $StreamProviderElement<List<ConversationEntity>> $createElement(
-          $ProviderPointer pointer) =>
-      $StreamProviderElement(pointer);
-
-  @override
-  Stream<List<ConversationEntity>> create(Ref ref) {
-    final argument = this.argument as String;
-    return conversationsStream(
-      ref,
-      argument,
-    );
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return other is ConversationsStreamProvider && other.argument == argument;
-  }
-
-  @override
-  int get hashCode {
-    return argument.hashCode;
-  }
-}
-
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef DeleteConversationUseCaseRef
+    = AutoDisposeProviderRef<DeleteConversation>;
 String _$conversationsStreamHash() =>
     r'6ea8e9b45b816fc4b078fcb352bc84017915b2fe';
 
-/// Stream de conversas em tempo real
+/// Copied from Dart SDK
+class _SystemHash {
+  _SystemHash._();
 
-final class ConversationsStreamFamily extends $Family
-    with $FunctionalFamilyOverride<Stream<List<ConversationEntity>>, String> {
-  const ConversationsStreamFamily._()
-      : super(
-          retry: null,
-          name: r'conversationsStreamProvider',
-          dependencies: null,
-          $allTransitiveDependencies: null,
-          isAutoDispose: true,
-        );
-
-  /// Stream de conversas em tempo real
-
-  ConversationsStreamProvider call(
-    String profileId,
-  ) =>
-      ConversationsStreamProvider._(argument: profileId, from: this);
-
-  @override
-  String toString() => r'conversationsStreamProvider';
-}
-
-/// Stream de mensagens em tempo real
-
-@ProviderFor(messagesStream)
-const messagesStreamProvider = MessagesStreamFamily._();
-
-/// Stream de mensagens em tempo real
-
-final class MessagesStreamProvider extends $FunctionalProvider<
-        AsyncValue<List<MessageEntity>>,
-        List<MessageEntity>,
-        Stream<List<MessageEntity>>>
-    with
-        $FutureModifier<List<MessageEntity>>,
-        $StreamProvider<List<MessageEntity>> {
-  /// Stream de mensagens em tempo real
-  const MessagesStreamProvider._(
-      {required MessagesStreamFamily super.from,
-      required String super.argument})
-      : super(
-          retry: null,
-          name: r'messagesStreamProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
-
-  @override
-  String debugGetCreateSourceHash() => _$messagesStreamHash();
-
-  @override
-  String toString() {
-    return r'messagesStreamProvider'
-        ''
-        '($argument)';
+  static int combine(int hash, int value) {
+    // ignore: parameter_assignments
+    hash = 0x1fffffff & (hash + value);
+    // ignore: parameter_assignments
+    hash = 0x1fffffff & (hash + ((0x0007ffff & hash) << 10));
+    return hash ^ (hash >> 6);
   }
 
-  @$internal
-  @override
-  $StreamProviderElement<List<MessageEntity>> $createElement(
-          $ProviderPointer pointer) =>
-      $StreamProviderElement(pointer);
+  static int finish(int hash) {
+    // ignore: parameter_assignments
+    hash = 0x1fffffff & (hash + ((0x03ffffff & hash) << 3));
+    // ignore: parameter_assignments
+    hash = hash ^ (hash >> 11);
+    return 0x1fffffff & (hash + ((0x00003fff & hash) << 15));
+  }
+}
 
-  @override
-  Stream<List<MessageEntity>> create(Ref ref) {
-    final argument = this.argument as String;
-    return messagesStream(
-      ref,
-      argument,
+/// Stream de conversas em tempo real
+///
+/// Copied from [conversationsStream].
+@ProviderFor(conversationsStream)
+const conversationsStreamProvider = ConversationsStreamFamily();
+
+/// Stream de conversas em tempo real
+///
+/// Copied from [conversationsStream].
+class ConversationsStreamFamily
+    extends Family<AsyncValue<List<ConversationEntity>>> {
+  /// Stream de conversas em tempo real
+  ///
+  /// Copied from [conversationsStream].
+  const ConversationsStreamFamily();
+
+  /// Stream de conversas em tempo real
+  ///
+  /// Copied from [conversationsStream].
+  ConversationsStreamProvider call(
+    String profileId,
+  ) {
+    return ConversationsStreamProvider(
+      profileId,
     );
   }
 
   @override
+  ConversationsStreamProvider getProviderOverride(
+    covariant ConversationsStreamProvider provider,
+  ) {
+    return call(
+      provider.profileId,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'conversationsStreamProvider';
+}
+
+/// Stream de conversas em tempo real
+///
+/// Copied from [conversationsStream].
+class ConversationsStreamProvider
+    extends AutoDisposeStreamProvider<List<ConversationEntity>> {
+  /// Stream de conversas em tempo real
+  ///
+  /// Copied from [conversationsStream].
+  ConversationsStreamProvider(
+    String profileId,
+  ) : this._internal(
+          (ref) => conversationsStream(
+            ref as ConversationsStreamRef,
+            profileId,
+          ),
+          from: conversationsStreamProvider,
+          name: r'conversationsStreamProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$conversationsStreamHash,
+          dependencies: ConversationsStreamFamily._dependencies,
+          allTransitiveDependencies:
+              ConversationsStreamFamily._allTransitiveDependencies,
+          profileId: profileId,
+        );
+
+  ConversationsStreamProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.profileId,
+  }) : super.internal();
+
+  final String profileId;
+
+  @override
+  Override overrideWith(
+    Stream<List<ConversationEntity>> Function(ConversationsStreamRef provider)
+        create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: ConversationsStreamProvider._internal(
+        (ref) => create(ref as ConversationsStreamRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        profileId: profileId,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeStreamProviderElement<List<ConversationEntity>> createElement() {
+    return _ConversationsStreamProviderElement(this);
+  }
+
+  @override
   bool operator ==(Object other) {
-    return other is MessagesStreamProvider && other.argument == argument;
+    return other is ConversationsStreamProvider && other.profileId == profileId;
   }
 
   @override
   int get hashCode {
-    return argument.hashCode;
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, profileId.hashCode);
+
+    return _SystemHash.finish(hash);
   }
+}
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+mixin ConversationsStreamRef
+    on AutoDisposeStreamProviderRef<List<ConversationEntity>> {
+  /// The parameter `profileId` of this provider.
+  String get profileId;
+}
+
+class _ConversationsStreamProviderElement
+    extends AutoDisposeStreamProviderElement<List<ConversationEntity>>
+    with ConversationsStreamRef {
+  _ConversationsStreamProviderElement(super.provider);
+
+  @override
+  String get profileId => (origin as ConversationsStreamProvider).profileId;
 }
 
 String _$messagesStreamHash() => r'7fb46bada6568e40afb919dc87f16289219a251a';
 
 /// Stream de mensagens em tempo real
+///
+/// Copied from [messagesStream].
+@ProviderFor(messagesStream)
+const messagesStreamProvider = MessagesStreamFamily();
 
-final class MessagesStreamFamily extends $Family
-    with $FunctionalFamilyOverride<Stream<List<MessageEntity>>, String> {
-  const MessagesStreamFamily._()
-      : super(
-          retry: null,
-          name: r'messagesStreamProvider',
-          dependencies: null,
-          $allTransitiveDependencies: null,
-          isAutoDispose: true,
-        );
+/// Stream de mensagens em tempo real
+///
+/// Copied from [messagesStream].
+class MessagesStreamFamily extends Family<AsyncValue<List<MessageEntity>>> {
+  /// Stream de mensagens em tempo real
+  ///
+  /// Copied from [messagesStream].
+  const MessagesStreamFamily();
 
   /// Stream de mensagens em tempo real
-
+  ///
+  /// Copied from [messagesStream].
   MessagesStreamProvider call(
     String conversationId,
-  ) =>
-      MessagesStreamProvider._(argument: conversationId, from: this);
-
-  @override
-  String toString() => r'messagesStreamProvider';
-}
-
-/// Stream de contador de não lidas para BottomNav badge
-
-@ProviderFor(unreadMessageCountForProfile)
-const unreadMessageCountForProfileProvider =
-    UnreadMessageCountForProfileFamily._();
-
-/// Stream de contador de não lidas para BottomNav badge
-
-final class UnreadMessageCountForProfileProvider
-    extends $FunctionalProvider<AsyncValue<int>, int, Stream<int>>
-    with $FutureModifier<int>, $StreamProvider<int> {
-  /// Stream de contador de não lidas para BottomNav badge
-  const UnreadMessageCountForProfileProvider._(
-      {required UnreadMessageCountForProfileFamily super.from,
-      required String super.argument})
-      : super(
-          retry: null,
-          name: r'unreadMessageCountForProfileProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
-
-  @override
-  String debugGetCreateSourceHash() => _$unreadMessageCountForProfileHash();
-
-  @override
-  String toString() {
-    return r'unreadMessageCountForProfileProvider'
-        ''
-        '($argument)';
-  }
-
-  @$internal
-  @override
-  $StreamProviderElement<int> $createElement($ProviderPointer pointer) =>
-      $StreamProviderElement(pointer);
-
-  @override
-  Stream<int> create(Ref ref) {
-    final argument = this.argument as String;
-    return unreadMessageCountForProfile(
-      ref,
-      argument,
+  ) {
+    return MessagesStreamProvider(
+      conversationId,
     );
   }
 
   @override
+  MessagesStreamProvider getProviderOverride(
+    covariant MessagesStreamProvider provider,
+  ) {
+    return call(
+      provider.conversationId,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'messagesStreamProvider';
+}
+
+/// Stream de mensagens em tempo real
+///
+/// Copied from [messagesStream].
+class MessagesStreamProvider
+    extends AutoDisposeStreamProvider<List<MessageEntity>> {
+  /// Stream de mensagens em tempo real
+  ///
+  /// Copied from [messagesStream].
+  MessagesStreamProvider(
+    String conversationId,
+  ) : this._internal(
+          (ref) => messagesStream(
+            ref as MessagesStreamRef,
+            conversationId,
+          ),
+          from: messagesStreamProvider,
+          name: r'messagesStreamProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$messagesStreamHash,
+          dependencies: MessagesStreamFamily._dependencies,
+          allTransitiveDependencies:
+              MessagesStreamFamily._allTransitiveDependencies,
+          conversationId: conversationId,
+        );
+
+  MessagesStreamProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.conversationId,
+  }) : super.internal();
+
+  final String conversationId;
+
+  @override
+  Override overrideWith(
+    Stream<List<MessageEntity>> Function(MessagesStreamRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: MessagesStreamProvider._internal(
+        (ref) => create(ref as MessagesStreamRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        conversationId: conversationId,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeStreamProviderElement<List<MessageEntity>> createElement() {
+    return _MessagesStreamProviderElement(this);
+  }
+
+  @override
   bool operator ==(Object other) {
-    return other is UnreadMessageCountForProfileProvider &&
-        other.argument == argument;
+    return other is MessagesStreamProvider &&
+        other.conversationId == conversationId;
   }
 
   @override
   int get hashCode {
-    return argument.hashCode;
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, conversationId.hashCode);
+
+    return _SystemHash.finish(hash);
   }
+}
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+mixin MessagesStreamRef on AutoDisposeStreamProviderRef<List<MessageEntity>> {
+  /// The parameter `conversationId` of this provider.
+  String get conversationId;
+}
+
+class _MessagesStreamProviderElement
+    extends AutoDisposeStreamProviderElement<List<MessageEntity>>
+    with MessagesStreamRef {
+  _MessagesStreamProviderElement(super.provider);
+
+  @override
+  String get conversationId =>
+      (origin as MessagesStreamProvider).conversationId;
 }
 
 String _$unreadMessageCountForProfileHash() =>
     r'db1b340c88290265166e7971b2a3656fc2517b71';
 
 /// Stream de contador de não lidas para BottomNav badge
+///
+/// Copied from [unreadMessageCountForProfile].
+@ProviderFor(unreadMessageCountForProfile)
+const unreadMessageCountForProfileProvider =
+    UnreadMessageCountForProfileFamily();
 
-final class UnreadMessageCountForProfileFamily extends $Family
-    with $FunctionalFamilyOverride<Stream<int>, String> {
-  const UnreadMessageCountForProfileFamily._()
-      : super(
-          retry: null,
-          name: r'unreadMessageCountForProfileProvider',
-          dependencies: null,
-          $allTransitiveDependencies: null,
-          isAutoDispose: true,
-        );
+/// Stream de contador de não lidas para BottomNav badge
+///
+/// Copied from [unreadMessageCountForProfile].
+class UnreadMessageCountForProfileFamily extends Family<AsyncValue<int>> {
+  /// Stream de contador de não lidas para BottomNav badge
+  ///
+  /// Copied from [unreadMessageCountForProfile].
+  const UnreadMessageCountForProfileFamily();
 
   /// Stream de contador de não lidas para BottomNav badge
-
+  ///
+  /// Copied from [unreadMessageCountForProfile].
   UnreadMessageCountForProfileProvider call(
     String profileId,
-  ) =>
-      UnreadMessageCountForProfileProvider._(argument: profileId, from: this);
+  ) {
+    return UnreadMessageCountForProfileProvider(
+      profileId,
+    );
+  }
 
   @override
-  String toString() => r'unreadMessageCountForProfileProvider';
+  UnreadMessageCountForProfileProvider getProviderOverride(
+    covariant UnreadMessageCountForProfileProvider provider,
+  ) {
+    return call(
+      provider.profileId,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'unreadMessageCountForProfileProvider';
 }
+
+/// Stream de contador de não lidas para BottomNav badge
+///
+/// Copied from [unreadMessageCountForProfile].
+class UnreadMessageCountForProfileProvider
+    extends AutoDisposeStreamProvider<int> {
+  /// Stream de contador de não lidas para BottomNav badge
+  ///
+  /// Copied from [unreadMessageCountForProfile].
+  UnreadMessageCountForProfileProvider(
+    String profileId,
+  ) : this._internal(
+          (ref) => unreadMessageCountForProfile(
+            ref as UnreadMessageCountForProfileRef,
+            profileId,
+          ),
+          from: unreadMessageCountForProfileProvider,
+          name: r'unreadMessageCountForProfileProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$unreadMessageCountForProfileHash,
+          dependencies: UnreadMessageCountForProfileFamily._dependencies,
+          allTransitiveDependencies:
+              UnreadMessageCountForProfileFamily._allTransitiveDependencies,
+          profileId: profileId,
+        );
+
+  UnreadMessageCountForProfileProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.profileId,
+  }) : super.internal();
+
+  final String profileId;
+
+  @override
+  Override overrideWith(
+    Stream<int> Function(UnreadMessageCountForProfileRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: UnreadMessageCountForProfileProvider._internal(
+        (ref) => create(ref as UnreadMessageCountForProfileRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        profileId: profileId,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeStreamProviderElement<int> createElement() {
+    return _UnreadMessageCountForProfileProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is UnreadMessageCountForProfileProvider &&
+        other.profileId == profileId;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, profileId.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+mixin UnreadMessageCountForProfileRef on AutoDisposeStreamProviderRef<int> {
+  /// The parameter `profileId` of this provider.
+  String get profileId;
+}
+
+class _UnreadMessageCountForProfileProviderElement
+    extends AutoDisposeStreamProviderElement<int>
+    with UnreadMessageCountForProfileRef {
+  _UnreadMessageCountForProfileProviderElement(super.provider);
+
+  @override
+  String get profileId =>
+      (origin as UnreadMessageCountForProfileProvider).profileId;
+}
+// ignore_for_file: type=lint
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

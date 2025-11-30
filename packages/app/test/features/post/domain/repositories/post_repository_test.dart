@@ -84,7 +84,8 @@ void main() {
       );
 
       // Assert
-      expect(result, isFalse, reason: 'Não pode demonstrar interesse no próprio post');
+      expect(result, isFalse,
+          reason: 'Não pode demonstrar interesse no próprio post');
     });
   });
 }
@@ -107,6 +108,7 @@ bool _canAddInterest(String profileId, List<String> existingInterests) {
 }
 
 /// Helper: Verifica se pode interagir com próprio post
-bool _canInteractWithOwnPost(String authorProfileId, String interestedProfileId) {
+bool _canInteractWithOwnPost(
+    String authorProfileId, String interestedProfileId) {
   return authorProfileId != interestedProfileId;
 }

@@ -114,11 +114,13 @@ class MockProfileRepository implements ProfileRepository {
 
   @override
   Future<List<Map<String, dynamic>>> getProfilesSummary(String uid) async {
-    return _existingProfiles.map((p) => {
-      'profileId': p.profileId,
-      'name': p.name,
-      'isBand': p.isBand,
-      'photoUrl': p.photoUrl,
-    }).toList();
+    return _existingProfiles
+        .map((p) => {
+              'profileId': p.profileId,
+              'name': p.name,
+              'isBand': p.isBand,
+              'photoUrl': p.photoUrl,
+            })
+        .toList();
   }
 }

@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:core_ui/messages_result.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:wegig_app/features/messages/data/datasources/messages_remote_datasource.dart';
 import 'package:wegig_app/features/messages/data/repositories/messages_repository_impl.dart';
@@ -28,8 +29,7 @@ FirebaseFirestore firestore(Ref ref) {
 
 /// Provider para MessagesRemoteDataSource
 @riverpod
-IMessagesRemoteDataSource messagesRemoteDataSource(
-    Ref ref) {
+IMessagesRemoteDataSource messagesRemoteDataSource(Ref ref) {
   return MessagesRemoteDataSource();
 }
 

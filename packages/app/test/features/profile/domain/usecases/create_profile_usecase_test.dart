@@ -64,7 +64,8 @@ void main() {
       expect(
         () => useCase(tValidProfile, tUid),
         throwsA(
-          predicate((e) => e.toString().contains('Limite de 5 perfis atingido')),
+          predicate(
+              (e) => e.toString().contains('Limite de 5 perfis atingido')),
         ),
       );
     });

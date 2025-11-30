@@ -1,0 +1,9 @@
+targets:
+  $default:
+    builders:
+      # Desabilita formatação automática que quebra o código gerado
+      source_gen|combining_builder:
+        options:
+          ignore_for_file:
+            - type=lint
+            - invalid_annotation_target

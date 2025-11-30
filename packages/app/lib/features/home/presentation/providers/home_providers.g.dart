@@ -6,441 +6,310 @@ part of 'home_providers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-// GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: type=lint, type=warning
-/// Provider para Firestore instance
-
-@ProviderFor(firestore)
-const firestoreProvider = FirestoreProvider._();
-
-/// Provider para Firestore instance
-
-final class FirestoreProvider extends $FunctionalProvider<FirebaseFirestore,
-    FirebaseFirestore, FirebaseFirestore> with $Provider<FirebaseFirestore> {
-  /// Provider para Firestore instance
-  const FirestoreProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'firestoreProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
-
-  @override
-  String debugGetCreateSourceHash() => _$firestoreHash();
-
-  @$internal
-  @override
-  $ProviderElement<FirebaseFirestore> $createElement(
-          $ProviderPointer pointer) =>
-      $ProviderElement(pointer);
-
-  @override
-  FirebaseFirestore create(Ref ref) {
-    return firestore(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(FirebaseFirestore value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<FirebaseFirestore>(value),
-    );
-  }
-}
-
 String _$firestoreHash() => r'0e25e335c5657f593fc1baf3d9fd026e70bca7fa';
 
-/// Provider para HomeRepository
+/// Provider para Firestore instance
+///
+/// Copied from [firestore].
+@ProviderFor(firestore)
+final firestoreProvider = AutoDisposeProvider<FirebaseFirestore>.internal(
+  firestore,
+  name: r'firestoreProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$firestoreHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
-@ProviderFor(homeRepository)
-const homeRepositoryProvider = HomeRepositoryProvider._();
-
-/// Provider para HomeRepository
-
-final class HomeRepositoryProvider
-    extends $FunctionalProvider<HomeRepository, HomeRepository, HomeRepository>
-    with $Provider<HomeRepository> {
-  /// Provider para HomeRepository
-  const HomeRepositoryProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'homeRepositoryProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
-
-  @override
-  String debugGetCreateSourceHash() => _$homeRepositoryHash();
-
-  @$internal
-  @override
-  $ProviderElement<HomeRepository> $createElement($ProviderPointer pointer) =>
-      $ProviderElement(pointer);
-
-  @override
-  HomeRepository create(Ref ref) {
-    return homeRepository(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(HomeRepository value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<HomeRepository>(value),
-    );
-  }
-}
-
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef FirestoreRef = AutoDisposeProviderRef<FirebaseFirestore>;
 String _$homeRepositoryHash() => r'acfd1b6a39851f5dbf8a8776cc45abb2a32c8b64';
 
-/// Provider para LoadNearbyPostsUseCase
+/// Provider para HomeRepository
+///
+/// Copied from [homeRepository].
+@ProviderFor(homeRepository)
+final homeRepositoryProvider = AutoDisposeProvider<HomeRepository>.internal(
+  homeRepository,
+  name: r'homeRepositoryProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$homeRepositoryHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
-@ProviderFor(loadNearbyPostsUseCase)
-const loadNearbyPostsUseCaseProvider = LoadNearbyPostsUseCaseProvider._();
-
-/// Provider para LoadNearbyPostsUseCase
-
-final class LoadNearbyPostsUseCaseProvider extends $FunctionalProvider<
-    LoadNearbyPostsUseCase,
-    LoadNearbyPostsUseCase,
-    LoadNearbyPostsUseCase> with $Provider<LoadNearbyPostsUseCase> {
-  /// Provider para LoadNearbyPostsUseCase
-  const LoadNearbyPostsUseCaseProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'loadNearbyPostsUseCaseProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
-
-  @override
-  String debugGetCreateSourceHash() => _$loadNearbyPostsUseCaseHash();
-
-  @$internal
-  @override
-  $ProviderElement<LoadNearbyPostsUseCase> $createElement(
-          $ProviderPointer pointer) =>
-      $ProviderElement(pointer);
-
-  @override
-  LoadNearbyPostsUseCase create(Ref ref) {
-    return loadNearbyPostsUseCase(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(LoadNearbyPostsUseCase value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<LoadNearbyPostsUseCase>(value),
-    );
-  }
-}
-
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef HomeRepositoryRef = AutoDisposeProviderRef<HomeRepository>;
 String _$loadNearbyPostsUseCaseHash() =>
     r'9fa666579f1733c299742ef279970afb6cd0fee1';
 
-/// Provider para LoadPostsByGenresUseCase
+/// Provider para LoadNearbyPostsUseCase
+///
+/// Copied from [loadNearbyPostsUseCase].
+@ProviderFor(loadNearbyPostsUseCase)
+final loadNearbyPostsUseCaseProvider =
+    AutoDisposeProvider<LoadNearbyPostsUseCase>.internal(
+  loadNearbyPostsUseCase,
+  name: r'loadNearbyPostsUseCaseProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$loadNearbyPostsUseCaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
-@ProviderFor(loadPostsByGenresUseCase)
-const loadPostsByGenresUseCaseProvider = LoadPostsByGenresUseCaseProvider._();
-
-/// Provider para LoadPostsByGenresUseCase
-
-final class LoadPostsByGenresUseCaseProvider extends $FunctionalProvider<
-    LoadPostsByGenresUseCase,
-    LoadPostsByGenresUseCase,
-    LoadPostsByGenresUseCase> with $Provider<LoadPostsByGenresUseCase> {
-  /// Provider para LoadPostsByGenresUseCase
-  const LoadPostsByGenresUseCaseProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'loadPostsByGenresUseCaseProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
-
-  @override
-  String debugGetCreateSourceHash() => _$loadPostsByGenresUseCaseHash();
-
-  @$internal
-  @override
-  $ProviderElement<LoadPostsByGenresUseCase> $createElement(
-          $ProviderPointer pointer) =>
-      $ProviderElement(pointer);
-
-  @override
-  LoadPostsByGenresUseCase create(Ref ref) {
-    return loadPostsByGenresUseCase(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(LoadPostsByGenresUseCase value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<LoadPostsByGenresUseCase>(value),
-    );
-  }
-}
-
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef LoadNearbyPostsUseCaseRef
+    = AutoDisposeProviderRef<LoadNearbyPostsUseCase>;
 String _$loadPostsByGenresUseCaseHash() =>
     r'e8b6dd465a6e3e1603268068e62d3e1f1f5da71b';
 
-/// Provider para SearchProfilesUseCase
+/// Provider para LoadPostsByGenresUseCase
+///
+/// Copied from [loadPostsByGenresUseCase].
+@ProviderFor(loadPostsByGenresUseCase)
+final loadPostsByGenresUseCaseProvider =
+    AutoDisposeProvider<LoadPostsByGenresUseCase>.internal(
+  loadPostsByGenresUseCase,
+  name: r'loadPostsByGenresUseCaseProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$loadPostsByGenresUseCaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
-@ProviderFor(searchProfilesUseCase)
-const searchProfilesUseCaseProvider = SearchProfilesUseCaseProvider._();
-
-/// Provider para SearchProfilesUseCase
-
-final class SearchProfilesUseCaseProvider extends $FunctionalProvider<
-    SearchProfilesUseCase,
-    SearchProfilesUseCase,
-    SearchProfilesUseCase> with $Provider<SearchProfilesUseCase> {
-  /// Provider para SearchProfilesUseCase
-  const SearchProfilesUseCaseProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'searchProfilesUseCaseProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
-
-  @override
-  String debugGetCreateSourceHash() => _$searchProfilesUseCaseHash();
-
-  @$internal
-  @override
-  $ProviderElement<SearchProfilesUseCase> $createElement(
-          $ProviderPointer pointer) =>
-      $ProviderElement(pointer);
-
-  @override
-  SearchProfilesUseCase create(Ref ref) {
-    return searchProfilesUseCase(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(SearchProfilesUseCase value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<SearchProfilesUseCase>(value),
-    );
-  }
-}
-
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef LoadPostsByGenresUseCaseRef
+    = AutoDisposeProviderRef<LoadPostsByGenresUseCase>;
 String _$searchProfilesUseCaseHash() =>
     r'a8911d5395c1dc73af420d36cf214388745e67be';
 
-/// Notifier para gerenciar feed de posts
+/// Provider para SearchProfilesUseCase
+///
+/// Copied from [searchProfilesUseCase].
+@ProviderFor(searchProfilesUseCase)
+final searchProfilesUseCaseProvider =
+    AutoDisposeProvider<SearchProfilesUseCase>.internal(
+  searchProfilesUseCase,
+  name: r'searchProfilesUseCaseProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$searchProfilesUseCaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
-@ProviderFor(FeedNotifier)
-const feedProvider = FeedNotifierProvider._();
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef SearchProfilesUseCaseRef
+    = AutoDisposeProviderRef<SearchProfilesUseCase>;
+String _$nearbyPostsStreamHash() => r'692aea45931febb23eb8bb0cc2fcf73f3ac9a654';
 
-/// Notifier para gerenciar feed de posts
-final class FeedNotifierProvider
-    extends $NotifierProvider<FeedNotifier, FeedState> {
-  /// Notifier para gerenciar feed de posts
-  const FeedNotifierProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'feedProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
+/// Copied from Dart SDK
+class _SystemHash {
+  _SystemHash._();
 
-  @override
-  String debugGetCreateSourceHash() => _$feedNotifierHash();
+  static int combine(int hash, int value) {
+    // ignore: parameter_assignments
+    hash = 0x1fffffff & (hash + value);
+    // ignore: parameter_assignments
+    hash = 0x1fffffff & (hash + ((0x0007ffff & hash) << 10));
+    return hash ^ (hash >> 6);
+  }
 
-  @$internal
-  @override
-  FeedNotifier create() => FeedNotifier();
+  static int finish(int hash) {
+    // ignore: parameter_assignments
+    hash = 0x1fffffff & (hash + ((0x03ffffff & hash) << 3));
+    // ignore: parameter_assignments
+    hash = hash ^ (hash >> 11);
+    return 0x1fffffff & (hash + ((0x00003fff & hash) << 15));
+  }
+}
 
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(FeedState value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<FeedState>(value),
+/// Provider para stream de posts próximos (tempo real)
+///
+/// Copied from [nearbyPostsStream].
+@ProviderFor(nearbyPostsStream)
+const nearbyPostsStreamProvider = NearbyPostsStreamFamily();
+
+/// Provider para stream de posts próximos (tempo real)
+///
+/// Copied from [nearbyPostsStream].
+class NearbyPostsStreamFamily extends Family<AsyncValue<List<PostEntity>>> {
+  /// Provider para stream de posts próximos (tempo real)
+  ///
+  /// Copied from [nearbyPostsStream].
+  const NearbyPostsStreamFamily();
+
+  /// Provider para stream de posts próximos (tempo real)
+  ///
+  /// Copied from [nearbyPostsStream].
+  NearbyPostsStreamProvider call(
+    Map<String, double> params,
+  ) {
+    return NearbyPostsStreamProvider(
+      params,
     );
   }
+
+  @override
+  NearbyPostsStreamProvider getProviderOverride(
+    covariant NearbyPostsStreamProvider provider,
+  ) {
+    return call(
+      provider.params,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'nearbyPostsStreamProvider';
+}
+
+/// Provider para stream de posts próximos (tempo real)
+///
+/// Copied from [nearbyPostsStream].
+class NearbyPostsStreamProvider
+    extends AutoDisposeStreamProvider<List<PostEntity>> {
+  /// Provider para stream de posts próximos (tempo real)
+  ///
+  /// Copied from [nearbyPostsStream].
+  NearbyPostsStreamProvider(
+    Map<String, double> params,
+  ) : this._internal(
+          (ref) => nearbyPostsStream(
+            ref as NearbyPostsStreamRef,
+            params,
+          ),
+          from: nearbyPostsStreamProvider,
+          name: r'nearbyPostsStreamProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$nearbyPostsStreamHash,
+          dependencies: NearbyPostsStreamFamily._dependencies,
+          allTransitiveDependencies:
+              NearbyPostsStreamFamily._allTransitiveDependencies,
+          params: params,
+        );
+
+  NearbyPostsStreamProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.params,
+  }) : super.internal();
+
+  final Map<String, double> params;
+
+  @override
+  Override overrideWith(
+    Stream<List<PostEntity>> Function(NearbyPostsStreamRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: NearbyPostsStreamProvider._internal(
+        (ref) => create(ref as NearbyPostsStreamRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        params: params,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeStreamProviderElement<List<PostEntity>> createElement() {
+    return _NearbyPostsStreamProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is NearbyPostsStreamProvider && other.params == params;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, params.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+mixin NearbyPostsStreamRef on AutoDisposeStreamProviderRef<List<PostEntity>> {
+  /// The parameter `params` of this provider.
+  Map<String, double> get params;
+}
+
+class _NearbyPostsStreamProviderElement
+    extends AutoDisposeStreamProviderElement<List<PostEntity>>
+    with NearbyPostsStreamRef {
+  _NearbyPostsStreamProviderElement(super.provider);
+
+  @override
+  Map<String, double> get params =>
+      (origin as NearbyPostsStreamProvider).params;
 }
 
 String _$feedNotifierHash() => r'22815cc7b7bf72f9888a0df4655222fcde6ab7ff';
 
 /// Notifier para gerenciar feed de posts
+///
+/// Copied from [FeedNotifier].
+@ProviderFor(FeedNotifier)
+final feedNotifierProvider =
+    AutoDisposeNotifierProvider<FeedNotifier, FeedState>.internal(
+  FeedNotifier.new,
+  name: r'feedNotifierProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$feedNotifierHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
-abstract class _$FeedNotifier extends $Notifier<FeedState> {
-  FeedState build();
-  @$mustCallSuper
-  @override
-  void runBuild() {
-    final created = build();
-    final ref = this.ref as $Ref<FeedState, FeedState>;
-    final element = ref.element as $ClassProviderElement<
-        AnyNotifier<FeedState, FeedState>, FeedState, Object?, Object?>;
-    element.handleValue(ref, created);
-  }
-}
-
-/// Notifier para busca de perfis
-
-@ProviderFor(ProfileSearchNotifier)
-const profileSearchProvider = ProfileSearchNotifierProvider._();
-
-/// Notifier para busca de perfis
-final class ProfileSearchNotifierProvider
-    extends $NotifierProvider<ProfileSearchNotifier, ProfileSearchState> {
-  /// Notifier para busca de perfis
-  const ProfileSearchNotifierProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'profileSearchProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
-
-  @override
-  String debugGetCreateSourceHash() => _$profileSearchNotifierHash();
-
-  @$internal
-  @override
-  ProfileSearchNotifier create() => ProfileSearchNotifier();
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(ProfileSearchState value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<ProfileSearchState>(value),
-    );
-  }
-}
-
+typedef _$FeedNotifier = AutoDisposeNotifier<FeedState>;
 String _$profileSearchNotifierHash() =>
     r'4f2b8672b4088fc9ea47fee6a150b9db886e5e06';
 
 /// Notifier para busca de perfis
+///
+/// Copied from [ProfileSearchNotifier].
+@ProviderFor(ProfileSearchNotifier)
+final profileSearchNotifierProvider = AutoDisposeNotifierProvider<
+    ProfileSearchNotifier, ProfileSearchState>.internal(
+  ProfileSearchNotifier.new,
+  name: r'profileSearchNotifierProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$profileSearchNotifierHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
-abstract class _$ProfileSearchNotifier extends $Notifier<ProfileSearchState> {
-  ProfileSearchState build();
-  @$mustCallSuper
-  @override
-  void runBuild() {
-    final created = build();
-    final ref = this.ref as $Ref<ProfileSearchState, ProfileSearchState>;
-    final element = ref.element as $ClassProviderElement<
-        AnyNotifier<ProfileSearchState, ProfileSearchState>,
-        ProfileSearchState,
-        Object?,
-        Object?>;
-    element.handleValue(ref, created);
-  }
-}
-
-/// Provider para stream de posts próximos (tempo real)
-
-@ProviderFor(nearbyPostsStream)
-const nearbyPostsStreamProvider = NearbyPostsStreamFamily._();
-
-/// Provider para stream de posts próximos (tempo real)
-
-final class NearbyPostsStreamProvider extends $FunctionalProvider<
-        AsyncValue<List<PostEntity>>,
-        List<PostEntity>,
-        Stream<List<PostEntity>>>
-    with $FutureModifier<List<PostEntity>>, $StreamProvider<List<PostEntity>> {
-  /// Provider para stream de posts próximos (tempo real)
-  const NearbyPostsStreamProvider._(
-      {required NearbyPostsStreamFamily super.from,
-      required Map<String, double> super.argument})
-      : super(
-          retry: null,
-          name: r'nearbyPostsStreamProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
-
-  @override
-  String debugGetCreateSourceHash() => _$nearbyPostsStreamHash();
-
-  @override
-  String toString() {
-    return r'nearbyPostsStreamProvider'
-        ''
-        '($argument)';
-  }
-
-  @$internal
-  @override
-  $StreamProviderElement<List<PostEntity>> $createElement(
-          $ProviderPointer pointer) =>
-      $StreamProviderElement(pointer);
-
-  @override
-  Stream<List<PostEntity>> create(Ref ref) {
-    final argument = this.argument as Map<String, double>;
-    return nearbyPostsStream(
-      ref,
-      argument,
-    );
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return other is NearbyPostsStreamProvider && other.argument == argument;
-  }
-
-  @override
-  int get hashCode {
-    return argument.hashCode;
-  }
-}
-
-String _$nearbyPostsStreamHash() => r'692aea45931febb23eb8bb0cc2fcf73f3ac9a654';
-
-/// Provider para stream de posts próximos (tempo real)
-
-final class NearbyPostsStreamFamily extends $Family
-    with
-        $FunctionalFamilyOverride<Stream<List<PostEntity>>,
-            Map<String, double>> {
-  const NearbyPostsStreamFamily._()
-      : super(
-          retry: null,
-          name: r'nearbyPostsStreamProvider',
-          dependencies: null,
-          $allTransitiveDependencies: null,
-          isAutoDispose: true,
-        );
-
-  /// Provider para stream de posts próximos (tempo real)
-
-  NearbyPostsStreamProvider call(
-    Map<String, double> params,
-  ) =>
-      NearbyPostsStreamProvider._(argument: params, from: this);
-
-  @override
-  String toString() => r'nearbyPostsStreamProvider';
-}
+typedef _$ProfileSearchNotifier = AutoDisposeNotifier<ProfileSearchState>;
+// ignore_for_file: type=lint
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

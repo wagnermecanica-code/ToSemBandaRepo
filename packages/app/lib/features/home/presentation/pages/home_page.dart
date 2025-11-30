@@ -8,6 +8,7 @@ import 'dart:convert';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
+import 'package:wegig_app/app/router/app_router.dart';
 import 'package:wegig_app/features/profile/presentation/providers/profile_providers.dart';
 import 'package:core_ui/services/marker_cache_service.dart';
 import 'package:core_ui/theme/app_colors.dart';
@@ -628,14 +629,7 @@ class _HomePageState extends ConsumerState<HomePage>
                 title: const Text('Ver Perfil'),
                 onTap: () {
                   Navigator.pop(ctx);
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (_) => ViewProfilePage(
-                        userId: post.authorUid,
-                        profileId: post.authorProfileId,
-                      ),
-                    ),
-                  );
+                  context.pushProfile(post.authorProfileId);
                 },
               ),
             ],
@@ -988,7 +982,8 @@ class _HomePageState extends ConsumerState<HomePage>
           target: initial,
           zoom: _currentZoom,
         ),
-        style: _mapStyle, // Usando GoogleMap.style ao invés de setMapStyle deprecated
+        style:
+            _mapStyle, // Usando GoogleMap.style ao invés de setMapStyle deprecated
         myLocationEnabled: true,
         myLocationButtonEnabled: false,
         zoomControlsEnabled: false,
@@ -1310,12 +1305,7 @@ class PostCard extends StatelessWidget {
                   tag: 'post-photo-${post.id}',
                   child: GestureDetector(
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => PostDetailPage(postId: post.id),
-                        ),
-                      );
+                      context.pushPostDetail(post.id);
                     },
                     child: ClipRRect(
                       borderRadius: const BorderRadius.only(
@@ -1403,14 +1393,7 @@ class PostCard extends StatelessWidget {
                       Expanded(
                         child: GestureDetector(
                           onTap: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (_) => ViewProfilePage(
-                                  userId: post.authorUid,
-                                  profileId: post.authorProfileId,
-                                ),
-                              ),
-                            );
+                            context.pushProfile(post.authorProfileId);
                           },
                           child: FutureBuilder<DocumentSnapshot>(
                             future: FirebaseFirestore.instance
@@ -1473,12 +1456,7 @@ class PostCard extends StatelessWidget {
                   // Header clicável
                   GestureDetector(
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => PostDetailPage(postId: post.id),
-                        ),
-                      );
+                      context.pushPostDetail(post.id);
                     },
                     child: Row(
                       children: [

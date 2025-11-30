@@ -129,7 +129,7 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
     // Transação atômica: criar perfil + definir como ativo se for o primeiro
     await _firestore.runTransaction((transaction) async {
       // ⚠️ FIRESTORE RULE: Todas as LEITURAS devem vir ANTES de todas as ESCRITAS
-      
+
       // 1. PRIMEIRO: Ler documento do usuário (READ)
       final userRef = _usersRef.doc(profile.uid);
       final userDoc = await transaction.get(userRef);

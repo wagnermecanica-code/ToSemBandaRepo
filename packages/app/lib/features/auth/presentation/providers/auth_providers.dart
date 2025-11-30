@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:wegig_app/features/auth/data/datasources/auth_remote_datasource.dart';
 import 'package:wegig_app/features/auth/data/repositories/auth_repository_impl.dart';
@@ -51,8 +52,7 @@ SignUpWithEmailUseCase signUpWithEmailUseCase(Ref ref) {
 
 /// Provider para SignInWithGoogleUseCase
 @riverpod
-SignInWithGoogleUseCase signInWithGoogleUseCase(
-    Ref ref) {
+SignInWithGoogleUseCase signInWithGoogleUseCase(Ref ref) {
   final repository = ref.watch(authRepositoryProvider);
   return SignInWithGoogleUseCase(repository);
 }
@@ -73,16 +73,14 @@ SignOutUseCase signOutUseCase(Ref ref) {
 
 /// Provider para SendPasswordResetEmailUseCase
 @riverpod
-SendPasswordResetEmailUseCase sendPasswordResetEmailUseCase(
-    Ref ref) {
+SendPasswordResetEmailUseCase sendPasswordResetEmailUseCase(Ref ref) {
   final repository = ref.watch(authRepositoryProvider);
   return SendPasswordResetEmailUseCase(repository);
 }
 
 /// Provider para SendEmailVerificationUseCase
 @riverpod
-SendEmailVerificationUseCase sendEmailVerificationUseCase(
-    Ref ref) {
+SendEmailVerificationUseCase sendEmailVerificationUseCase(Ref ref) {
   final repository = ref.watch(authRepositoryProvider);
   return SendEmailVerificationUseCase(repository);
 }

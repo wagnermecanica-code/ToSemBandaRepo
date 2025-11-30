@@ -6,727 +6,309 @@ part of 'auth_providers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-// GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: type=lint, type=warning
-/// ============================================
-/// DATA LAYER - Dependency Injection
-/// ============================================
-/// Provider para AuthRemoteDataSource (singleton)
-
-@ProviderFor(authRemoteDataSource)
-const authRemoteDataSourceProvider = AuthRemoteDataSourceProvider._();
-
-/// ============================================
-/// DATA LAYER - Dependency Injection
-/// ============================================
-/// Provider para AuthRemoteDataSource (singleton)
-
-final class AuthRemoteDataSourceProvider extends $FunctionalProvider<
-    AuthRemoteDataSource,
-    AuthRemoteDataSource,
-    AuthRemoteDataSource> with $Provider<AuthRemoteDataSource> {
-  /// ============================================
-  /// DATA LAYER - Dependency Injection
-  /// ============================================
-  /// Provider para AuthRemoteDataSource (singleton)
-  const AuthRemoteDataSourceProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'authRemoteDataSourceProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
-
-  @override
-  String debugGetCreateSourceHash() => _$authRemoteDataSourceHash();
-
-  @$internal
-  @override
-  $ProviderElement<AuthRemoteDataSource> $createElement(
-          $ProviderPointer pointer) =>
-      $ProviderElement(pointer);
-
-  @override
-  AuthRemoteDataSource create(Ref ref) {
-    return authRemoteDataSource(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(AuthRemoteDataSource value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<AuthRemoteDataSource>(value),
-    );
-  }
-}
-
 String _$authRemoteDataSourceHash() =>
     r'b6a9edd1b6c48be8564688bac362316f598b4432';
 
-/// Provider para AuthRepository (singleton)
+/// ============================================
+/// DATA LAYER - Dependency Injection
+/// ============================================
+/// Provider para AuthRemoteDataSource (singleton)
+///
+/// Copied from [authRemoteDataSource].
+@ProviderFor(authRemoteDataSource)
+final authRemoteDataSourceProvider =
+    AutoDisposeProvider<AuthRemoteDataSource>.internal(
+  authRemoteDataSource,
+  name: r'authRemoteDataSourceProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$authRemoteDataSourceHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
-@ProviderFor(authRepository)
-const authRepositoryProvider = AuthRepositoryProvider._();
-
-/// Provider para AuthRepository (singleton)
-
-final class AuthRepositoryProvider
-    extends $FunctionalProvider<AuthRepository, AuthRepository, AuthRepository>
-    with $Provider<AuthRepository> {
-  /// Provider para AuthRepository (singleton)
-  const AuthRepositoryProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'authRepositoryProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
-
-  @override
-  String debugGetCreateSourceHash() => _$authRepositoryHash();
-
-  @$internal
-  @override
-  $ProviderElement<AuthRepository> $createElement($ProviderPointer pointer) =>
-      $ProviderElement(pointer);
-
-  @override
-  AuthRepository create(Ref ref) {
-    return authRepository(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(AuthRepository value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<AuthRepository>(value),
-    );
-  }
-}
-
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef AuthRemoteDataSourceRef = AutoDisposeProviderRef<AuthRemoteDataSource>;
 String _$authRepositoryHash() => r'05c6159f6976986da64509d15b55d499b8b724b4';
 
-/// ============================================
-/// DOMAIN LAYER - UseCases
-/// ============================================
-/// Provider para SignInWithEmailUseCase
+/// Provider para AuthRepository (singleton)
+///
+/// Copied from [authRepository].
+@ProviderFor(authRepository)
+final authRepositoryProvider = AutoDisposeProvider<AuthRepository>.internal(
+  authRepository,
+  name: r'authRepositoryProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$authRepositoryHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
-@ProviderFor(signInWithEmailUseCase)
-const signInWithEmailUseCaseProvider = SignInWithEmailUseCaseProvider._();
-
-/// ============================================
-/// DOMAIN LAYER - UseCases
-/// ============================================
-/// Provider para SignInWithEmailUseCase
-
-final class SignInWithEmailUseCaseProvider extends $FunctionalProvider<
-    SignInWithEmailUseCase,
-    SignInWithEmailUseCase,
-    SignInWithEmailUseCase> with $Provider<SignInWithEmailUseCase> {
-  /// ============================================
-  /// DOMAIN LAYER - UseCases
-  /// ============================================
-  /// Provider para SignInWithEmailUseCase
-  const SignInWithEmailUseCaseProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'signInWithEmailUseCaseProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
-
-  @override
-  String debugGetCreateSourceHash() => _$signInWithEmailUseCaseHash();
-
-  @$internal
-  @override
-  $ProviderElement<SignInWithEmailUseCase> $createElement(
-          $ProviderPointer pointer) =>
-      $ProviderElement(pointer);
-
-  @override
-  SignInWithEmailUseCase create(Ref ref) {
-    return signInWithEmailUseCase(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(SignInWithEmailUseCase value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<SignInWithEmailUseCase>(value),
-    );
-  }
-}
-
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef AuthRepositoryRef = AutoDisposeProviderRef<AuthRepository>;
 String _$signInWithEmailUseCaseHash() =>
     r'8b12333bcccdb296a736f6374d468c815512c4ab';
 
-/// Provider para SignUpWithEmailUseCase
+/// ============================================
+/// DOMAIN LAYER - UseCases
+/// ============================================
+/// Provider para SignInWithEmailUseCase
+///
+/// Copied from [signInWithEmailUseCase].
+@ProviderFor(signInWithEmailUseCase)
+final signInWithEmailUseCaseProvider =
+    AutoDisposeProvider<SignInWithEmailUseCase>.internal(
+  signInWithEmailUseCase,
+  name: r'signInWithEmailUseCaseProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$signInWithEmailUseCaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
-@ProviderFor(signUpWithEmailUseCase)
-const signUpWithEmailUseCaseProvider = SignUpWithEmailUseCaseProvider._();
-
-/// Provider para SignUpWithEmailUseCase
-
-final class SignUpWithEmailUseCaseProvider extends $FunctionalProvider<
-    SignUpWithEmailUseCase,
-    SignUpWithEmailUseCase,
-    SignUpWithEmailUseCase> with $Provider<SignUpWithEmailUseCase> {
-  /// Provider para SignUpWithEmailUseCase
-  const SignUpWithEmailUseCaseProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'signUpWithEmailUseCaseProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
-
-  @override
-  String debugGetCreateSourceHash() => _$signUpWithEmailUseCaseHash();
-
-  @$internal
-  @override
-  $ProviderElement<SignUpWithEmailUseCase> $createElement(
-          $ProviderPointer pointer) =>
-      $ProviderElement(pointer);
-
-  @override
-  SignUpWithEmailUseCase create(Ref ref) {
-    return signUpWithEmailUseCase(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(SignUpWithEmailUseCase value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<SignUpWithEmailUseCase>(value),
-    );
-  }
-}
-
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef SignInWithEmailUseCaseRef
+    = AutoDisposeProviderRef<SignInWithEmailUseCase>;
 String _$signUpWithEmailUseCaseHash() =>
     r'208b6723dc4d6968f330194e094d32220878df52';
 
-/// Provider para SignInWithGoogleUseCase
+/// Provider para SignUpWithEmailUseCase
+///
+/// Copied from [signUpWithEmailUseCase].
+@ProviderFor(signUpWithEmailUseCase)
+final signUpWithEmailUseCaseProvider =
+    AutoDisposeProvider<SignUpWithEmailUseCase>.internal(
+  signUpWithEmailUseCase,
+  name: r'signUpWithEmailUseCaseProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$signUpWithEmailUseCaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
-@ProviderFor(signInWithGoogleUseCase)
-const signInWithGoogleUseCaseProvider = SignInWithGoogleUseCaseProvider._();
-
-/// Provider para SignInWithGoogleUseCase
-
-final class SignInWithGoogleUseCaseProvider extends $FunctionalProvider<
-    SignInWithGoogleUseCase,
-    SignInWithGoogleUseCase,
-    SignInWithGoogleUseCase> with $Provider<SignInWithGoogleUseCase> {
-  /// Provider para SignInWithGoogleUseCase
-  const SignInWithGoogleUseCaseProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'signInWithGoogleUseCaseProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
-
-  @override
-  String debugGetCreateSourceHash() => _$signInWithGoogleUseCaseHash();
-
-  @$internal
-  @override
-  $ProviderElement<SignInWithGoogleUseCase> $createElement(
-          $ProviderPointer pointer) =>
-      $ProviderElement(pointer);
-
-  @override
-  SignInWithGoogleUseCase create(Ref ref) {
-    return signInWithGoogleUseCase(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(SignInWithGoogleUseCase value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<SignInWithGoogleUseCase>(value),
-    );
-  }
-}
-
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef SignUpWithEmailUseCaseRef
+    = AutoDisposeProviderRef<SignUpWithEmailUseCase>;
 String _$signInWithGoogleUseCaseHash() =>
     r'dc90c4b43fcbfc22a70458e8591d8f4c2d9bc76b';
 
-/// Provider para SignInWithAppleUseCase
+/// Provider para SignInWithGoogleUseCase
+///
+/// Copied from [signInWithGoogleUseCase].
+@ProviderFor(signInWithGoogleUseCase)
+final signInWithGoogleUseCaseProvider =
+    AutoDisposeProvider<SignInWithGoogleUseCase>.internal(
+  signInWithGoogleUseCase,
+  name: r'signInWithGoogleUseCaseProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$signInWithGoogleUseCaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
-@ProviderFor(signInWithAppleUseCase)
-const signInWithAppleUseCaseProvider = SignInWithAppleUseCaseProvider._();
-
-/// Provider para SignInWithAppleUseCase
-
-final class SignInWithAppleUseCaseProvider extends $FunctionalProvider<
-    SignInWithAppleUseCase,
-    SignInWithAppleUseCase,
-    SignInWithAppleUseCase> with $Provider<SignInWithAppleUseCase> {
-  /// Provider para SignInWithAppleUseCase
-  const SignInWithAppleUseCaseProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'signInWithAppleUseCaseProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
-
-  @override
-  String debugGetCreateSourceHash() => _$signInWithAppleUseCaseHash();
-
-  @$internal
-  @override
-  $ProviderElement<SignInWithAppleUseCase> $createElement(
-          $ProviderPointer pointer) =>
-      $ProviderElement(pointer);
-
-  @override
-  SignInWithAppleUseCase create(Ref ref) {
-    return signInWithAppleUseCase(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(SignInWithAppleUseCase value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<SignInWithAppleUseCase>(value),
-    );
-  }
-}
-
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef SignInWithGoogleUseCaseRef
+    = AutoDisposeProviderRef<SignInWithGoogleUseCase>;
 String _$signInWithAppleUseCaseHash() =>
     r'2ddf12d1c1a02d09e209d7c45c6614c387a2c051';
 
-/// Provider para SignOutUseCase
+/// Provider para SignInWithAppleUseCase
+///
+/// Copied from [signInWithAppleUseCase].
+@ProviderFor(signInWithAppleUseCase)
+final signInWithAppleUseCaseProvider =
+    AutoDisposeProvider<SignInWithAppleUseCase>.internal(
+  signInWithAppleUseCase,
+  name: r'signInWithAppleUseCaseProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$signInWithAppleUseCaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
-@ProviderFor(signOutUseCase)
-const signOutUseCaseProvider = SignOutUseCaseProvider._();
-
-/// Provider para SignOutUseCase
-
-final class SignOutUseCaseProvider
-    extends $FunctionalProvider<SignOutUseCase, SignOutUseCase, SignOutUseCase>
-    with $Provider<SignOutUseCase> {
-  /// Provider para SignOutUseCase
-  const SignOutUseCaseProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'signOutUseCaseProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
-
-  @override
-  String debugGetCreateSourceHash() => _$signOutUseCaseHash();
-
-  @$internal
-  @override
-  $ProviderElement<SignOutUseCase> $createElement($ProviderPointer pointer) =>
-      $ProviderElement(pointer);
-
-  @override
-  SignOutUseCase create(Ref ref) {
-    return signOutUseCase(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(SignOutUseCase value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<SignOutUseCase>(value),
-    );
-  }
-}
-
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef SignInWithAppleUseCaseRef
+    = AutoDisposeProviderRef<SignInWithAppleUseCase>;
 String _$signOutUseCaseHash() => r'8cc2470ed44022c6868a2e710009d5234e1a80fc';
 
-/// Provider para SendPasswordResetEmailUseCase
+/// Provider para SignOutUseCase
+///
+/// Copied from [signOutUseCase].
+@ProviderFor(signOutUseCase)
+final signOutUseCaseProvider = AutoDisposeProvider<SignOutUseCase>.internal(
+  signOutUseCase,
+  name: r'signOutUseCaseProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$signOutUseCaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
-@ProviderFor(sendPasswordResetEmailUseCase)
-const sendPasswordResetEmailUseCaseProvider =
-    SendPasswordResetEmailUseCaseProvider._();
-
-/// Provider para SendPasswordResetEmailUseCase
-
-final class SendPasswordResetEmailUseCaseProvider extends $FunctionalProvider<
-        SendPasswordResetEmailUseCase,
-        SendPasswordResetEmailUseCase,
-        SendPasswordResetEmailUseCase>
-    with $Provider<SendPasswordResetEmailUseCase> {
-  /// Provider para SendPasswordResetEmailUseCase
-  const SendPasswordResetEmailUseCaseProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'sendPasswordResetEmailUseCaseProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
-
-  @override
-  String debugGetCreateSourceHash() => _$sendPasswordResetEmailUseCaseHash();
-
-  @$internal
-  @override
-  $ProviderElement<SendPasswordResetEmailUseCase> $createElement(
-          $ProviderPointer pointer) =>
-      $ProviderElement(pointer);
-
-  @override
-  SendPasswordResetEmailUseCase create(Ref ref) {
-    return sendPasswordResetEmailUseCase(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(SendPasswordResetEmailUseCase value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride:
-          $SyncValueProvider<SendPasswordResetEmailUseCase>(value),
-    );
-  }
-}
-
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef SignOutUseCaseRef = AutoDisposeProviderRef<SignOutUseCase>;
 String _$sendPasswordResetEmailUseCaseHash() =>
     r'6e03dbb68ffd2ed8bdd85e6f93e2cd61f0945f9b';
 
-/// Provider para SendEmailVerificationUseCase
+/// Provider para SendPasswordResetEmailUseCase
+///
+/// Copied from [sendPasswordResetEmailUseCase].
+@ProviderFor(sendPasswordResetEmailUseCase)
+final sendPasswordResetEmailUseCaseProvider =
+    AutoDisposeProvider<SendPasswordResetEmailUseCase>.internal(
+  sendPasswordResetEmailUseCase,
+  name: r'sendPasswordResetEmailUseCaseProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$sendPasswordResetEmailUseCaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
-@ProviderFor(sendEmailVerificationUseCase)
-const sendEmailVerificationUseCaseProvider =
-    SendEmailVerificationUseCaseProvider._();
-
-/// Provider para SendEmailVerificationUseCase
-
-final class SendEmailVerificationUseCaseProvider extends $FunctionalProvider<
-    SendEmailVerificationUseCase,
-    SendEmailVerificationUseCase,
-    SendEmailVerificationUseCase> with $Provider<SendEmailVerificationUseCase> {
-  /// Provider para SendEmailVerificationUseCase
-  const SendEmailVerificationUseCaseProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'sendEmailVerificationUseCaseProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
-
-  @override
-  String debugGetCreateSourceHash() => _$sendEmailVerificationUseCaseHash();
-
-  @$internal
-  @override
-  $ProviderElement<SendEmailVerificationUseCase> $createElement(
-          $ProviderPointer pointer) =>
-      $ProviderElement(pointer);
-
-  @override
-  SendEmailVerificationUseCase create(Ref ref) {
-    return sendEmailVerificationUseCase(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(SendEmailVerificationUseCase value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<SendEmailVerificationUseCase>(value),
-    );
-  }
-}
-
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef SendPasswordResetEmailUseCaseRef
+    = AutoDisposeProviderRef<SendPasswordResetEmailUseCase>;
 String _$sendEmailVerificationUseCaseHash() =>
     r'ca5d253611bfc934c36e87e2a979b71c19aba89c';
 
-/// ============================================
-/// PRESENTATION LAYER - State
-/// ============================================
-/// Provider para o stream de auth state changes
+/// Provider para SendEmailVerificationUseCase
 ///
-/// Reactivo - atualiza automaticamente quando user faz login/logout
+/// Copied from [sendEmailVerificationUseCase].
+@ProviderFor(sendEmailVerificationUseCase)
+final sendEmailVerificationUseCaseProvider =
+    AutoDisposeProvider<SendEmailVerificationUseCase>.internal(
+  sendEmailVerificationUseCase,
+  name: r'sendEmailVerificationUseCaseProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$sendEmailVerificationUseCaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
-@ProviderFor(authState)
-const authStateProvider = AuthStateProvider._();
-
-/// ============================================
-/// PRESENTATION LAYER - State
-/// ============================================
-/// Provider para o stream de auth state changes
-///
-/// Reactivo - atualiza automaticamente quando user faz login/logout
-
-final class AuthStateProvider
-    extends $FunctionalProvider<AsyncValue<User?>, User?, Stream<User?>>
-    with $FutureModifier<User?>, $StreamProvider<User?> {
-  /// ============================================
-  /// PRESENTATION LAYER - State
-  /// ============================================
-  /// Provider para o stream de auth state changes
-  ///
-  /// Reactivo - atualiza automaticamente quando user faz login/logout
-  const AuthStateProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'authStateProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
-
-  @override
-  String debugGetCreateSourceHash() => _$authStateHash();
-
-  @$internal
-  @override
-  $StreamProviderElement<User?> $createElement($ProviderPointer pointer) =>
-      $StreamProviderElement(pointer);
-
-  @override
-  Stream<User?> create(Ref ref) {
-    return authState(ref);
-  }
-}
-
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef SendEmailVerificationUseCaseRef
+    = AutoDisposeProviderRef<SendEmailVerificationUseCase>;
 String _$authStateHash() => r'3287ebbacddb50a826fd28bc6d4a4708785c8891';
 
-/// Provider para o usuário atual (nullable)
+/// ============================================
+/// PRESENTATION LAYER - State
+/// ============================================
+/// Provider para o stream de auth state changes
 ///
-/// Útil para checagens rápidas sem async
-
-@ProviderFor(currentUser)
-const currentUserProvider = CurrentUserProvider._();
-
-/// Provider para o usuário atual (nullable)
+/// Reactivo - atualiza automaticamente quando user faz login/logout
 ///
-/// Útil para checagens rápidas sem async
+/// Copied from [authState].
+@ProviderFor(authState)
+final authStateProvider = AutoDisposeStreamProvider<User?>.internal(
+  authState,
+  name: r'authStateProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$authStateHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
-final class CurrentUserProvider extends $FunctionalProvider<User?, User?, User?>
-    with $Provider<User?> {
-  /// Provider para o usuário atual (nullable)
-  ///
-  /// Útil para checagens rápidas sem async
-  const CurrentUserProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'currentUserProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
-
-  @override
-  String debugGetCreateSourceHash() => _$currentUserHash();
-
-  @$internal
-  @override
-  $ProviderElement<User?> $createElement($ProviderPointer pointer) =>
-      $ProviderElement(pointer);
-
-  @override
-  User? create(Ref ref) {
-    return currentUser(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(User? value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<User?>(value),
-    );
-  }
-}
-
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef AuthStateRef = AutoDisposeStreamProviderRef<User?>;
 String _$currentUserHash() => r'ab87a355dd423d79a81ba656f9396a458ad8ed84';
 
-/// Provider para verificar se usuário está autenticado
+/// Provider para o usuário atual (nullable)
+///
+/// Útil para checagens rápidas sem async
+///
+/// Copied from [currentUser].
+@ProviderFor(currentUser)
+final currentUserProvider = AutoDisposeProvider<User?>.internal(
+  currentUser,
+  name: r'currentUserProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$currentUserHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
-@ProviderFor(isAuthenticated)
-const isAuthenticatedProvider = IsAuthenticatedProvider._();
-
-/// Provider para verificar se usuário está autenticado
-
-final class IsAuthenticatedProvider
-    extends $FunctionalProvider<bool, bool, bool> with $Provider<bool> {
-  /// Provider para verificar se usuário está autenticado
-  const IsAuthenticatedProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'isAuthenticatedProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
-
-  @override
-  String debugGetCreateSourceHash() => _$isAuthenticatedHash();
-
-  @$internal
-  @override
-  $ProviderElement<bool> $createElement($ProviderPointer pointer) =>
-      $ProviderElement(pointer);
-
-  @override
-  bool create(Ref ref) {
-    return isAuthenticated(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(bool value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<bool>(value),
-    );
-  }
-}
-
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef CurrentUserRef = AutoDisposeProviderRef<User?>;
 String _$isAuthenticatedHash() => r'54fa2e7165f29e09a4d03d1f0bf7ae0df72cf5dc';
 
-/// Provider para verificar se email foi verificado
+/// Provider para verificar se usuário está autenticado
+///
+/// Copied from [isAuthenticated].
+@ProviderFor(isAuthenticated)
+final isAuthenticatedProvider = AutoDisposeProvider<bool>.internal(
+  isAuthenticated,
+  name: r'isAuthenticatedProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$isAuthenticatedHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
-@ProviderFor(isEmailVerified)
-const isEmailVerifiedProvider = IsEmailVerifiedProvider._();
-
-/// Provider para verificar se email foi verificado
-
-final class IsEmailVerifiedProvider
-    extends $FunctionalProvider<bool, bool, bool> with $Provider<bool> {
-  /// Provider para verificar se email foi verificado
-  const IsEmailVerifiedProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'isEmailVerifiedProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
-
-  @override
-  String debugGetCreateSourceHash() => _$isEmailVerifiedHash();
-
-  @$internal
-  @override
-  $ProviderElement<bool> $createElement($ProviderPointer pointer) =>
-      $ProviderElement(pointer);
-
-  @override
-  bool create(Ref ref) {
-    return isEmailVerified(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(bool value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<bool>(value),
-    );
-  }
-}
-
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef IsAuthenticatedRef = AutoDisposeProviderRef<bool>;
 String _$isEmailVerifiedHash() => r'21699e3260e423b151b31d17a002ba63097dfde5';
 
-/// ============================================
-/// FACADE - Simplificação de acesso
-/// ============================================
-/// Provider para AuthService (facade)
+/// Provider para verificar se email foi verificado
 ///
-/// MANTIDO PARA RETROCOMPATIBILIDADE COM CÓDIGO ANTIGO
-/// Fornece interface simples para código legado que usa AuthService
-///
-/// DEPRECATED: Novo código deve usar UseCases diretamente
+/// Copied from [isEmailVerified].
+@ProviderFor(isEmailVerified)
+final isEmailVerifiedProvider = AutoDisposeProvider<bool>.internal(
+  isEmailVerified,
+  name: r'isEmailVerifiedProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$isEmailVerifiedHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
-@ProviderFor(authService)
-@Deprecated('Use UseCases diretamente (signInWithEmailUseCaseProvider, etc)')
-const authServiceProvider = AuthServiceProvider._();
-
-/// ============================================
-/// FACADE - Simplificação de acesso
-/// ============================================
-/// Provider para AuthService (facade)
-///
-/// MANTIDO PARA RETROCOMPATIBILIDADE COM CÓDIGO ANTIGO
-/// Fornece interface simples para código legado que usa AuthService
-///
-/// DEPRECATED: Novo código deve usar UseCases diretamente
-
-@Deprecated('Use UseCases diretamente (signInWithEmailUseCaseProvider, etc)')
-final class AuthServiceProvider
-    extends $FunctionalProvider<IAuthService, IAuthService, IAuthService>
-    with $Provider<IAuthService> {
-  /// ============================================
-  /// FACADE - Simplificação de acesso
-  /// ============================================
-  /// Provider para AuthService (facade)
-  ///
-  /// MANTIDO PARA RETROCOMPATIBILIDADE COM CÓDIGO ANTIGO
-  /// Fornece interface simples para código legado que usa AuthService
-  ///
-  /// DEPRECATED: Novo código deve usar UseCases diretamente
-  const AuthServiceProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'authServiceProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
-
-  @override
-  String debugGetCreateSourceHash() => _$authServiceHash();
-
-  @$internal
-  @override
-  $ProviderElement<IAuthService> $createElement($ProviderPointer pointer) =>
-      $ProviderElement(pointer);
-
-  @override
-  IAuthService create(Ref ref) {
-    return authService(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(IAuthService value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<IAuthService>(value),
-    );
-  }
-}
-
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef IsEmailVerifiedRef = AutoDisposeProviderRef<bool>;
 String _$authServiceHash() => r'38f5a8ac9bb90db989e951984da80601ff22f4a6';
+
+/// ============================================
+/// FACADE - Simplificação de acesso
+/// ============================================
+/// Provider para AuthService (facade)
+///
+/// MANTIDO PARA RETROCOMPATIBILIDADE COM CÓDIGO ANTIGO
+/// Fornece interface simples para código legado que usa AuthService
+///
+/// DEPRECATED: Novo código deve usar UseCases diretamente
+///
+/// Copied from [authService].
+@ProviderFor(authService)
+final authServiceProvider = AutoDisposeProvider<IAuthService>.internal(
+  authService,
+  name: r'authServiceProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$authServiceHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef AuthServiceRef = AutoDisposeProviderRef<IAuthService>;
+// ignore_for_file: type=lint
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

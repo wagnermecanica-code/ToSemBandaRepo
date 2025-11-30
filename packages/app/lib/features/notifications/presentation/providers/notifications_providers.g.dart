@@ -6,600 +6,503 @@ part of 'notifications_providers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-// GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: type=lint, type=warning
-/// Provider para FirebaseFirestore instance
-
-@ProviderFor(firestore)
-const firestoreProvider = FirestoreProvider._();
-
-/// Provider para FirebaseFirestore instance
-
-final class FirestoreProvider extends $FunctionalProvider<FirebaseFirestore,
-    FirebaseFirestore, FirebaseFirestore> with $Provider<FirebaseFirestore> {
-  /// Provider para FirebaseFirestore instance
-  const FirestoreProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'firestoreProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
-
-  @override
-  String debugGetCreateSourceHash() => _$firestoreHash();
-
-  @$internal
-  @override
-  $ProviderElement<FirebaseFirestore> $createElement(
-          $ProviderPointer pointer) =>
-      $ProviderElement(pointer);
-
-  @override
-  FirebaseFirestore create(Ref ref) {
-    return firestore(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(FirebaseFirestore value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<FirebaseFirestore>(value),
-    );
-  }
-}
-
 String _$firestoreHash() => r'0e25e335c5657f593fc1baf3d9fd026e70bca7fa';
 
-/// Provider para NotificationsRemoteDataSource
+/// Provider para FirebaseFirestore instance
+///
+/// Copied from [firestore].
+@ProviderFor(firestore)
+final firestoreProvider = AutoDisposeProvider<FirebaseFirestore>.internal(
+  firestore,
+  name: r'firestoreProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$firestoreHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
-@ProviderFor(notificationsRemoteDataSource)
-const notificationsRemoteDataSourceProvider =
-    NotificationsRemoteDataSourceProvider._();
-
-/// Provider para NotificationsRemoteDataSource
-
-final class NotificationsRemoteDataSourceProvider extends $FunctionalProvider<
-        INotificationsRemoteDataSource,
-        INotificationsRemoteDataSource,
-        INotificationsRemoteDataSource>
-    with $Provider<INotificationsRemoteDataSource> {
-  /// Provider para NotificationsRemoteDataSource
-  const NotificationsRemoteDataSourceProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'notificationsRemoteDataSourceProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
-
-  @override
-  String debugGetCreateSourceHash() => _$notificationsRemoteDataSourceHash();
-
-  @$internal
-  @override
-  $ProviderElement<INotificationsRemoteDataSource> $createElement(
-          $ProviderPointer pointer) =>
-      $ProviderElement(pointer);
-
-  @override
-  INotificationsRemoteDataSource create(Ref ref) {
-    return notificationsRemoteDataSource(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(INotificationsRemoteDataSource value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride:
-          $SyncValueProvider<INotificationsRemoteDataSource>(value),
-    );
-  }
-}
-
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef FirestoreRef = AutoDisposeProviderRef<FirebaseFirestore>;
 String _$notificationsRemoteDataSourceHash() =>
     r'17130b6d4c9511ce90419518fcd3098d489c49b0';
 
-/// Provider para NotificationsRepository (nova implementação Clean Architecture)
+/// Provider para NotificationsRemoteDataSource
+///
+/// Copied from [notificationsRemoteDataSource].
+@ProviderFor(notificationsRemoteDataSource)
+final notificationsRemoteDataSourceProvider =
+    AutoDisposeProvider<INotificationsRemoteDataSource>.internal(
+  notificationsRemoteDataSource,
+  name: r'notificationsRemoteDataSourceProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$notificationsRemoteDataSourceHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
-@ProviderFor(notificationsRepositoryNew)
-const notificationsRepositoryNewProvider =
-    NotificationsRepositoryNewProvider._();
-
-/// Provider para NotificationsRepository (nova implementação Clean Architecture)
-
-final class NotificationsRepositoryNewProvider extends $FunctionalProvider<
-    NotificationsRepository,
-    NotificationsRepository,
-    NotificationsRepository> with $Provider<NotificationsRepository> {
-  /// Provider para NotificationsRepository (nova implementação Clean Architecture)
-  const NotificationsRepositoryNewProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'notificationsRepositoryNewProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
-
-  @override
-  String debugGetCreateSourceHash() => _$notificationsRepositoryNewHash();
-
-  @$internal
-  @override
-  $ProviderElement<NotificationsRepository> $createElement(
-          $ProviderPointer pointer) =>
-      $ProviderElement(pointer);
-
-  @override
-  NotificationsRepository create(Ref ref) {
-    return notificationsRepositoryNew(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(NotificationsRepository value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<NotificationsRepository>(value),
-    );
-  }
-}
-
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef NotificationsRemoteDataSourceRef
+    = AutoDisposeProviderRef<INotificationsRemoteDataSource>;
 String _$notificationsRepositoryNewHash() =>
     r'b770976ca1711ccadcc80e72749f6474368e0135';
 
-@ProviderFor(loadNotificationsUseCase)
-const loadNotificationsUseCaseProvider = LoadNotificationsUseCaseProvider._();
+/// Provider para NotificationsRepository (nova implementação Clean Architecture)
+///
+/// Copied from [notificationsRepositoryNew].
+@ProviderFor(notificationsRepositoryNew)
+final notificationsRepositoryNewProvider =
+    AutoDisposeProvider<NotificationsRepository>.internal(
+  notificationsRepositoryNew,
+  name: r'notificationsRepositoryNewProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$notificationsRepositoryNewHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
-final class LoadNotificationsUseCaseProvider extends $FunctionalProvider<
-    LoadNotifications,
-    LoadNotifications,
-    LoadNotifications> with $Provider<LoadNotifications> {
-  const LoadNotificationsUseCaseProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'loadNotificationsUseCaseProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
-
-  @override
-  String debugGetCreateSourceHash() => _$loadNotificationsUseCaseHash();
-
-  @$internal
-  @override
-  $ProviderElement<LoadNotifications> $createElement(
-          $ProviderPointer pointer) =>
-      $ProviderElement(pointer);
-
-  @override
-  LoadNotifications create(Ref ref) {
-    return loadNotificationsUseCase(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(LoadNotifications value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<LoadNotifications>(value),
-    );
-  }
-}
-
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef NotificationsRepositoryNewRef
+    = AutoDisposeProviderRef<NotificationsRepository>;
 String _$loadNotificationsUseCaseHash() =>
     r'545df3e540d980926bc9d877710e29450a757488';
 
-@ProviderFor(markNotificationAsReadUseCase)
-const markNotificationAsReadUseCaseProvider =
-    MarkNotificationAsReadUseCaseProvider._();
+/// See also [loadNotificationsUseCase].
+@ProviderFor(loadNotificationsUseCase)
+final loadNotificationsUseCaseProvider =
+    AutoDisposeProvider<LoadNotifications>.internal(
+  loadNotificationsUseCase,
+  name: r'loadNotificationsUseCaseProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$loadNotificationsUseCaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
-final class MarkNotificationAsReadUseCaseProvider extends $FunctionalProvider<
-    MarkNotificationAsRead,
-    MarkNotificationAsRead,
-    MarkNotificationAsRead> with $Provider<MarkNotificationAsRead> {
-  const MarkNotificationAsReadUseCaseProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'markNotificationAsReadUseCaseProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
-
-  @override
-  String debugGetCreateSourceHash() => _$markNotificationAsReadUseCaseHash();
-
-  @$internal
-  @override
-  $ProviderElement<MarkNotificationAsRead> $createElement(
-          $ProviderPointer pointer) =>
-      $ProviderElement(pointer);
-
-  @override
-  MarkNotificationAsRead create(Ref ref) {
-    return markNotificationAsReadUseCase(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(MarkNotificationAsRead value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<MarkNotificationAsRead>(value),
-    );
-  }
-}
-
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef LoadNotificationsUseCaseRef = AutoDisposeProviderRef<LoadNotifications>;
 String _$markNotificationAsReadUseCaseHash() =>
     r'b1f5e7b17d7da5a9fd89eb800944230e783f8d73';
 
-@ProviderFor(markAllNotificationsAsReadUseCase)
-const markAllNotificationsAsReadUseCaseProvider =
-    MarkAllNotificationsAsReadUseCaseProvider._();
+/// See also [markNotificationAsReadUseCase].
+@ProviderFor(markNotificationAsReadUseCase)
+final markNotificationAsReadUseCaseProvider =
+    AutoDisposeProvider<MarkNotificationAsRead>.internal(
+  markNotificationAsReadUseCase,
+  name: r'markNotificationAsReadUseCaseProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$markNotificationAsReadUseCaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
-final class MarkAllNotificationsAsReadUseCaseProvider
-    extends $FunctionalProvider<
-        MarkAllNotificationsAsRead,
-        MarkAllNotificationsAsRead,
-        MarkAllNotificationsAsRead> with $Provider<MarkAllNotificationsAsRead> {
-  const MarkAllNotificationsAsReadUseCaseProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'markAllNotificationsAsReadUseCaseProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
-
-  @override
-  String debugGetCreateSourceHash() =>
-      _$markAllNotificationsAsReadUseCaseHash();
-
-  @$internal
-  @override
-  $ProviderElement<MarkAllNotificationsAsRead> $createElement(
-          $ProviderPointer pointer) =>
-      $ProviderElement(pointer);
-
-  @override
-  MarkAllNotificationsAsRead create(Ref ref) {
-    return markAllNotificationsAsReadUseCase(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(MarkAllNotificationsAsRead value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<MarkAllNotificationsAsRead>(value),
-    );
-  }
-}
-
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef MarkNotificationAsReadUseCaseRef
+    = AutoDisposeProviderRef<MarkNotificationAsRead>;
 String _$markAllNotificationsAsReadUseCaseHash() =>
     r'1dbe93806b12f40b2734618e8a9af98a2a74a32e';
 
-@ProviderFor(deleteNotificationUseCase)
-const deleteNotificationUseCaseProvider = DeleteNotificationUseCaseProvider._();
+/// See also [markAllNotificationsAsReadUseCase].
+@ProviderFor(markAllNotificationsAsReadUseCase)
+final markAllNotificationsAsReadUseCaseProvider =
+    AutoDisposeProvider<MarkAllNotificationsAsRead>.internal(
+  markAllNotificationsAsReadUseCase,
+  name: r'markAllNotificationsAsReadUseCaseProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$markAllNotificationsAsReadUseCaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
-final class DeleteNotificationUseCaseProvider extends $FunctionalProvider<
-    DeleteNotification,
-    DeleteNotification,
-    DeleteNotification> with $Provider<DeleteNotification> {
-  const DeleteNotificationUseCaseProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'deleteNotificationUseCaseProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
-
-  @override
-  String debugGetCreateSourceHash() => _$deleteNotificationUseCaseHash();
-
-  @$internal
-  @override
-  $ProviderElement<DeleteNotification> $createElement(
-          $ProviderPointer pointer) =>
-      $ProviderElement(pointer);
-
-  @override
-  DeleteNotification create(Ref ref) {
-    return deleteNotificationUseCase(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(DeleteNotification value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<DeleteNotification>(value),
-    );
-  }
-}
-
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef MarkAllNotificationsAsReadUseCaseRef
+    = AutoDisposeProviderRef<MarkAllNotificationsAsRead>;
 String _$deleteNotificationUseCaseHash() =>
     r'f11e8a3046e5c6caafffcac1c1958f70600a70bb';
 
-@ProviderFor(createNotificationUseCase)
-const createNotificationUseCaseProvider = CreateNotificationUseCaseProvider._();
+/// See also [deleteNotificationUseCase].
+@ProviderFor(deleteNotificationUseCase)
+final deleteNotificationUseCaseProvider =
+    AutoDisposeProvider<DeleteNotification>.internal(
+  deleteNotificationUseCase,
+  name: r'deleteNotificationUseCaseProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$deleteNotificationUseCaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
-final class CreateNotificationUseCaseProvider extends $FunctionalProvider<
-    CreateNotification,
-    CreateNotification,
-    CreateNotification> with $Provider<CreateNotification> {
-  const CreateNotificationUseCaseProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'createNotificationUseCaseProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
-
-  @override
-  String debugGetCreateSourceHash() => _$createNotificationUseCaseHash();
-
-  @$internal
-  @override
-  $ProviderElement<CreateNotification> $createElement(
-          $ProviderPointer pointer) =>
-      $ProviderElement(pointer);
-
-  @override
-  CreateNotification create(Ref ref) {
-    return createNotificationUseCase(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(CreateNotification value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<CreateNotification>(value),
-    );
-  }
-}
-
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef DeleteNotificationUseCaseRef
+    = AutoDisposeProviderRef<DeleteNotification>;
 String _$createNotificationUseCaseHash() =>
     r'ecb5afd7a4b72f15c604a6406a8e363f70d1b4b0';
 
-@ProviderFor(getUnreadNotificationCountUseCase)
-const getUnreadNotificationCountUseCaseProvider =
-    GetUnreadNotificationCountUseCaseProvider._();
+/// See also [createNotificationUseCase].
+@ProviderFor(createNotificationUseCase)
+final createNotificationUseCaseProvider =
+    AutoDisposeProvider<CreateNotification>.internal(
+  createNotificationUseCase,
+  name: r'createNotificationUseCaseProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$createNotificationUseCaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
-final class GetUnreadNotificationCountUseCaseProvider
-    extends $FunctionalProvider<
-        GetUnreadNotificationCount,
-        GetUnreadNotificationCount,
-        GetUnreadNotificationCount> with $Provider<GetUnreadNotificationCount> {
-  const GetUnreadNotificationCountUseCaseProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'getUnreadNotificationCountUseCaseProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
-
-  @override
-  String debugGetCreateSourceHash() =>
-      _$getUnreadNotificationCountUseCaseHash();
-
-  @$internal
-  @override
-  $ProviderElement<GetUnreadNotificationCount> $createElement(
-          $ProviderPointer pointer) =>
-      $ProviderElement(pointer);
-
-  @override
-  GetUnreadNotificationCount create(Ref ref) {
-    return getUnreadNotificationCountUseCase(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(GetUnreadNotificationCount value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<GetUnreadNotificationCount>(value),
-    );
-  }
-}
-
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef CreateNotificationUseCaseRef
+    = AutoDisposeProviderRef<CreateNotification>;
 String _$getUnreadNotificationCountUseCaseHash() =>
     r'a3223594e4b75641df594d6f5aa9d1a022c20d4d';
 
-/// Stream de notificações em tempo real
+/// See also [getUnreadNotificationCountUseCase].
+@ProviderFor(getUnreadNotificationCountUseCase)
+final getUnreadNotificationCountUseCaseProvider =
+    AutoDisposeProvider<GetUnreadNotificationCount>.internal(
+  getUnreadNotificationCountUseCase,
+  name: r'getUnreadNotificationCountUseCaseProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$getUnreadNotificationCountUseCaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
-@ProviderFor(notificationsStream)
-const notificationsStreamProvider = NotificationsStreamFamily._();
-
-/// Stream de notificações em tempo real
-
-final class NotificationsStreamProvider extends $FunctionalProvider<
-        AsyncValue<List<NotificationEntity>>,
-        List<NotificationEntity>,
-        Stream<List<NotificationEntity>>>
-    with
-        $FutureModifier<List<NotificationEntity>>,
-        $StreamProvider<List<NotificationEntity>> {
-  /// Stream de notificações em tempo real
-  const NotificationsStreamProvider._(
-      {required NotificationsStreamFamily super.from,
-      required String super.argument})
-      : super(
-          retry: null,
-          name: r'notificationsStreamProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
-
-  @override
-  String debugGetCreateSourceHash() => _$notificationsStreamHash();
-
-  @override
-  String toString() {
-    return r'notificationsStreamProvider'
-        ''
-        '($argument)';
-  }
-
-  @$internal
-  @override
-  $StreamProviderElement<List<NotificationEntity>> $createElement(
-          $ProviderPointer pointer) =>
-      $StreamProviderElement(pointer);
-
-  @override
-  Stream<List<NotificationEntity>> create(Ref ref) {
-    final argument = this.argument as String;
-    return notificationsStream(
-      ref,
-      argument,
-    );
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return other is NotificationsStreamProvider && other.argument == argument;
-  }
-
-  @override
-  int get hashCode {
-    return argument.hashCode;
-  }
-}
-
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef GetUnreadNotificationCountUseCaseRef
+    = AutoDisposeProviderRef<GetUnreadNotificationCount>;
 String _$notificationsStreamHash() =>
     r'efc7769af9b718f353218f62457cd3f354c04b4c';
 
-/// Stream de notificações em tempo real
+/// Copied from Dart SDK
+class _SystemHash {
+  _SystemHash._();
 
-final class NotificationsStreamFamily extends $Family
-    with $FunctionalFamilyOverride<Stream<List<NotificationEntity>>, String> {
-  const NotificationsStreamFamily._()
-      : super(
-          retry: null,
-          name: r'notificationsStreamProvider',
-          dependencies: null,
-          $allTransitiveDependencies: null,
-          isAutoDispose: true,
-        );
-
-  /// Stream de notificações em tempo real
-
-  NotificationsStreamProvider call(
-    String profileId,
-  ) =>
-      NotificationsStreamProvider._(argument: profileId, from: this);
-
-  @override
-  String toString() => r'notificationsStreamProvider';
-}
-
-/// Stream de contador de não lidas para BottomNav badge
-
-@ProviderFor(unreadNotificationCountForProfile)
-const unreadNotificationCountForProfileProvider =
-    UnreadNotificationCountForProfileFamily._();
-
-/// Stream de contador de não lidas para BottomNav badge
-
-final class UnreadNotificationCountForProfileProvider
-    extends $FunctionalProvider<AsyncValue<int>, int, Stream<int>>
-    with $FutureModifier<int>, $StreamProvider<int> {
-  /// Stream de contador de não lidas para BottomNav badge
-  const UnreadNotificationCountForProfileProvider._(
-      {required UnreadNotificationCountForProfileFamily super.from,
-      required String super.argument})
-      : super(
-          retry: null,
-          name: r'unreadNotificationCountForProfileProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
-
-  @override
-  String debugGetCreateSourceHash() =>
-      _$unreadNotificationCountForProfileHash();
-
-  @override
-  String toString() {
-    return r'unreadNotificationCountForProfileProvider'
-        ''
-        '($argument)';
+  static int combine(int hash, int value) {
+    // ignore: parameter_assignments
+    hash = 0x1fffffff & (hash + value);
+    // ignore: parameter_assignments
+    hash = 0x1fffffff & (hash + ((0x0007ffff & hash) << 10));
+    return hash ^ (hash >> 6);
   }
 
-  @$internal
-  @override
-  $StreamProviderElement<int> $createElement($ProviderPointer pointer) =>
-      $StreamProviderElement(pointer);
+  static int finish(int hash) {
+    // ignore: parameter_assignments
+    hash = 0x1fffffff & (hash + ((0x03ffffff & hash) << 3));
+    // ignore: parameter_assignments
+    hash = hash ^ (hash >> 11);
+    return 0x1fffffff & (hash + ((0x00003fff & hash) << 15));
+  }
+}
 
-  @override
-  Stream<int> create(Ref ref) {
-    final argument = this.argument as String;
-    return unreadNotificationCountForProfile(
-      ref,
-      argument,
+/// Stream de notificações em tempo real
+///
+/// Copied from [notificationsStream].
+@ProviderFor(notificationsStream)
+const notificationsStreamProvider = NotificationsStreamFamily();
+
+/// Stream de notificações em tempo real
+///
+/// Copied from [notificationsStream].
+class NotificationsStreamFamily
+    extends Family<AsyncValue<List<NotificationEntity>>> {
+  /// Stream de notificações em tempo real
+  ///
+  /// Copied from [notificationsStream].
+  const NotificationsStreamFamily();
+
+  /// Stream de notificações em tempo real
+  ///
+  /// Copied from [notificationsStream].
+  NotificationsStreamProvider call(
+    String profileId,
+  ) {
+    return NotificationsStreamProvider(
+      profileId,
     );
   }
 
   @override
+  NotificationsStreamProvider getProviderOverride(
+    covariant NotificationsStreamProvider provider,
+  ) {
+    return call(
+      provider.profileId,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'notificationsStreamProvider';
+}
+
+/// Stream de notificações em tempo real
+///
+/// Copied from [notificationsStream].
+class NotificationsStreamProvider
+    extends AutoDisposeStreamProvider<List<NotificationEntity>> {
+  /// Stream de notificações em tempo real
+  ///
+  /// Copied from [notificationsStream].
+  NotificationsStreamProvider(
+    String profileId,
+  ) : this._internal(
+          (ref) => notificationsStream(
+            ref as NotificationsStreamRef,
+            profileId,
+          ),
+          from: notificationsStreamProvider,
+          name: r'notificationsStreamProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$notificationsStreamHash,
+          dependencies: NotificationsStreamFamily._dependencies,
+          allTransitiveDependencies:
+              NotificationsStreamFamily._allTransitiveDependencies,
+          profileId: profileId,
+        );
+
+  NotificationsStreamProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.profileId,
+  }) : super.internal();
+
+  final String profileId;
+
+  @override
+  Override overrideWith(
+    Stream<List<NotificationEntity>> Function(NotificationsStreamRef provider)
+        create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: NotificationsStreamProvider._internal(
+        (ref) => create(ref as NotificationsStreamRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        profileId: profileId,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeStreamProviderElement<List<NotificationEntity>> createElement() {
+    return _NotificationsStreamProviderElement(this);
+  }
+
+  @override
   bool operator ==(Object other) {
-    return other is UnreadNotificationCountForProfileProvider &&
-        other.argument == argument;
+    return other is NotificationsStreamProvider && other.profileId == profileId;
   }
 
   @override
   int get hashCode {
-    return argument.hashCode;
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, profileId.hashCode);
+
+    return _SystemHash.finish(hash);
   }
+}
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+mixin NotificationsStreamRef
+    on AutoDisposeStreamProviderRef<List<NotificationEntity>> {
+  /// The parameter `profileId` of this provider.
+  String get profileId;
+}
+
+class _NotificationsStreamProviderElement
+    extends AutoDisposeStreamProviderElement<List<NotificationEntity>>
+    with NotificationsStreamRef {
+  _NotificationsStreamProviderElement(super.provider);
+
+  @override
+  String get profileId => (origin as NotificationsStreamProvider).profileId;
 }
 
 String _$unreadNotificationCountForProfileHash() =>
     r'c274a4ee3272789d20ad2e3835751c221ca4f066';
 
 /// Stream de contador de não lidas para BottomNav badge
+///
+/// Copied from [unreadNotificationCountForProfile].
+@ProviderFor(unreadNotificationCountForProfile)
+const unreadNotificationCountForProfileProvider =
+    UnreadNotificationCountForProfileFamily();
 
-final class UnreadNotificationCountForProfileFamily extends $Family
-    with $FunctionalFamilyOverride<Stream<int>, String> {
-  const UnreadNotificationCountForProfileFamily._()
-      : super(
-          retry: null,
-          name: r'unreadNotificationCountForProfileProvider',
-          dependencies: null,
-          $allTransitiveDependencies: null,
-          isAutoDispose: true,
-        );
+/// Stream de contador de não lidas para BottomNav badge
+///
+/// Copied from [unreadNotificationCountForProfile].
+class UnreadNotificationCountForProfileFamily extends Family<AsyncValue<int>> {
+  /// Stream de contador de não lidas para BottomNav badge
+  ///
+  /// Copied from [unreadNotificationCountForProfile].
+  const UnreadNotificationCountForProfileFamily();
 
   /// Stream de contador de não lidas para BottomNav badge
-
+  ///
+  /// Copied from [unreadNotificationCountForProfile].
   UnreadNotificationCountForProfileProvider call(
     String profileId,
-  ) =>
-      UnreadNotificationCountForProfileProvider._(
-          argument: profileId, from: this);
+  ) {
+    return UnreadNotificationCountForProfileProvider(
+      profileId,
+    );
+  }
 
   @override
-  String toString() => r'unreadNotificationCountForProfileProvider';
+  UnreadNotificationCountForProfileProvider getProviderOverride(
+    covariant UnreadNotificationCountForProfileProvider provider,
+  ) {
+    return call(
+      provider.profileId,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'unreadNotificationCountForProfileProvider';
 }
+
+/// Stream de contador de não lidas para BottomNav badge
+///
+/// Copied from [unreadNotificationCountForProfile].
+class UnreadNotificationCountForProfileProvider
+    extends AutoDisposeStreamProvider<int> {
+  /// Stream de contador de não lidas para BottomNav badge
+  ///
+  /// Copied from [unreadNotificationCountForProfile].
+  UnreadNotificationCountForProfileProvider(
+    String profileId,
+  ) : this._internal(
+          (ref) => unreadNotificationCountForProfile(
+            ref as UnreadNotificationCountForProfileRef,
+            profileId,
+          ),
+          from: unreadNotificationCountForProfileProvider,
+          name: r'unreadNotificationCountForProfileProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$unreadNotificationCountForProfileHash,
+          dependencies: UnreadNotificationCountForProfileFamily._dependencies,
+          allTransitiveDependencies: UnreadNotificationCountForProfileFamily
+              ._allTransitiveDependencies,
+          profileId: profileId,
+        );
+
+  UnreadNotificationCountForProfileProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.profileId,
+  }) : super.internal();
+
+  final String profileId;
+
+  @override
+  Override overrideWith(
+    Stream<int> Function(UnreadNotificationCountForProfileRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: UnreadNotificationCountForProfileProvider._internal(
+        (ref) => create(ref as UnreadNotificationCountForProfileRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        profileId: profileId,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeStreamProviderElement<int> createElement() {
+    return _UnreadNotificationCountForProfileProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is UnreadNotificationCountForProfileProvider &&
+        other.profileId == profileId;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, profileId.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+mixin UnreadNotificationCountForProfileRef
+    on AutoDisposeStreamProviderRef<int> {
+  /// The parameter `profileId` of this provider.
+  String get profileId;
+}
+
+class _UnreadNotificationCountForProfileProviderElement
+    extends AutoDisposeStreamProviderElement<int>
+    with UnreadNotificationCountForProfileRef {
+  _UnreadNotificationCountForProfileProviderElement(super.provider);
+
+  @override
+  String get profileId =>
+      (origin as UnreadNotificationCountForProfileProvider).profileId;
+}
+// ignore_for_file: type=lint
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

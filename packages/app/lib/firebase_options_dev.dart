@@ -69,5 +69,4 @@ class DefaultFirebaseOptions {
     storageBucket: 'wegig-dev.firebasestorage.app',
     iosBundleId: 'com.tosembanda.wegig.dev',
   );
-
 }

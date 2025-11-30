@@ -63,7 +63,8 @@ void main() {
       await useCase(notificationId: notificationId, profileId: profileId);
 
       // then
-      final updatedNotification = await mockRepository.getNotificationById(notificationId);
+      final updatedNotification =
+          await mockRepository.getNotificationById(notificationId);
       expect(updatedNotification?.read, true);
     });
   });
@@ -78,7 +79,8 @@ void main() {
       expect(
         () => useCase(notificationId: notificationId, profileId: profileId),
         throwsA(
-          predicate((e) => e.toString().contains('ID da notificação é obrigatório')),
+          predicate(
+              (e) => e.toString().contains('ID da notificação é obrigatório')),
         ),
       );
     });
@@ -144,13 +146,16 @@ void main() {
       // given
       const notificationId = 'notif-1';
       const profileId = 'profile-123';
-      mockRepository.setupMarkAsReadFailure('Erro ao marcar notificação como lida no Firestore');
+      mockRepository.setupMarkAsReadFailure(
+          'Erro ao marcar notificação como lida no Firestore');
 
       // when & then
       expect(
         () => useCase(notificationId: notificationId, profileId: profileId),
         throwsA(
-          predicate((e) => e.toString().contains('Erro ao marcar notificação como lida no Firestore')),
+          predicate((e) => e
+              .toString()
+              .contains('Erro ao marcar notificação como lida no Firestore')),
         ),
       );
     });

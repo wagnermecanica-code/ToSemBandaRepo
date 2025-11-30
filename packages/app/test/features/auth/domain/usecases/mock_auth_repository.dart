@@ -21,7 +21,9 @@ class MockAuthRepository implements AuthRepository {
   Future<AuthResult> signInWithEmail(String email, String password) async {
     lastEmail = email;
     lastPassword = password;
-    return _mockedResponse ?? const AuthFailure(message: 'No response configured', code: 'test-error');
+    return _mockedResponse ??
+        const AuthFailure(
+            message: 'No response configured', code: 'test-error');
   }
 
   @override
@@ -34,22 +36,27 @@ class MockAuthRepository implements AuthRepository {
   bool get isEmailVerified => false;
 
   @override
-  Future<AuthResult> sendEmailVerification() async => const AuthFailure(message: 'Not implemented', code: 'test-error');
+  Future<AuthResult> sendEmailVerification() async =>
+      const AuthFailure(message: 'Not implemented', code: 'test-error');
 
   @override
-  Future<AuthResult> sendPasswordResetEmail(String email) async => const AuthFailure(message: 'Not implemented', code: 'test-error');
+  Future<AuthResult> sendPasswordResetEmail(String email) async =>
+      const AuthFailure(message: 'Not implemented', code: 'test-error');
 
   @override
-  Future<AuthResult> signInWithApple() async => const AuthFailure(message: 'Not implemented', code: 'test-error');
+  Future<AuthResult> signInWithApple() async =>
+      const AuthFailure(message: 'Not implemented', code: 'test-error');
 
   @override
-  Future<AuthResult> signInWithGoogle() async => const AuthFailure(message: 'Not implemented', code: 'test-error');
+  Future<AuthResult> signInWithGoogle() async =>
+      const AuthFailure(message: 'Not implemented', code: 'test-error');
 
   @override
   Future<void> signOut() async {}
 
   @override
-  Future<AuthResult> signUpWithEmail(String email, String password) async => const AuthFailure(message: 'Not implemented', code: 'test-error');
+  Future<AuthResult> signUpWithEmail(String email, String password) async =>
+      const AuthFailure(message: 'Not implemented', code: 'test-error');
 }
 
 class _MockUser implements User {
@@ -90,43 +97,57 @@ class _MockUser implements User {
   Future<void> delete() => throw UnimplementedError();
 
   @override
-  Future<String> getIdToken([bool forceRefresh = false]) => throw UnimplementedError();
+  Future<String> getIdToken([bool forceRefresh = false]) =>
+      throw UnimplementedError();
 
   @override
-  Future<IdTokenResult> getIdTokenResult([bool forceRefresh = false]) => throw UnimplementedError();
+  Future<IdTokenResult> getIdTokenResult([bool forceRefresh = false]) =>
+      throw UnimplementedError();
 
   @override
-  Future<UserCredential> linkWithCredential(AuthCredential credential) => throw UnimplementedError();
+  Future<UserCredential> linkWithCredential(AuthCredential credential) =>
+      throw UnimplementedError();
 
   @override
-  Future<ConfirmationResult> linkWithPhoneNumber(String phoneNumber, [RecaptchaVerifier? verifier]) => throw UnimplementedError();
+  Future<ConfirmationResult> linkWithPhoneNumber(String phoneNumber,
+          [RecaptchaVerifier? verifier]) =>
+      throw UnimplementedError();
 
   @override
-  Future<UserCredential> linkWithPopup(AuthProvider provider) => throw UnimplementedError();
+  Future<UserCredential> linkWithPopup(AuthProvider provider) =>
+      throw UnimplementedError();
 
   @override
-  Future<void> linkWithRedirect(AuthProvider provider) => throw UnimplementedError();
+  Future<void> linkWithRedirect(AuthProvider provider) =>
+      throw UnimplementedError();
 
   @override
-  Future<UserCredential> reauthenticateWithCredential(AuthCredential credential) => throw UnimplementedError();
+  Future<UserCredential> reauthenticateWithCredential(
+          AuthCredential credential) =>
+      throw UnimplementedError();
 
   @override
-  Future<UserCredential> reauthenticateWithPopup(AuthProvider provider) => throw UnimplementedError();
+  Future<UserCredential> reauthenticateWithPopup(AuthProvider provider) =>
+      throw UnimplementedError();
 
   @override
-  Future<void> reauthenticateWithRedirect(AuthProvider provider) => throw UnimplementedError();
+  Future<void> reauthenticateWithRedirect(AuthProvider provider) =>
+      throw UnimplementedError();
 
   @override
   Future<void> reload() => throw UnimplementedError();
 
   @override
-  Future<void> sendEmailVerification([ActionCodeSettings? actionCodeSettings]) => throw UnimplementedError();
+  Future<void> sendEmailVerification(
+          [ActionCodeSettings? actionCodeSettings]) =>
+      throw UnimplementedError();
 
   @override
   Future<User> unlink(String providerId) => throw UnimplementedError();
 
   @override
-  Future<void> updateDisplayName(String? displayName) => throw UnimplementedError();
+  Future<void> updateDisplayName(String? displayName) =>
+      throw UnimplementedError();
 
   @override
   Future<void> updateEmail(String newEmail) => throw UnimplementedError();
@@ -135,23 +156,29 @@ class _MockUser implements User {
   Future<void> updatePassword(String newPassword) => throw UnimplementedError();
 
   @override
-  Future<void> updatePhoneNumber(PhoneAuthCredential phoneCredential) => throw UnimplementedError();
+  Future<void> updatePhoneNumber(PhoneAuthCredential phoneCredential) =>
+      throw UnimplementedError();
 
   @override
   Future<void> updatePhotoURL(String? photoURL) => throw UnimplementedError();
 
   @override
-  Future<void> updateProfile({String? displayName, String? photoURL}) => throw UnimplementedError();
+  Future<void> updateProfile({String? displayName, String? photoURL}) =>
+      throw UnimplementedError();
 
   @override
-  Future<void> verifyBeforeUpdateEmail(String newEmail, [ActionCodeSettings? actionCodeSettings]) => throw UnimplementedError();
+  Future<void> verifyBeforeUpdateEmail(String newEmail,
+          [ActionCodeSettings? actionCodeSettings]) =>
+      throw UnimplementedError();
 
   @override
   MultiFactor get multiFactor => throw UnimplementedError();
 
   @override
-  Future<UserCredential> linkWithProvider(AuthProvider provider) => throw UnimplementedError();
+  Future<UserCredential> linkWithProvider(AuthProvider provider) =>
+      throw UnimplementedError();
 
   @override
-  Future<UserCredential> reauthenticateWithProvider(AuthProvider provider) => throw UnimplementedError();
+  Future<UserCredential> reauthenticateWithProvider(AuthProvider provider) =>
+      throw UnimplementedError();
 }

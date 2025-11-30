@@ -42,8 +42,7 @@ LoadNearbyPostsUseCase loadNearbyPostsUseCase(Ref ref) {
 
 /// Provider para LoadPostsByGenresUseCase
 @riverpod
-LoadPostsByGenresUseCase loadPostsByGenresUseCase(
-    Ref ref) {
+LoadPostsByGenresUseCase loadPostsByGenresUseCase(Ref ref) {
   final repository = ref.watch(homeRepositoryProvider);
   return LoadPostsByGenresUseCase(repository);
 }

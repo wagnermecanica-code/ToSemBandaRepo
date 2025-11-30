@@ -1,13 +1,15 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
+// ignore_for_file: type=lint, invalid_annotation_target
+
 part of 'message_entity.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_MessageEntity _$MessageEntityFromJson(Map<String, dynamic> json) =>
-    _MessageEntity(
+_$MessageEntityImpl _$$MessageEntityImplFromJson(Map<String, dynamic> json) =>
+    _$MessageEntityImpl(
       messageId: json['messageId'] as String,
       senderId: json['senderId'] as String,
       senderProfileId: json['senderProfileId'] as String,
@@ -25,7 +27,7 @@ _MessageEntity _$MessageEntityFromJson(Map<String, dynamic> json) =>
       read: json['read'] as bool? ?? false,
     );
 
-Map<String, dynamic> _$MessageEntityToJson(_MessageEntity instance) =>
+Map<String, dynamic> _$$MessageEntityImplToJson(_$MessageEntityImpl instance) =>
     <String, dynamic>{
       'messageId': instance.messageId,
       'senderId': instance.senderId,
@@ -38,15 +40,17 @@ Map<String, dynamic> _$MessageEntityToJson(_MessageEntity instance) =>
       'read': instance.read,
     };
 
-_MessageReplyEntity _$MessageReplyEntityFromJson(Map<String, dynamic> json) =>
-    _MessageReplyEntity(
+_$MessageReplyEntityImpl _$$MessageReplyEntityImplFromJson(
+        Map<String, dynamic> json) =>
+    _$MessageReplyEntityImpl(
       messageId: json['messageId'] as String,
       text: json['text'] as String,
       senderId: json['senderId'] as String,
       senderProfileId: json['senderProfileId'] as String?,
     );
 
-Map<String, dynamic> _$MessageReplyEntityToJson(_MessageReplyEntity instance) =>
+Map<String, dynamic> _$$MessageReplyEntityImplToJson(
+        _$MessageReplyEntityImpl instance) =>
     <String, dynamic>{
       'messageId': instance.messageId,
       'text': instance.text,

@@ -91,7 +91,8 @@ void main() {
 
     test('should return AuthFailure when repository fails', () async {
       // Arrange
-      mockRepository.setupFailureResponse('Credenciais inválidas', 'invalid-credential');
+      mockRepository.setupFailureResponse(
+          'Credenciais inválidas', 'invalid-credential');
 
       // Act
       final result = await useCase(tEmail, tPassword);

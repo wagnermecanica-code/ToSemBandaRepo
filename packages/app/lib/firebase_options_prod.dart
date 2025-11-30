@@ -67,8 +67,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '278498777601',
     projectId: 'to-sem-banda-83e19',
     storageBucket: 'to-sem-banda-83e19.firebasestorage.app',
-    iosClientId: '278498777601-qlukbsv2s4aukhlh34v3icqsjj0ho2k7.apps.googleusercontent.com',
+    iosClientId:
+        '278498777601-qlukbsv2s4aukhlh34v3icqsjj0ho2k7.apps.googleusercontent.com',
     iosBundleId: 'com.tosembanda.wegig',
   );
-
 }

@@ -49,7 +49,8 @@ void main() {
       expect(mockRepository.getConversationsCalled, true);
     });
 
-    test('should return empty list when profile has no conversations', () async {
+    test('should return empty list when profile has no conversations',
+        () async {
       // given
       const profileId = 'profile-new';
       mockRepository.setupConversations(profileId, []);
@@ -84,7 +85,8 @@ void main() {
       final result = await useCase(profileId: profileId, limit: 3);
 
       // then
-      expect(result.length, lessThanOrEqualTo(5)); // Mock returns all, real would paginate
+      expect(result.length,
+          lessThanOrEqualTo(5)); // Mock returns all, real would paginate
     });
   });
 
@@ -107,13 +109,15 @@ void main() {
     test('should propagate exception when repository fails', () async {
       // given
       const profileId = 'profile-1';
-      mockRepository.setupGetConversationsFailure('Erro ao carregar conversas do Firestore');
+      mockRepository.setupGetConversationsFailure(
+          'Erro ao carregar conversas do Firestore');
 
       // when & then
       expect(
         () => useCase(profileId: profileId),
         throwsA(
-          predicate((e) => e.toString().contains('Erro ao carregar conversas do Firestore')),
+          predicate((e) =>
+              e.toString().contains('Erro ao carregar conversas do Firestore')),
         ),
       );
     });

@@ -1,13 +1,15 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
+// ignore_for_file: type=lint, invalid_annotation_target
+
 part of 'profile_entity.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_ProfileEntity _$ProfileEntityFromJson(Map<String, dynamic> json) =>
-    _ProfileEntity(
+_$ProfileEntityImpl _$$ProfileEntityImplFromJson(Map<String, dynamic> json) =>
+    _$ProfileEntityImpl(
       profileId: json['profileId'] as String,
       uid: json['uid'] as String,
       name: json['name'] as String,
@@ -41,7 +43,7 @@ _ProfileEntity _$ProfileEntityFromJson(Map<String, dynamic> json) =>
       updatedAt: const NullableTimestampConverter().fromJson(json['updatedAt']),
     );
 
-Map<String, dynamic> _$ProfileEntityToJson(_ProfileEntity instance) =>
+Map<String, dynamic> _$$ProfileEntityImplToJson(_$ProfileEntityImpl instance) =>
     <String, dynamic>{
       'profileId': instance.profileId,
       'uid': instance.uid,

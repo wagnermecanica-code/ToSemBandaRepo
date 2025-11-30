@@ -39,7 +39,9 @@ void main() {
       expect(
         () => useCase(postId, userId),
         throwsA(
-          predicate((e) => e.toString().contains('Você não tem permissão para excluir este post')),
+          predicate((e) => e
+              .toString()
+              .contains('Você não tem permissão para excluir este post')),
         ),
       );
     });
@@ -54,7 +56,9 @@ void main() {
       expect(
         () => useCase(postId, userId),
         throwsA(
-          predicate((e) => e.toString().contains('Você não tem permissão para excluir este post')),
+          predicate((e) => e
+              .toString()
+              .contains('Você não tem permissão para excluir este post')),
         ),
       );
     });
@@ -72,7 +76,8 @@ void main() {
       expect(
         () => useCase(postId, userId),
         throwsA(
-          predicate((e) => e.toString().contains('Erro ao excluir post do Firestore')),
+          predicate((e) =>
+              e.toString().contains('Erro ao excluir post do Firestore')),
         ),
       );
     });
@@ -87,7 +92,8 @@ void main() {
       expect(
         () => useCase(postId, userId),
         throwsA(
-          predicate((e) => e.toString().contains('Erro ao verificar permissões')),
+          predicate(
+              (e) => e.toString().contains('Erro ao verificar permissões')),
         ),
       );
     });
@@ -118,7 +124,8 @@ void main() {
       expect(
         () => useCase(postId, userId),
         throwsA(
-          predicate((e) => e.toString().contains('ID do usuário é obrigatório')),
+          predicate(
+              (e) => e.toString().contains('ID do usuário é obrigatório')),
         ),
       );
     });

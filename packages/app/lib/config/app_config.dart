@@ -3,20 +3,21 @@ import 'staging_config.dart';
 import 'prod_config.dart';
 
 /// Configuração centralizada de ambiente baseada em flavors
-/// 
+///
 /// Uso:
 /// ```dart
 /// if (AppConfig.isDevelopment) {
 ///   debugPrint('Running in DEV mode');
 /// }
-/// 
+///
 /// final apiUrl = AppConfig.apiBaseUrl;
 /// ```
 class AppConfig {
   // Flavor atual (definido em tempo de compilação)
   // Será sobrescrito pelo flutter_flavorizr
-  static const String _flavor = String.fromEnvironment('FLAVOR', defaultValue: 'dev');
-  
+  static const String _flavor =
+      String.fromEnvironment('FLAVOR', defaultValue: 'dev');
+
   /// Nome do app atual (com sufixo do flavor)
   static String get appName {
     switch (_flavor) {
@@ -29,7 +30,7 @@ class AppConfig {
         return DevConfig.appName;
     }
   }
-  
+
   /// Ambiente atual (development/staging/production)
   static String get appEnv {
     switch (_flavor) {
@@ -42,12 +43,12 @@ class AppConfig {
         return DevConfig.appEnv;
     }
   }
-  
+
   /// Flavor atual (dev/staging/prod)
   static String get appFlavor => _flavor;
-  
+
   // ========== API Configuration ==========
-  
+
   static String get apiBaseUrl {
     switch (_flavor) {
       case 'prod':
@@ -59,7 +60,7 @@ class AppConfig {
         return DevConfig.apiBaseUrl;
     }
   }
-  
+
   static int get apiTimeoutSeconds {
     switch (_flavor) {
       case 'prod':
@@ -71,9 +72,9 @@ class AppConfig {
         return DevConfig.apiTimeoutSeconds;
     }
   }
-  
+
   // ========== Firebase Configuration ==========
-  
+
   static String get firebaseProjectId {
     switch (_flavor) {
       case 'prod':
@@ -85,9 +86,9 @@ class AppConfig {
         return DevConfig.firebaseProjectId;
     }
   }
-  
+
   // ========== Feature Flags ==========
-  
+
   static bool get enableLogs {
     switch (_flavor) {
       case 'prod':
@@ -99,7 +100,7 @@ class AppConfig {
         return DevConfig.enableLogs;
     }
   }
-  
+
   static bool get enableCrashlytics {
     switch (_flavor) {
       case 'prod':
@@ -111,7 +112,7 @@ class AppConfig {
         return DevConfig.enableCrashlytics;
     }
   }
-  
+
   static bool get enableAnalytics {
     switch (_flavor) {
       case 'prod':
@@ -123,7 +124,7 @@ class AppConfig {
         return DevConfig.enableAnalytics;
     }
   }
-  
+
   static bool get showDebugBanner {
     switch (_flavor) {
       case 'prod':
@@ -135,9 +136,9 @@ class AppConfig {
         return DevConfig.showDebugBanner;
     }
   }
-  
+
   // ========== Environment Checks ==========
-  
+
   static bool get isDevelopment => _flavor == 'dev';
   static bool get isStaging => _flavor == 'staging';
   static bool get isProduction => _flavor == 'prod';

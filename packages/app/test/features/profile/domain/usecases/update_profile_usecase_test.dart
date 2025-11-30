@@ -28,7 +28,8 @@ void main() {
       notificationRadiusEnabled: true,
     );
 
-    test('should update profile when user is owner and data is valid', () async {
+    test('should update profile when user is owner and data is valid',
+        () async {
       // given
       mockRepository.setupOwnership('profile-1', tUid, isOwner: true);
 
@@ -68,7 +69,9 @@ void main() {
         () => useCase(tProfile, tUid),
         throwsA(
           predicate(
-            (e) => e.toString().contains('Você não tem permissão para editar este perfil'),
+            (e) => e
+                .toString()
+                .contains('Você não tem permissão para editar este perfil'),
           ),
         ),
       );

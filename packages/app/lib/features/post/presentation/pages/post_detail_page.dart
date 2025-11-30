@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:wegig_app/app/router/app_router.dart';
 import 'package:wegig_app/features/profile/presentation/providers/profile_providers.dart';
 import 'package:core_ui/theme/app_colors.dart';
 import 'package:core_ui/utils/deep_link_generator.dart';
@@ -682,15 +683,7 @@ class _PostDetailPageState extends ConsumerState<PostDetailPage> {
                         ),
                         onTap: () {
                           Navigator.pop(context); // Fecha modal
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (_) => ViewProfilePage(
-                                userId: userId,
-                                profileId: profileId,
-                              ),
-                            ),
-                          );
+                          context.pushProfile(profileId);
                         },
                       );
                     },
@@ -886,15 +879,7 @@ class _PostDetailPageState extends ConsumerState<PostDetailPage> {
                               // Avatar do autor (clicável)
                               GestureDetector(
                                 onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (_) => ViewProfilePage(
-                                        userId: _post!.authorUid,
-                                        profileId: _post!.authorProfileId,
-                                      ),
-                                    ),
-                                  );
+                                  context.pushProfile(_post!.authorProfileId);
                                 },
                                 child: CircleAvatar(
                                   radius: 28,
@@ -922,15 +907,7 @@ class _PostDetailPageState extends ConsumerState<PostDetailPage> {
                                     // Nome do perfil (clicável e destacado)
                                     GestureDetector(
                                       onTap: () {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (_) => ViewProfilePage(
-                                              userId: _post!.authorUid,
-                                              profileId: _post!.authorProfileId,
-                                            ),
-                                          ),
-                                        );
+                                        context.pushProfile(_post!.authorProfileId);
                                       },
                                       child: Text(
                                         _authorName,

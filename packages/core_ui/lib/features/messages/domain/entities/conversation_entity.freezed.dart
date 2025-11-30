@@ -1,5 +1,5 @@
-// GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,86 +9,45 @@ part of 'conversation_entity.dart';
 // FreezedGenerator
 // **************************************************************************
 
-// dart format off
 T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+
+ConversationEntity _$ConversationEntityFromJson(Map<String, dynamic> json) {
+  return _ConversationEntity.fromJson(json);
+}
 
 /// @nodoc
 mixin _$ConversationEntity {
-  String get id;
-  List<String> get participants;
-  List<String> get participantProfiles;
-  String get lastMessage;
-  DateTime get lastMessageTimestamp;
-  Map<String, int> get unreadCount;
-  DateTime get createdAt;
+  String get id => throw _privateConstructorUsedError;
+  List<String> get participants => throw _privateConstructorUsedError;
+  List<String> get participantProfiles => throw _privateConstructorUsedError;
+  String get lastMessage => throw _privateConstructorUsedError;
+  DateTime get lastMessageTimestamp => throw _privateConstructorUsedError;
+  Map<String, int> get unreadCount => throw _privateConstructorUsedError;
+  DateTime get createdAt => throw _privateConstructorUsedError;
   @JsonKey(includeFromJson: false, includeToJson: false)
-  List<Map<String, dynamic>> get participantProfilesData;
-  bool get archived;
-  DateTime? get updatedAt;
+  List<Map<String, dynamic>> get participantProfilesData =>
+      throw _privateConstructorUsedError;
+  bool get archived => throw _privateConstructorUsedError;
+  DateTime? get updatedAt => throw _privateConstructorUsedError;
+
+  /// Serializes this ConversationEntity to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
   /// Create a copy of ConversationEntity
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
   $ConversationEntityCopyWith<ConversationEntity> get copyWith =>
-      _$ConversationEntityCopyWithImpl<ConversationEntity>(
-          this as ConversationEntity, _$identity);
-
-  /// Serializes this ConversationEntity to a JSON map.
-  Map<String, dynamic> toJson();
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is ConversationEntity &&
-            (identical(other.id, id) || other.id == id) &&
-            const DeepCollectionEquality()
-                .equals(other.participants, participants) &&
-            const DeepCollectionEquality()
-                .equals(other.participantProfiles, participantProfiles) &&
-            (identical(other.lastMessage, lastMessage) ||
-                other.lastMessage == lastMessage) &&
-            (identical(other.lastMessageTimestamp, lastMessageTimestamp) ||
-                other.lastMessageTimestamp == lastMessageTimestamp) &&
-            const DeepCollectionEquality()
-                .equals(other.unreadCount, unreadCount) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
-            const DeepCollectionEquality().equals(
-                other.participantProfilesData, participantProfilesData) &&
-            (identical(other.archived, archived) ||
-                other.archived == archived) &&
-            (identical(other.updatedAt, updatedAt) ||
-                other.updatedAt == updatedAt));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      const DeepCollectionEquality().hash(participants),
-      const DeepCollectionEquality().hash(participantProfiles),
-      lastMessage,
-      lastMessageTimestamp,
-      const DeepCollectionEquality().hash(unreadCount),
-      createdAt,
-      const DeepCollectionEquality().hash(participantProfilesData),
-      archived,
-      updatedAt);
-
-  @override
-  String toString() {
-    return 'ConversationEntity(id: $id, participants: $participants, participantProfiles: $participantProfiles, lastMessage: $lastMessage, lastMessageTimestamp: $lastMessageTimestamp, unreadCount: $unreadCount, createdAt: $createdAt, participantProfilesData: $participantProfilesData, archived: $archived, updatedAt: $updatedAt)';
-  }
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract mixin class $ConversationEntityCopyWith<$Res> {
+abstract class $ConversationEntityCopyWith<$Res> {
   factory $ConversationEntityCopyWith(
-          ConversationEntity value, $Res Function(ConversationEntity) _then) =
-      _$ConversationEntityCopyWithImpl;
+          ConversationEntity value, $Res Function(ConversationEntity) then) =
+      _$ConversationEntityCopyWithImpl<$Res, ConversationEntity>;
   @useResult
   $Res call(
       {String id,
@@ -105,12 +64,14 @@ abstract mixin class $ConversationEntityCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ConversationEntityCopyWithImpl<$Res>
+class _$ConversationEntityCopyWithImpl<$Res, $Val extends ConversationEntity>
     implements $ConversationEntityCopyWith<$Res> {
-  _$ConversationEntityCopyWithImpl(this._self, this._then);
+  _$ConversationEntityCopyWithImpl(this._value, this._then);
 
-  final ConversationEntity _self;
-  final $Res Function(ConversationEntity) _then;
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
   /// Create a copy of ConversationEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -128,278 +89,146 @@ class _$ConversationEntityCopyWithImpl<$Res>
     Object? archived = null,
     Object? updatedAt = freezed,
   }) {
-    return _then(_self.copyWith(
+    return _then(_value.copyWith(
       id: null == id
-          ? _self.id
+          ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
       participants: null == participants
-          ? _self.participants
+          ? _value.participants
           : participants // ignore: cast_nullable_to_non_nullable
               as List<String>,
       participantProfiles: null == participantProfiles
-          ? _self.participantProfiles
+          ? _value.participantProfiles
           : participantProfiles // ignore: cast_nullable_to_non_nullable
               as List<String>,
       lastMessage: null == lastMessage
-          ? _self.lastMessage
+          ? _value.lastMessage
           : lastMessage // ignore: cast_nullable_to_non_nullable
               as String,
       lastMessageTimestamp: null == lastMessageTimestamp
-          ? _self.lastMessageTimestamp
+          ? _value.lastMessageTimestamp
           : lastMessageTimestamp // ignore: cast_nullable_to_non_nullable
               as DateTime,
       unreadCount: null == unreadCount
-          ? _self.unreadCount
+          ? _value.unreadCount
           : unreadCount // ignore: cast_nullable_to_non_nullable
               as Map<String, int>,
       createdAt: null == createdAt
-          ? _self.createdAt
+          ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
       participantProfilesData: null == participantProfilesData
-          ? _self.participantProfilesData
+          ? _value.participantProfilesData
           : participantProfilesData // ignore: cast_nullable_to_non_nullable
               as List<Map<String, dynamic>>,
       archived: null == archived
-          ? _self.archived
+          ? _value.archived
           : archived // ignore: cast_nullable_to_non_nullable
               as bool,
       updatedAt: freezed == updatedAt
-          ? _self.updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ConversationEntityImplCopyWith<$Res>
+    implements $ConversationEntityCopyWith<$Res> {
+  factory _$$ConversationEntityImplCopyWith(_$ConversationEntityImpl value,
+          $Res Function(_$ConversationEntityImpl) then) =
+      __$$ConversationEntityImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String id,
+      List<String> participants,
+      List<String> participantProfiles,
+      String lastMessage,
+      DateTime lastMessageTimestamp,
+      Map<String, int> unreadCount,
+      DateTime createdAt,
+      @JsonKey(includeFromJson: false, includeToJson: false)
+      List<Map<String, dynamic>> participantProfilesData,
+      bool archived,
+      DateTime? updatedAt});
+}
+
+/// @nodoc
+class __$$ConversationEntityImplCopyWithImpl<$Res>
+    extends _$ConversationEntityCopyWithImpl<$Res, _$ConversationEntityImpl>
+    implements _$$ConversationEntityImplCopyWith<$Res> {
+  __$$ConversationEntityImplCopyWithImpl(_$ConversationEntityImpl _value,
+      $Res Function(_$ConversationEntityImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ConversationEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? participants = null,
+    Object? participantProfiles = null,
+    Object? lastMessage = null,
+    Object? lastMessageTimestamp = null,
+    Object? unreadCount = null,
+    Object? createdAt = null,
+    Object? participantProfilesData = null,
+    Object? archived = null,
+    Object? updatedAt = freezed,
+  }) {
+    return _then(_$ConversationEntityImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      participants: null == participants
+          ? _value._participants
+          : participants // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      participantProfiles: null == participantProfiles
+          ? _value._participantProfiles
+          : participantProfiles // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      lastMessage: null == lastMessage
+          ? _value.lastMessage
+          : lastMessage // ignore: cast_nullable_to_non_nullable
+              as String,
+      lastMessageTimestamp: null == lastMessageTimestamp
+          ? _value.lastMessageTimestamp
+          : lastMessageTimestamp // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      unreadCount: null == unreadCount
+          ? _value._unreadCount
+          : unreadCount // ignore: cast_nullable_to_non_nullable
+              as Map<String, int>,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      participantProfilesData: null == participantProfilesData
+          ? _value._participantProfilesData
+          : participantProfilesData // ignore: cast_nullable_to_non_nullable
+              as List<Map<String, dynamic>>,
+      archived: null == archived
+          ? _value.archived
+          : archived // ignore: cast_nullable_to_non_nullable
+              as bool,
+      updatedAt: freezed == updatedAt
+          ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
     ));
   }
 }
 
-/// Adds pattern-matching-related methods to [ConversationEntity].
-extension ConversationEntityPatterns on ConversationEntity {
-  /// A variant of `map` that fallback to returning `orElse`.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case _:
-  ///     return orElse();
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_ConversationEntity value)? $default, {
-    required TResult orElse(),
-  }) {
-    final _that = this;
-    switch (_that) {
-      case _ConversationEntity() when $default != null:
-        return $default(_that);
-      case _:
-        return orElse();
-    }
-  }
-
-  /// A `switch`-like method, using callbacks.
-  ///
-  /// Callbacks receives the raw object, upcasted.
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case final Subclass2 value:
-  ///     return ...;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_ConversationEntity value) $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _ConversationEntity():
-        return $default(_that);
-      case _:
-        throw StateError('Unexpected subclass');
-    }
-  }
-
-  /// A variant of `map` that fallback to returning `null`.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case _:
-  ///     return null;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_ConversationEntity value)? $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _ConversationEntity() when $default != null:
-        return $default(_that);
-      case _:
-        return null;
-    }
-  }
-
-  /// A variant of `when` that fallback to an `orElse` callback.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case _:
-  ///     return orElse();
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(
-            String id,
-            List<String> participants,
-            List<String> participantProfiles,
-            String lastMessage,
-            DateTime lastMessageTimestamp,
-            Map<String, int> unreadCount,
-            DateTime createdAt,
-            @JsonKey(includeFromJson: false, includeToJson: false)
-            List<Map<String, dynamic>> participantProfilesData,
-            bool archived,
-            DateTime? updatedAt)?
-        $default, {
-    required TResult orElse(),
-  }) {
-    final _that = this;
-    switch (_that) {
-      case _ConversationEntity() when $default != null:
-        return $default(
-            _that.id,
-            _that.participants,
-            _that.participantProfiles,
-            _that.lastMessage,
-            _that.lastMessageTimestamp,
-            _that.unreadCount,
-            _that.createdAt,
-            _that.participantProfilesData,
-            _that.archived,
-            _that.updatedAt);
-      case _:
-        return orElse();
-    }
-  }
-
-  /// A `switch`-like method, using callbacks.
-  ///
-  /// As opposed to `map`, this offers destructuring.
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case Subclass2(:final field2):
-  ///     return ...;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(
-            String id,
-            List<String> participants,
-            List<String> participantProfiles,
-            String lastMessage,
-            DateTime lastMessageTimestamp,
-            Map<String, int> unreadCount,
-            DateTime createdAt,
-            @JsonKey(includeFromJson: false, includeToJson: false)
-            List<Map<String, dynamic>> participantProfilesData,
-            bool archived,
-            DateTime? updatedAt)
-        $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _ConversationEntity():
-        return $default(
-            _that.id,
-            _that.participants,
-            _that.participantProfiles,
-            _that.lastMessage,
-            _that.lastMessageTimestamp,
-            _that.unreadCount,
-            _that.createdAt,
-            _that.participantProfilesData,
-            _that.archived,
-            _that.updatedAt);
-      case _:
-        throw StateError('Unexpected subclass');
-    }
-  }
-
-  /// A variant of `when` that fallback to returning `null`
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case _:
-  ///     return null;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(
-            String id,
-            List<String> participants,
-            List<String> participantProfiles,
-            String lastMessage,
-            DateTime lastMessageTimestamp,
-            Map<String, int> unreadCount,
-            DateTime createdAt,
-            @JsonKey(includeFromJson: false, includeToJson: false)
-            List<Map<String, dynamic>> participantProfilesData,
-            bool archived,
-            DateTime? updatedAt)?
-        $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _ConversationEntity() when $default != null:
-        return $default(
-            _that.id,
-            _that.participants,
-            _that.participantProfiles,
-            _that.lastMessage,
-            _that.lastMessageTimestamp,
-            _that.unreadCount,
-            _that.createdAt,
-            _that.participantProfilesData,
-            _that.archived,
-            _that.updatedAt);
-      case _:
-        return null;
-    }
-  }
-}
-
 /// @nodoc
 @JsonSerializable()
-class _ConversationEntity extends ConversationEntity {
-  const _ConversationEntity(
+class _$ConversationEntityImpl extends _ConversationEntity {
+  const _$ConversationEntityImpl(
       {required this.id,
       required final List<String> participants,
       required final List<String> participantProfiles,
@@ -416,8 +245,9 @@ class _ConversationEntity extends ConversationEntity {
         _unreadCount = unreadCount,
         _participantProfilesData = participantProfilesData,
         super._();
-  factory _ConversationEntity.fromJson(Map<String, dynamic> json) =>
-      _$ConversationEntityFromJson(json);
+
+  factory _$ConversationEntityImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ConversationEntityImplFromJson(json);
 
   @override
   final String id;
@@ -468,26 +298,16 @@ class _ConversationEntity extends ConversationEntity {
   @override
   final DateTime? updatedAt;
 
-  /// Create a copy of ConversationEntity
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$ConversationEntityCopyWith<_ConversationEntity> get copyWith =>
-      __$ConversationEntityCopyWithImpl<_ConversationEntity>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$ConversationEntityToJson(
-      this,
-    );
+  String toString() {
+    return 'ConversationEntity(id: $id, participants: $participants, participantProfiles: $participantProfiles, lastMessage: $lastMessage, lastMessageTimestamp: $lastMessageTimestamp, unreadCount: $unreadCount, createdAt: $createdAt, participantProfilesData: $participantProfilesData, archived: $archived, updatedAt: $updatedAt)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ConversationEntity &&
+            other is _$ConversationEntityImpl &&
             (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._participants, _participants) &&
@@ -524,101 +344,67 @@ class _ConversationEntity extends ConversationEntity {
       archived,
       updatedAt);
 
+  /// Create a copy of ConversationEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  String toString() {
-    return 'ConversationEntity(id: $id, participants: $participants, participantProfiles: $participantProfiles, lastMessage: $lastMessage, lastMessageTimestamp: $lastMessageTimestamp, unreadCount: $unreadCount, createdAt: $createdAt, participantProfilesData: $participantProfilesData, archived: $archived, updatedAt: $updatedAt)';
+  @pragma('vm:prefer-inline')
+  _$$ConversationEntityImplCopyWith<_$ConversationEntityImpl> get copyWith =>
+      __$$ConversationEntityImplCopyWithImpl<_$ConversationEntityImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ConversationEntityImplToJson(
+      this,
+    );
   }
 }
 
-/// @nodoc
-abstract mixin class _$ConversationEntityCopyWith<$Res>
-    implements $ConversationEntityCopyWith<$Res> {
-  factory _$ConversationEntityCopyWith(
-          _ConversationEntity value, $Res Function(_ConversationEntity) _then) =
-      __$ConversationEntityCopyWithImpl;
-  @override
-  @useResult
-  $Res call(
-      {String id,
-      List<String> participants,
-      List<String> participantProfiles,
-      String lastMessage,
-      DateTime lastMessageTimestamp,
-      Map<String, int> unreadCount,
-      DateTime createdAt,
+abstract class _ConversationEntity extends ConversationEntity {
+  const factory _ConversationEntity(
+      {required final String id,
+      required final List<String> participants,
+      required final List<String> participantProfiles,
+      required final String lastMessage,
+      required final DateTime lastMessageTimestamp,
+      required final Map<String, int> unreadCount,
+      required final DateTime createdAt,
       @JsonKey(includeFromJson: false, includeToJson: false)
-      List<Map<String, dynamic>> participantProfilesData,
-      bool archived,
-      DateTime? updatedAt});
-}
+      final List<Map<String, dynamic>> participantProfilesData,
+      final bool archived,
+      final DateTime? updatedAt}) = _$ConversationEntityImpl;
+  const _ConversationEntity._() : super._();
 
-/// @nodoc
-class __$ConversationEntityCopyWithImpl<$Res>
-    implements _$ConversationEntityCopyWith<$Res> {
-  __$ConversationEntityCopyWithImpl(this._self, this._then);
+  factory _ConversationEntity.fromJson(Map<String, dynamic> json) =
+      _$ConversationEntityImpl.fromJson;
 
-  final _ConversationEntity _self;
-  final $Res Function(_ConversationEntity) _then;
+  @override
+  String get id;
+  @override
+  List<String> get participants;
+  @override
+  List<String> get participantProfiles;
+  @override
+  String get lastMessage;
+  @override
+  DateTime get lastMessageTimestamp;
+  @override
+  Map<String, int> get unreadCount;
+  @override
+  DateTime get createdAt;
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  List<Map<String, dynamic>> get participantProfilesData;
+  @override
+  bool get archived;
+  @override
+  DateTime? get updatedAt;
 
   /// Create a copy of ConversationEntity
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? id = null,
-    Object? participants = null,
-    Object? participantProfiles = null,
-    Object? lastMessage = null,
-    Object? lastMessageTimestamp = null,
-    Object? unreadCount = null,
-    Object? createdAt = null,
-    Object? participantProfilesData = null,
-    Object? archived = null,
-    Object? updatedAt = freezed,
-  }) {
-    return _then(_ConversationEntity(
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      participants: null == participants
-          ? _self._participants
-          : participants // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      participantProfiles: null == participantProfiles
-          ? _self._participantProfiles
-          : participantProfiles // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      lastMessage: null == lastMessage
-          ? _self.lastMessage
-          : lastMessage // ignore: cast_nullable_to_non_nullable
-              as String,
-      lastMessageTimestamp: null == lastMessageTimestamp
-          ? _self.lastMessageTimestamp
-          : lastMessageTimestamp // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      unreadCount: null == unreadCount
-          ? _self._unreadCount
-          : unreadCount // ignore: cast_nullable_to_non_nullable
-              as Map<String, int>,
-      createdAt: null == createdAt
-          ? _self.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      participantProfilesData: null == participantProfilesData
-          ? _self._participantProfilesData
-          : participantProfilesData // ignore: cast_nullable_to_non_nullable
-              as List<Map<String, dynamic>>,
-      archived: null == archived
-          ? _self.archived
-          : archived // ignore: cast_nullable_to_non_nullable
-              as bool,
-      updatedAt: freezed == updatedAt
-          ? _self.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-    ));
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ConversationEntityImplCopyWith<_$ConversationEntityImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
-
-// dart format on
