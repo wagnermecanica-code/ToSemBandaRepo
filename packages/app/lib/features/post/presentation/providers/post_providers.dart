@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:core_ui/post_result.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:wegig_app/features/post/data/datasources/post_remote_datasource.dart';
 import 'package:wegig_app/features/post/data/repositories/post_repository_impl.dart';
 import 'package:core_ui/features/post/domain/entities/post_entity.dart';
@@ -15,49 +15,59 @@ import 'package:wegig_app/features/post/domain/usecases/load_interested_users.da
 import 'package:wegig_app/features/post/domain/usecases/toggle_interest.dart';
 import 'package:wegig_app/features/post/domain/usecases/update_post.dart';
 
+part 'post_providers.g.dart';
+
 /// ============================================
 /// DATA LAYER - Dependency Injection
 /// ============================================
 
 /// Provider para PostRemoteDataSource (singleton)
-final postRemoteDataSourceProvider = Provider<IPostRemoteDataSource>((ref) {
+@riverpod
+IPostRemoteDataSource postRemoteDataSource(PostRemoteDataSourceRef ref) {
   return PostRemoteDataSource();
-});
+}
 
 /// Provider para PostRepository (singleton)
-final postRepositoryNewProvider = Provider<PostRepository>((ref) {
+@riverpod
+PostRepository postRepositoryNew(PostRepositoryNewRef ref) {
   final dataSource = ref.read(postRemoteDataSourceProvider);
   return PostRepositoryImpl(remoteDataSource: dataSource);
-});
+}
 
 /// ============================================
 /// USE CASE LAYER - Dependency Injection
 /// ============================================
 
-final createPostUseCaseProvider = Provider<CreatePost>((ref) {
+@riverpod
+CreatePost createPostUseCase(CreatePostUseCaseRef ref) {
   final repository = ref.read(postRepositoryNewProvider);
   return CreatePost(repository);
-});
+}
 
-final updatePostUseCaseProvider = Provider<UpdatePost>((ref) {
+@riverpod
+UpdatePost updatePostUseCase(UpdatePostUseCaseRef ref) {
   final repository = ref.read(postRepositoryNewProvider);
   return UpdatePost(repository);
-});
+}
 
-final deletePostUseCaseProvider = Provider<DeletePost>((ref) {
+@riverpod
+DeletePost deletePostUseCase(DeletePostUseCaseRef ref) {
   final repository = ref.read(postRepositoryNewProvider);
   return DeletePost(repository);
-});
+}
 
-final toggleInterestUseCaseProvider = Provider<ToggleInterest>((ref) {
+@riverpod
+ToggleInterest toggleInterestUseCase(ToggleInterestUseCaseRef ref) {
   final repository = ref.read(postRepositoryNewProvider);
   return ToggleInterest(repository);
-});
+}
 
-final loadInterestedUsersUseCaseProvider = Provider<LoadInterestedUsers>((ref) {
+@riverpod
+LoadInterestedUsers loadInterestedUsersUseCase(
+    LoadInterestedUsersUseCaseRef ref) {
   final repository = ref.read(postRepositoryNewProvider);
   return LoadInterestedUsers(repository);
-});
+}
 
 /// ============================================
 /// STATE MANAGEMENT - PostNotifier
@@ -227,11 +237,12 @@ final postProvider = AsyncNotifierProvider<PostNotifier, PostState>(
 );
 
 /// Helper provider to get just the posts list
-final postListProvider = Provider<List<PostEntity>>((ref) {
+@riverpod
+List<PostEntity> postList(PostListRef ref) {
   final postState = ref.watch(postProvider);
   return postState.when(
     data: (state) => state.posts,
     loading: () => [],
     error: (_, __) => [],
   );
-});
+}
