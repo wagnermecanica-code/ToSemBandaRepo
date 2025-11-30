@@ -1,23 +1,33 @@
-# Tô Sem Banda – AI Coding Agent Guide
+# WeGig (Tô Sem Banda) – AI Coding Agent Guide
 
-**Flutter 3.9.2+ social app** connecting musicians and bands via geospatial search, ephemeral posts, real-time chat, and proximity notifications.
+**Flutter monorepo social app** connecting musicians and bands via geospatial search, ephemeral posts, real-time chat, and proximity notifications.
 
-**Stack:** Flutter 3.9.2+, Dart 3.5+ (SDK >=3.9.2 <4.0.0), Firebase (Auth/Firestore/Storage/Functions), Riverpod 3.x (AsyncNotifier), Google Maps
+**Stack:** Flutter 3.9.2+, Dart 3.6+, Firebase (Auth/Firestore/Storage/Functions), Riverpod 2.x, Google Maps, Melos monorepo  
+**Architecture:** Clean Architecture + Feature-First + Monorepo (packages/app + packages/core_ui)
 
-**Last Updated:** November 28, 2025
+**Last Updated:** November 30, 2025
 
 ---
 
 ## ⚡ Quick Reference (Most Common Commands)
 
 ```bash
-# Development
-flutter run                              # Run app (requires .env, Firebase config)
+# Monorepo Management (Melos - REQUIRED)
+melos bootstrap                          # Install all dependencies (run first!)
+melos get                                # Pub get for all packages
+melos analyze                            # Analyze all packages
+melos test                               # Run tests in all packages
+melos run build_runner                   # Run build_runner (Freezed/JsonSerializable)
+
+# Development (run from packages/app/)
+flutter run --flavor dev -t lib/main_dev.dart        # Dev environment
+flutter run --flavor staging -t lib/main_staging.dart # Staging
+flutter run --flavor prod -t lib/main_prod.dart      # Production
 flutter run --verbose                    # Debug with detailed output
-flutter clean && flutter pub get         # Nuclear option for dependency issues
+flutter clean && melos get               # Nuclear option for dependency issues
 
 # Testing & Validation
-flutter test                             # Run unit tests
+flutter test                             # Run unit tests (53 tests)
 scripts/check_posts.sh                   # Audit Firestore posts for missing fields
 firebase functions:log                   # Monitor Cloud Functions execution
 firebase functions:log --only notifyNearbyPosts  # Filter specific function
@@ -26,7 +36,7 @@ firebase functions:log --only notifyNearbyPosts  # Filter specific function
 firebase deploy --only firestore:indexes # Deploy indexes FIRST (wait for "Enabled")
 firebase deploy --only firestore:rules   # Then deploy rules
 cd functions && firebase deploy --only functions  # Deploy Cloud Functions
-./scripts/build_release.sh               # Build obfuscated release (Android/iOS)
+./scripts/build_release.sh prod          # Build obfuscated release (Android/iOS)
 
 # Troubleshooting
 flutter logs                             # Real-time app logs
@@ -45,6 +55,29 @@ Social platform with **Instagram-style multi-profile architecture** where each u
 - **App:** WeGig (user-facing)
 - **Repo:** Tô Sem Banda / ToSemBandaRepo (codebase)
 - **Firebase Project:** `to-sem-banda-83e19`
+
+**Monorepo Structure:**
+
+```
+packages/
+  ├── app/              # Application layer (features, Firebase, routing)
+  │   ├── lib/features/ # 7 features with Clean Architecture
+  │   │   ├── auth/     # Firebase Auth, Google/Apple Sign-In
+  │   │   ├── profile/  # Multi-profile CRUD (Instagram-style)
+  │   │   ├── home/     # Map, geosearch, post feed
+  │   │   ├── post/     # Create/edit posts, image upload
+  │   │   ├── messages/ # Real-time chat, conversations
+  │   │   ├── notifications/ # Proximity & interest notifications
+  │   │   └── settings/ # User preferences
+  │   └── lib/app/router/ # Type-safe GoRouter (go_router_builder)
+  └── core_ui/          # Shared layer (entities, theme, widgets, DI)
+      ├── lib/features/ # Shared entities (ProfileEntity, PostEntity, etc)
+      ├── lib/theme/    # Design system (AppColors, AppTypography)
+      ├── lib/di/       # Global Riverpod providers
+      └── lib/navigation/ # BottomNavScaffold
+```
+
+**Critical:** Always run `melos bootstrap` before any development. Monorepo dependencies require Melos orchestration.
 
 ---
 
@@ -103,7 +136,7 @@ FutureOr<ProfileState> build() async {
 }
 ```
 
-**Files:** `lib/providers/profile_provider.dart`, `lib/repositories/profile_repository.dart`, `lib/services/profile_service.dart`
+**Files:** `packages/core_ui/lib/di/profile_providers.dart`, `packages/app/lib/features/profile/data/repositories/profile_repository_impl.dart`, `packages/app/lib/features/profile/domain/usecases/*.dart`
 
 ---
 
@@ -145,7 +178,7 @@ switch (result) {
     // Handle not found case
 }
 
-// Alternative: Extension method pattern (lib/core/auth_result.dart)
+// Alternative: Extension method pattern (packages/core_ui/lib/auth_result.dart)
 final authResult = await AuthService.signIn(email, password);
 authResult.when(
   success: (auth) => Navigator.pushReplacement(...),
@@ -156,7 +189,18 @@ authResult.when(
 
 **Why:** Atomic transactions prevent orphaned `activeProfileId` refs. See `SESSION_14_MULTI_PROFILE_REFACTORING.md` for migration guide.
 
-**Files:** `lib/core/{auth_result,profile_result}.dart`, `lib/repositories/*.dart`, `lib/services/*.dart`
+**Why:** Atomic transactions prevent orphaned `activeProfileId` refs. See `TODO_CLEAN_ARCHITECTURE_MONOREPO.md` (100% complete) for migration details.
+
+**Monorepo Package Separation:**
+
+- **Entities (core_ui):** `packages/core_ui/lib/features/*/domain/entities/*.dart` (ProfileEntity, PostEntity, etc)
+- **Repository Interfaces (app):** `packages/app/lib/features/*/domain/repositories/*.dart`
+- **Repository Implementations (app):** `packages/app/lib/features/*/data/repositories/*.dart`
+- **DataSources (app):** `packages/app/lib/features/*/data/datasources/*.dart` (Firebase operations)
+- **Use Cases (app):** `packages/app/lib/features/*/domain/usecases/*.dart` (business logic)
+- **Result Types (core_ui):** `packages/core_ui/lib/{auth,profile,post,messages}_result.dart`
+
+**Files:** Feature folders under `packages/app/lib/features/`, entities in `packages/core_ui/lib/features/`
 
 ---
 
@@ -200,6 +244,8 @@ firebase deploy --only firestore:rules
 
 **Debugging:** Firestore errors provide direct index creation links. See `firestore.indexes.json` (15 composite indexes for posts, notifications, conversations, interests). Run `scripts/check_posts.sh` to audit missing fields.
 
+**Monorepo Context:** All Firebase configuration lives at root level (not in packages/app). Firestore operations are in `packages/app/lib/features/*/data/datasources/`.
+
 **Files:** `firestore.indexes.json`, `firestore.rules`, `scripts/check_posts.sh`
 
 ---
@@ -240,7 +286,7 @@ final compressed = await compute(_compressImageIsolate, file.path);
 await FirebaseStorage.instance.ref(path).putData(compressed);
 ```
 
-**Reference:** `lib/pages/post_page.dart:442` (compression isolate), all `CachedNetworkImage` usage verified via grep.
+**Reference:** `packages/app/lib/features/post/presentation/pages/post_page.dart` (compression isolate), all `CachedNetworkImage` usage verified via grep.
 
 ---
 
@@ -312,7 +358,7 @@ Rx.combineLatest2<List<NotificationModel>, List<NotificationModel>, List<Notific
 - ✅ Use `debugPrint()` (stripped in `--release` builds)
 - ❌ Never use `print()` (persists in production, leaks data)
 
-**Files:** `lib/utils/debouncer.dart`, `lib/services/marker_cache_service.dart`, `lib/pages/bottom_nav_scaffold.dart`, `lib/pages/notifications_page.dart`
+**Files:** `packages/core_ui/lib/utils/debouncer.dart`, `packages/app/lib/features/home/data/datasources/marker_cache_service.dart`, `packages/core_ui/lib/navigation/bottom_nav_scaffold.dart`, `packages/app/lib/features/notifications/presentation/pages/notifications_page.dart`
 
 **Offline Support (CacheService - 24h expiration):**
 
@@ -327,7 +373,7 @@ final cached = await CacheService.getCachedPosts();
 await CacheService.clearCache();
 ```
 
-**File:** `lib/services/cache_service.dart` (used for offline mode, not critical for online-first UX)
+**File:** `packages/app/lib/features/home/data/datasources/cache_service.dart` (used for offline mode, not critical for online-first UX)
 
 ---
 
@@ -349,7 +395,7 @@ APP_ENV=development
 FIREBASE_PROJECT_ID=to-sem-banda-83e19
 ```
 
-**File:** `lib/services/env_service.dart` (loads `.env`, provides `isProduction`/`isDevelopment` flags)
+**File:** `packages/app/lib/config/env_service.dart` (loads `.env`, provides `isProduction`/`isDevelopment` flags)
 
 ---
 
@@ -425,10 +471,10 @@ firebase functions:log --only notifyNearbyPosts  # Filter specific function
 **Files:**
 
 - `functions/index.js` - Cloud Functions with FCM integration
-- `lib/services/push_notification_service.dart` - FCM service
-- `lib/providers/push_notification_provider.dart` - Riverpod provider
-- `lib/pages/notification_settings_page.dart` - UI for user settings
-- `PUSH_NOTIFICATIONS.md` - Complete setup guide
+- `packages/app/lib/features/notifications/data/services/push_notification_service.dart` - FCM service
+- `packages/app/lib/features/notifications/presentation/providers/push_notification_provider.dart` - Riverpod provider
+- `packages/app/lib/features/settings/presentation/pages/notification_settings_page.dart` - UI for user settings
+- `docs/guides/PUSH_NOTIFICATIONS.md` - Complete setup guide
 
 ---
 
@@ -437,7 +483,7 @@ firebase functions:log --only notifyNearbyPosts  # Filter specific function
 **Initial Setup:**
 
 ```bash
-flutter pub get
+melos bootstrap              # Install ALL monorepo dependencies (REQUIRED!)
 cd ios && pod install        # iOS only
 cd functions && npm install  # Cloud Functions
 ```
@@ -445,15 +491,21 @@ cd functions && npm install  # Cloud Functions
 **Running:**
 
 ```bash
+# From root or packages/app/
+flutter run --flavor dev -t lib/main_dev.dart  # Dev (recommended)
 flutter run  # Requires google-services.json, GoogleService-Info.plist, .env
 ```
 
 **Building:**
 
 ```bash
-flutter build ios --simulator --debug
-flutter build apk --release
-flutter build appbundle --release
+# From packages/app/
+flutter build ios --flavor prod -t lib/main_prod.dart --release
+flutter build apk --flavor prod -t lib/main_prod.dart --release
+flutter build appbundle --flavor prod -t lib/main_prod.dart --release
+
+# Or use automated script
+./scripts/build_release.sh prod
 ```
 
 **Debugging:**
@@ -462,7 +514,7 @@ flutter build appbundle --release
 scripts/check_posts.sh              # Audit Firestore posts for missing fields
 firebase functions:log              # Cloud Function execution logs
 firebase functions:log --only notifyNearbyPosts  # Filter specific function
-flutter clean && flutter pub get    # Nuclear option for dependency issues
+flutter clean && melos get          # Nuclear option for dependency issues
 flutter run --verbose               # Detailed debug output
 ```
 
@@ -479,6 +531,7 @@ flutter run --verbose               # Detailed debug output
 | Cloud Functions not firing                     | Region mismatch or deploy failed         | Check `firebase functions:log --only notifyNearbyPosts`, verify `southamerica-east1` region  |
 | `LateInitializationError` after profile switch | Provider not invalidated                 | Invalidate `postProvider`, `conversationProvider`, etc. See `main.dart` listener pattern     |
 | Memory leaks in streams                        | StreamController not disposed            | Always add `ref.onDispose(() => _streamController.close())` in providers                     |
+| Monorepo dependency issues                     | `melos bootstrap` not run                | Run `melos bootstrap` from root, then `melos get` to sync all packages                       |
 
 ---
 
@@ -486,23 +539,23 @@ flutter run --verbose               # Detailed debug output
 
 **State Management:**
 
-- `lib/main.dart` - Firebase init (3 retry attempts), error boundary, MarkerCache warmup, profile/auth listeners
-- `lib/providers/profile_provider.dart` - AsyncNotifier with StreamController (dispose cleanup)
-- `lib/providers/auth_provider.dart` - Auth state stream
-- `lib/pages/bottom_nav_scaffold.dart` - Lazy stream initialization, ValueNotifier navigation
+- `packages/app/lib/main.dart` - Firebase init (3 retry attempts), error boundary, MarkerCache warmup, profile/auth listeners
+- `packages/core_ui/lib/di/profile_providers.dart` - Global profile provider (AsyncNotifier with StreamController)
+- `packages/app/lib/features/auth/presentation/providers/auth_providers.dart` - Auth state stream
+- `packages/core_ui/lib/navigation/bottom_nav_scaffold.dart` - Lazy stream initialization, ValueNotifier navigation
 
 **Clean Architecture:**
 
-- `lib/core/{auth_result,profile_result}.dart` - Sealed classes for type-safe results
-- `lib/repositories/profile_repository.dart` - Atomic transactions, ownership validation
-- `lib/services/profile_service.dart` - Business logic (5-profile limit, validations, analytics)
+- `packages/core_ui/lib/{auth_result,profile_result,post_result,messages_result}.dart` - Sealed classes for type-safe results
+- `packages/app/lib/features/profile/data/repositories/profile_repository_impl.dart` - Atomic transactions, ownership validation
+- `packages/app/lib/features/profile/domain/usecases/*.dart` - Business logic (5-profile limit, validations, analytics)
 
 **Features:**
 
-- `lib/pages/home_page.dart` - Geosearch, map, carousel, pagination (1213 lines)
-- `lib/pages/post_page.dart` - Image compression isolate, post creation (940 lines)
-- `lib/pages/messages_page.dart` - Chat list with unread counts
-- `lib/pages/notifications_page.dart` - Proximity + interest notifications
+- `packages/app/lib/features/home/presentation/pages/home_page.dart` - Geosearch, map, carousel, pagination
+- `packages/app/lib/features/post/presentation/pages/post_page.dart` - Image compression isolate, post creation
+- `packages/app/lib/features/messages/presentation/pages/messages_page.dart` - Chat list with unread counts
+- `packages/app/lib/features/notifications/presentation/pages/notifications_page.dart` - Proximity + interest notifications
 
 **Firebase:**
 
@@ -519,11 +572,11 @@ flutter run --verbose               # Detailed debug output
 
 **Design System:**
 
-- `lib/theme/app_colors.dart` - Dual-purpose palette (Teal `#00A699` for musicians, Coral `#FF6B6B` for bands)
-- `lib/theme/app_theme.dart` - Material 3 theme with custom typography (Airbnb 2025-inspired)
+- `packages/core_ui/lib/theme/app_colors.dart` - Dual-purpose palette (Teal `#00A699` for musicians, Coral `#FF6B6B` for bands)
+- `packages/core_ui/lib/theme/app_theme.dart` - Material 3 theme with custom typography (Airbnb 2025-inspired)
 - Typography: Cereal font family (Regular 400, Medium 500, Bold 600, ExtraBold 700)
 - Dark mode support via `.env` (`APP_THEME=dark`)
-- See `DESIGN_SYSTEM_REPORT.md` for comprehensive design tokens
+- See `docs/design/DESIGN_SYSTEM_REPORT.md` for comprehensive design tokens
 
 **Critical Dependencies:**
 
@@ -563,15 +616,16 @@ flutter run --verbose               # Detailed debug output
 
 **Code Organization:**
 
-- `lib/core/` - Sealed classes, app-wide types
-- `lib/models/` - Data classes (Profile, Post, SearchParams, Conversation)
-- `lib/repositories/` - Firestore CRUD (no business logic, atomic transactions)
-- `lib/services/` - Business logic, validations, analytics, external APIs
-- `lib/providers/` - Riverpod AsyncNotifiers (state management)
-- `lib/pages/` - Full-screen UI routes
-- `lib/widgets/` - Reusable components
-- `lib/theme/` - Design system (AppColors, AppTheme, AppTypography)
-- `lib/utils/` - Helpers (Debouncer, Throttler, extensions)
+- `packages/core_ui/lib/core/` - Sealed classes (AuthResult, ProfileResult, PostResult, MessagesResult)
+- `packages/core_ui/lib/models/` - Shared models (SearchParams)
+- `packages/app/lib/features/*/data/repositories/` - Repository implementations (Firestore CRUD, atomic transactions)
+- `packages/app/lib/features/*/domain/usecases/` - Business logic (validations, analytics)
+- `packages/app/lib/features/*/presentation/providers/` - Riverpod AsyncNotifiers (feature state management)
+- `packages/core_ui/lib/di/` - Global providers (profile, auth)
+- `packages/app/lib/features/*/presentation/pages/` - Full-screen UI routes
+- `packages/core_ui/lib/widgets/` - Reusable components (shared across features)
+- `packages/core_ui/lib/theme/` - Design system (AppColors, AppTheme, AppTypography)
+- `packages/core_ui/lib/utils/` - Helpers (Debouncer, Throttler, extensions)
 
 **Provider Pattern (Riverpod 3.x):**
 
@@ -844,7 +898,7 @@ EnvService.printAll();  // Keys/tokens show as ****
 !.env.example  // Template for developers
 ```
 
-**File:** `lib/services/env_service.dart`, `.env.example`
+**File:** `packages/app/lib/config/env_service.dart`, `.env.example`
 
 ---
 
@@ -914,7 +968,7 @@ await CacheService.cachePosts(posts);  // Offline posts
 - 10-50ms per operation (vs 1-5ms SharedPreferences)
 - Negligible UX impact (low frequency operations)
 
-**File:** `lib/services/secure_storage_service.dart`
+**File:** `packages/app/lib/config/secure_storage_service.dart`
 
 ---
 
