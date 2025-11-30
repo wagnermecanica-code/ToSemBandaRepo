@@ -1,9 +1,9 @@
 // TÔ SEM BANDA – HOME PAGE (2025, Flutter 3.24+, Dart 3.5+, Riverpod 3.x)
 // Arquitetura: Instagram-style multi-profile, busca por área, mapa, carrossel flutuante, filtros, interesse otimista
 // Design System: AppColors, AppTheme, WIREFRAME.md
+// Refactored: Extracted sub-features (Map, Search, Feed) for better maintainability
 
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -11,20 +11,21 @@ import 'package:collection/collection.dart';
 import 'package:core_ui/features/post/domain/entities/post_entity.dart';
 import 'package:core_ui/features/profile/domain/entities/profile_entity.dart';
 import 'package:core_ui/models/search_params.dart';
-import 'package:core_ui/services/marker_cache_service.dart';
 import 'package:core_ui/theme/app_colors.dart';
 import 'package:core_ui/theme/app_theme.dart';
 import 'package:core_ui/utils/geo_utils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:http/http.dart' as http;
 import 'package:wegig_app/app/router/app_router.dart';
+import 'package:wegig_app/features/home/presentation/widgets/feed/interest_service.dart';
+import 'package:wegig_app/features/home/presentation/widgets/map/map_controller.dart';
+import 'package:wegig_app/features/home/presentation/widgets/map/marker_builder.dart';
+import 'package:wegig_app/features/home/presentation/widgets/search/search_service.dart';
 import 'package:wegig_app/features/post/presentation/pages/post_detail_page.dart';
 import 'package:wegig_app/features/post/presentation/pages/post_page.dart';
 import 'package:wegig_app/features/post/presentation/providers/post_providers.dart';
@@ -42,54 +43,37 @@ class HomePage extends ConsumerStatefulWidget {
 
 class _HomePageState extends ConsumerState<HomePage>
     with TickerProviderStateMixin {
+  // Controllers
   final TextEditingController _searchController = TextEditingController();
   final FocusNode _searchFocusNode = FocusNode();
-  final MarkerCacheService _markerCache = MarkerCacheService();
-  GoogleMapController? _mapController;
+  
+  // Services (extracted sub-features)
+  final MapControllerWrapper _mapControllerWrapper = MapControllerWrapper();
+  final MarkerBuilder _markerBuilder = MarkerBuilder();
+  final SearchService _searchService = SearchService();
+  final InterestService _interestService = InterestService();
+  
+  // State
   List<PostEntity> _visiblePosts = [];
   final Set<String> _sentInterests = <String>{};
   Set<Marker> _markers = {};
-  LatLng? _currentPos;
-  double _currentZoom = 12;
-  LatLngBounds? _lastSearchBounds;
-  bool _showSearchAreaButton = false;
-  bool _isCenteringLocation =
-      false; // Estado de carregamento do botão de centralizar
   String? _activePostId;
-  String? _mapStyle; // Estilo customizado Airbnb para o mapa
+  bool _isCenteringLocation = false;
   bool _isRebuildingMarkers = false;
   DateTime? _lastMarkerRebuild;
+  
   ProfileEntity? get _activeProfile =>
       ref.read(profileProvider).value?.activeProfile;
 
-  Future<List<Map<String, dynamic>>> _fetchAddressSuggestions(
-    String query,
-  ) async {
-    if (query.isEmpty) return [];
-    final url = Uri.parse(
-      'https://nominatim.openstreetmap.org/search?q=$query&format=json&addressdetails=1&limit=5',
-    );
-    final response = await http.get(
-      url,
-      headers: {'User-Agent': 'to-sem-banda-app'},
-    );
-    if (response.statusCode == 200) {
-      final data = json.decode(response.body) as List<dynamic>;
-      return data
-          .map<Map<String, dynamic>>((item) => item as Map<String, dynamic>)
-          .toList();
-    }
-    return [];
+  Future<List<Map<String, dynamic>>> _fetchAddressSuggestions(String query) async {
+    return _searchService.fetchAddressSuggestions(query);
   }
 
   void _onAddressSelected(Map<String, dynamic> suggestion) {
-    final lat = double.tryParse(suggestion['lat']?.toString() ?? '') ?? 0.0;
-    final lon = double.tryParse(suggestion['lon']?.toString() ?? '') ?? 0.0;
-    if (_mapController != null && lat != 0.0 && lon != 0.0) {
-      _mapController!.animateCamera(
-        CameraUpdate.newLatLngZoom(LatLng(lat, lon), 14),
-      );
-      _searchController.text = (suggestion['display_name'] as String?) ?? '';
+    final coordinates = _searchService.parseAddressCoordinates(suggestion);
+    if (coordinates != null && _mapControllerWrapper.controller != null) {
+      _mapControllerWrapper.animateToPosition(coordinates, 14);
+      _searchController.text = _searchService.getDisplayName(suggestion) ?? '';
       _searchFocusNode.unfocus();
     }
   }
@@ -103,31 +87,15 @@ class _HomePageState extends ConsumerState<HomePage>
 
   @override
   void dispose() {
-    _mapController?.dispose();
+    _mapControllerWrapper.dispose();
     widget.searchNotifier?.removeListener(_onSearchChanged);
     super.dispose();
   }
 
   Future<void> _initializePage() async {
-    // Carregar estilo do mapa PRIMEIRO (antes de tudo)
-    await _loadMapStyle();
-
+    await _mapControllerWrapper.loadMapStyle();
     await _determinePosition();
-
-    // A carga inicial é gerenciada pelo `build` do PostsNotifier.
-    // Podemos ouvir mudanças nos filtros ou na localização para recarregar.
     widget.searchNotifier?.addListener(_onSearchChanged);
-  }
-
-  Future<void> _loadMapStyle() async {
-    try {
-      debugPrint('🎨 Carregando maps_style.json...');
-      _mapStyle = await rootBundle.loadString('assets/maps_style.json');
-      debugPrint(
-          '✅ maps_style.json carregado (${_mapStyle?.length ?? 0} caracteres)');
-    } catch (e) {
-      debugPrint('❌ Erro ao carregar estilo do mapa: $e');
-    }
   }
 
   // ========================= MÉTODOS DE LÓGICA =========================
@@ -170,28 +138,11 @@ class _HomePageState extends ConsumerState<HomePage>
     _isRebuildingMarkers = true;
     _lastMarkerRebuild = now;
 
-    debugPrint(
-        '🗺️ _rebuildMarkers: Construindo ${_visiblePosts.length} markers');
-
-    final newMarkers = <Marker>{};
-    for (final post in _visiblePosts) {
-      final postLocation = post.location;
-      final isActive = post.id == _activePostId;
-      final markerIcon = await _markerCache.getMarker(post.type, isActive);
-      newMarkers.add(
-        Marker(
-          markerId: MarkerId(post.id),
-          position: geoPointToLatLng(postLocation),
-          icon: markerIcon,
-          anchor: const Offset(0.5, 0.5),
-          zIndexInt: isActive ? 10 : (post.type == 'band' ? 2 : 1),
-          onTap: () => _onMarkerTapped(post),
-        ),
-      );
-      debugPrint('🗺️ Marker criado: ${post.id} at ${post.location}');
-    }
-
-    debugPrint('🗺️ Total de markers criados: ${newMarkers.length}');
+    final newMarkers = await _markerBuilder.buildMarkersForPosts(
+      _visiblePosts,
+      _activePostId,
+      _onMarkerTapped,
+    );
 
     if (mounted) {
       setState(() {
@@ -205,20 +156,13 @@ class _HomePageState extends ConsumerState<HomePage>
   Future<void> _onMarkerTapped(PostEntity post) async {
     if (!mounted) return;
     setState(() {
-      // Se clicar no mesmo pin, fecha o card
-      if (_activePostId == post.id) {
-        _activePostId = null;
-      } else {
-        // Caso contrário, abre o card deste post
-        _activePostId = post.id;
-      }
+      _activePostId = _activePostId == post.id ? null : post.id;
     });
 
-    // Centralizar câmera no post
-    final postLocation = post.location;
     if (_activePostId != null) {
-      await _mapController?.animateCamera(
-        CameraUpdate.newLatLngZoom(geoPointToLatLng(postLocation), 15),
+      await _mapControllerWrapper.animateToPosition(
+        geoPointToLatLng(post.location),
+        15,
       );
     }
 
@@ -232,24 +176,15 @@ class _HomePageState extends ConsumerState<HomePage>
   }
 
   Future<void> _centerOnUserLocation() async {
-    // Prevenir múltiplas chamadas simultâneas
-    if (_isCenteringLocation) {
-      debugPrint('⚠️ Centralização já em andamento, ignorando...');
-      return;
-    }
+    if (_isCenteringLocation) return;
 
     try {
       setState(() => _isCenteringLocation = true);
 
-      // Aguardar mapa estar pronto se necessário
-      if (_mapController == null) {
-        debugPrint('⚠️ Mapa ainda não foi inicializado');
+      if (_mapControllerWrapper.controller == null) {
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('Aguarde o mapa carregar...'),
-              duration: Duration(seconds: 2),
-            ),
+            const SnackBar(content: Text('Aguarde o mapa carregar...')),
           );
         }
         return;
