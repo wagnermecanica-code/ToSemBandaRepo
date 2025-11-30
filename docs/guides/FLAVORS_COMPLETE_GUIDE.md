@@ -17,11 +17,11 @@ Configuração de 3 ambientes (flavors) para desenvolvimento, staging e produç�
 
 ### Flavors Disponíveis
 
-| Flavor | Ambiente | Firebase Project | Bundle ID | Debug Banner | Logs | Crashlytics |
-|--------|----------|------------------|-----------|--------------|------|-------------|
-| **dev** | Development | to-sem-banda-dev | com.tosembanda.wegig.dev | ✅ Sim | ✅ Sim | ❌ Não |
-| **staging** | Staging/QA | to-sem-banda-staging | com.tosembanda.wegig.staging | ✅ Sim | ✅ Sim | ✅ Sim |
-| **prod** | Production | to-sem-banda-83e19 | com.tosembanda.wegig | ❌ Não | ❌ Não | ✅ Sim |
+| Flavor      | Ambiente    | Firebase Project     | Bundle ID                    | Debug Banner | Logs   | Crashlytics |
+| ----------- | ----------- | -------------------- | ---------------------------- | ------------ | ------ | ----------- |
+| **dev**     | Development | to-sem-banda-dev     | com.tosembanda.wegig.dev     | ✅ Sim       | ✅ Sim | ❌ Não      |
+| **staging** | Staging/QA  | to-sem-banda-staging | com.tosembanda.wegig.staging | ✅ Sim       | ✅ Sim | ✅ Sim      |
+| **prod**    | Production  | to-sem-banda-83e19   | com.tosembanda.wegig         | ❌ Não       | ❌ Não | ✅ Sim      |
 
 ### Estrutura de Arquivos
 
@@ -67,11 +67,13 @@ Você precisa de **3 projetos Firebase** (ou pode usar 1 para dev/staging):
 Para cada projeto Firebase, adicione 2 apps (Android + iOS):
 
 #### Android
+
 - **DEV**: `com.tosembanda.wegig.dev`
 - **STAGING**: `com.tosembanda.wegig.staging`
 - **PROD**: `com.tosembanda.wegig`
 
 #### iOS
+
 - **DEV**: `com.tosembanda.wegig.dev`
 - **STAGING**: `com.tosembanda.wegig.staging`
 - **PROD**: `com.tosembanda.wegig`
@@ -163,33 +165,21 @@ Crie `.vscode/launch.json`:
       "request": "launch",
       "type": "dart",
       "program": "packages/app/lib/main_dev.dart",
-      "args": [
-        "--flavor",
-        "dev",
-        "--dart-define=FLAVOR=dev"
-      ]
+      "args": ["--flavor", "dev", "--dart-define=FLAVOR=dev"]
     },
     {
       "name": "WeGig STAGING",
       "request": "launch",
       "type": "dart",
       "program": "packages/app/lib/main_staging.dart",
-      "args": [
-        "--flavor",
-        "staging",
-        "--dart-define=FLAVOR=staging"
-      ]
+      "args": ["--flavor", "staging", "--dart-define=FLAVOR=staging"]
     },
     {
       "name": "WeGig PROD",
       "request": "launch",
       "type": "dart",
       "program": "packages/app/lib/main_prod.dart",
-      "args": [
-        "--flavor",
-        "prod",
-        "--dart-define=FLAVOR=prod"
-      ]
+      "args": ["--flavor", "prod", "--dart-define=FLAVOR=prod"]
     }
   ]
 }
@@ -220,27 +210,32 @@ Use o script `build_release.sh` para builds otimizados:
 ### Proteções Aplicadas
 
 ✅ **Code Obfuscation** (`--obfuscate`)
+
 - Ofusca nomes de classes, métodos e variáveis
 - Dificulta engenharia reversa
 - Reduz tamanho do binário em ~10-15%
 
 ✅ **Split Debug Info** (`--split-debug-info`)
+
 - Separa símbolos de debug do APK/IPA
 - Necessário para desobfuscar crash reports
 - **IMPORTANTE**: Guarde os símbolos em local seguro!
 
 ✅ **ProGuard** (Android)
+
 - Minificação de código
 - Remoção de código não utilizado
 - Otimização de bytecode
 
 ✅ **Resource Shrinking** (Android)
+
 - Remove recursos não utilizados (imagens, strings)
 - Reduz tamanho do APK em 5-10%
 
 ### Símbolos de Debug
 
 Os símbolos são salvos em:
+
 ```
 build/symbols/
 ├── dev/
@@ -254,7 +249,8 @@ build/symbols/
     └── ios/
 ```
 
-**⚠️ CRÍTICO**: 
+**⚠️ CRÍTICO**:
+
 - **NUNCA** faça commit dos símbolos no Git
 - Guarde em local seguro (backup criptografado)
 - Upload para Firebase Crashlytics após cada deploy:
@@ -371,6 +367,7 @@ ios/
 ### 7. Configurar Display Name
 
 **Build Settings** → **Product Name**:
+
 - `Release-dev`: `WeGig DEV`
 - `Release-staging`: `WeGig STAGING`
 - `Release-prod`: `WeGig`
@@ -384,6 +381,7 @@ ios/
 **Causa**: Firebase não inicializado corretamente
 
 **Solução**:
+
 1. Verificar se `google-services.json` (Android) ou `.plist` (iOS) existe
 2. Executar `flutter clean` e rebuild
 3. Confirmar que `Firebase.initializeApp()` é chamado antes de qualquer código Firebase
@@ -393,6 +391,7 @@ ios/
 **Causa**: Configuração FCM (Firebase Cloud Messaging) incorreta
 
 **Solução**:
+
 1. Recriar app no Firebase Console
 2. Baixar novo `google-services.json` / `.plist`
 3. Habilitar Cloud Messaging API no Google Cloud Console
@@ -402,6 +401,7 @@ ios/
 **Causa**: Conflito de dependências Firebase
 
 **Solução**:
+
 ```bash
 cd packages/app/android
 ./gradlew clean
@@ -433,9 +433,11 @@ flutter pub get
 **Causa**: Símbolos não foram gerados ou path incorreto
 
 **Solução**:
+
 1. Verificar se pasta `build/symbols/` existe
 2. Confirmar que build foi feito com `--obfuscate --split-debug-info`
 3. Upload manual:
+
 ```bash
 firebase crashlytics:symbols:upload \
   --app=1:YOUR_APP_ID:android:YOUR_ANDROID_ID \
@@ -447,6 +449,7 @@ firebase crashlytics:symbols:upload \
 **Causa**: Cache de build anterior
 
 **Solução**:
+
 ```bash
 # Android
 adb uninstall com.tosembanda.wegig.dev

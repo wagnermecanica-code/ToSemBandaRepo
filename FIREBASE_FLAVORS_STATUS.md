@@ -11,18 +11,18 @@ Todos os apps foram registrados no projeto **to-sem-banda-83e19** (único projet
 
 ### Android
 
-| Flavor | Package Name | App ID |
-|--------|-------------|---------|
-| **PROD** | `com.tosembanda.wegig` | `1:278498777601:android:d7a665f5fd5f93719ebe00` |
-| **DEV** | `com.tosembanda.wegig.dev` | `1:278498777601:android:e53cb79c055240be9ebe00` |
+| Flavor      | Package Name                   | App ID                                          |
+| ----------- | ------------------------------ | ----------------------------------------------- |
+| **PROD**    | `com.tosembanda.wegig`         | `1:278498777601:android:d7a665f5fd5f93719ebe00` |
+| **DEV**     | `com.tosembanda.wegig.dev`     | `1:278498777601:android:e53cb79c055240be9ebe00` |
 | **STAGING** | `com.tosembanda.wegig.staging` | `1:278498777601:android:d602ae39fc393d199ebe00` |
 
 ### iOS
 
-| Flavor | Bundle ID | App ID |
-|--------|-----------|---------|
-| **PROD** | `com.tosembanda.wegig` | `1:278498777601:ios:7aa6ffc0be146b089ebe00` |
-| **DEV** | `com.tosembanda.wegig.dev` | `1:278498777601:ios:cfb059150a3453319ebe00` |
+| Flavor      | Bundle ID                      | App ID                                      |
+| ----------- | ------------------------------ | ------------------------------------------- |
+| **PROD**    | `com.tosembanda.wegig`         | `1:278498777601:ios:7aa6ffc0be146b089ebe00` |
+| **DEV**     | `com.tosembanda.wegig.dev`     | `1:278498777601:ios:cfb059150a3453319ebe00` |
 | **STAGING** | `com.tosembanda.wegig.staging` | `1:278498777601:ios:1ecad15c4cc358329ebe00` |
 
 ---
@@ -30,6 +30,7 @@ Todos os apps foram registrados no projeto **to-sem-banda-83e19** (único projet
 ## 📂 Arquivos Configurados
 
 ### Android
+
 ```
 packages/app/android/app/
 ├── google-services.json (raiz - contém todos os apps)
@@ -40,6 +41,7 @@ packages/app/android/app/
 ```
 
 ### iOS
+
 ```
 packages/app/ios/
 ├── GoogleService-Info.plist (raiz - legacy)
@@ -50,6 +52,7 @@ packages/app/ios/
 ```
 
 ### Flutter
+
 ```
 packages/app/lib/
 ├── firebase_options.dart (raiz - padrão)
@@ -63,16 +66,20 @@ packages/app/lib/
 ## ✅ Testes Realizados
 
 ### DEV Flavor
+
 ```bash
 flutter build apk --flavor dev -t lib/main_dev.dart --debug
 ```
+
 **Status**: ✅ **Sucesso** - APK gerado em 425s
 
 ### PROD Flavor (com obfuscação)
+
 ```bash
 flutter build apk --flavor prod -t lib/main_prod.dart --release \
   --obfuscate --split-debug-info=build/symbols/prod/android
 ```
+
 **Status**: ✅ **Sucesso** - APK gerado em 174s (64.9MB)  
 **Obfuscação**: ✅ Ativa  
 **Símbolos**: `build/symbols/prod/android/`
@@ -117,22 +124,26 @@ flutter build apk --flavor prod -t lib/main_prod.dart --release \
 Para iOS funcionar corretamente, é necessário configurar **Schemes no Xcode**:
 
 ### 1. Abrir Xcode
+
 ```bash
 cd packages/app/ios
 open Runner.xcworkspace
 ```
 
 ### 2. Criar Schemes
+
 - **Product → Scheme → Manage Schemes**
 - Criar 3 schemes: `dev`, `staging`, `prod`
 
 ### 3. Configurar Build Configurations
+
 - Duplicar **Release** para:
   - `Release-dev`
   - `Release-staging`
   - `Release-prod`
 
 ### 4. Script para Copiar GoogleService-Info.plist
+
 Em cada scheme, adicionar **Pre-action Script**:
 
 ```bash
@@ -151,7 +162,9 @@ fi
 ```
 
 ### 5. Configurar Bundle IDs
+
 **Build Settings → Product Bundle Identifier**:
+
 - `Release-dev`: `com.tosembanda.wegig.dev`
 - `Release-staging`: `com.tosembanda.wegig.staging`
 - `Release-prod`: `com.tosembanda.wegig`
@@ -161,6 +174,7 @@ fi
 ## 🔧 Configurações Técnicas
 
 ### ProGuard / R8 (Android)
+
 **Status**: ⚠️ **Temporariamente Desabilitado**
 
 ```kotlin
@@ -178,6 +192,7 @@ buildTypes {
 **TODO**: Ajustar `proguard-rules.pro` e reabilitar
 
 ### Firebase Configuration
+
 - **Projeto Único**: Todos os flavors usam `to-sem-banda-83e19`
 - **Apps Separados**: 6 apps registrados (3 Android + 3 iOS)
 - **Firestore/Auth**: Compartilhado entre todos os flavors
@@ -189,11 +204,12 @@ buildTypes {
 ## 📊 Métricas de Build
 
 | Flavor | Build Type | Tempo | Tamanho | Obfuscação |
-|--------|-----------|-------|---------|------------|
-| DEV | Debug | 425s | ~80MB | ❌ Não |
-| PROD | Release | 174s | 64.9MB | ✅ Sim |
+| ------ | ---------- | ----- | ------- | ---------- |
+| DEV    | Debug      | 425s  | ~80MB   | ❌ Não     |
+| PROD   | Release    | 174s  | 64.9MB  | ✅ Sim     |
 
 **Otimizações Aplicadas**:
+
 - ✅ Tree-shaking de ícones (99% redução)
 - ✅ Obfuscação Dart (`--obfuscate`)
 - ✅ Split debug info (`--split-debug-info`)
@@ -204,7 +220,7 @@ buildTypes {
 ## 🎯 Próximos Passos
 
 1. ✅ ~~Registrar apps no Firebase Console~~ (CONCLUÍDO)
-2. ✅ ~~Gerar firebase_options_*.dart~~ (CONCLUÍDO)
+2. ✅ ~~Gerar firebase*options*\*.dart~~ (CONCLUÍDO)
 3. ✅ ~~Configurar google-services.json~~ (CONCLUÍDO)
 4. ✅ ~~Configurar GoogleService-Info.plist~~ (CONCLUÍDO)
 5. ✅ ~~Testar builds por flavor~~ (CONCLUÍDO)
