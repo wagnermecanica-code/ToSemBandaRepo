@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:core_ui/features/post/domain/entities/post_entity.dart';
 import 'package:core_ui/features/profile/domain/entities/profile_entity.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:wegig_app/features/home/data/repositories/home_repository_impl.dart';
 import 'package:wegig_app/features/home/domain/repositories/home_repository.dart';
@@ -9,6 +11,7 @@ import 'package:wegig_app/features/home/domain/usecases/load_posts_by_genres.dar
 import 'package:wegig_app/features/home/domain/usecases/search_profiles.dart';
 import 'package:wegig_app/features/post/presentation/providers/post_providers.dart';
 
+part 'home_providers.freezed.dart';
 part 'home_providers.g.dart';
 
 // ========================= DATA LAYER =========================
@@ -57,35 +60,15 @@ SearchProfilesUseCase searchProfilesUseCase(Ref ref) {
 // ========================= PRESENTATION LAYER =========================
 
 /// Estado do feed de posts
-class FeedState {
-  const FeedState({
-    this.posts = const [],
-    this.isLoading = false,
-    this.error,
-    this.hasMore = true,
-    this.lastPostId,
-  });
-  final List<PostEntity> posts;
-  final bool isLoading;
-  final String? error;
-  final bool hasMore;
-  final String? lastPostId;
-
-  FeedState copyWith({
-    List<PostEntity>? posts,
-    bool? isLoading,
+@freezed
+class FeedState with _$FeedState {
+  const factory FeedState({
+    @Default([]) List<PostEntity> posts,
+    @Default(false) bool isLoading,
     String? error,
-    bool? hasMore,
+    @Default(true) bool hasMore,
     String? lastPostId,
-  }) {
-    return FeedState(
-      posts: posts ?? this.posts,
-      isLoading: isLoading ?? this.isLoading,
-      error: error ?? this.error,
-      hasMore: hasMore ?? this.hasMore,
-      lastPostId: lastPostId ?? this.lastPostId,
-    );
-  }
+  }) = _FeedState;
 }
 
 /// Notifier para gerenciar feed de posts
@@ -190,27 +173,13 @@ final feedProvider =
 // ========================= SEARCH =========================
 
 /// Estado da busca de perfis
-class ProfileSearchState {
-  const ProfileSearchState({
-    this.profiles = const [],
-    this.isLoading = false,
-    this.error,
-  });
-  final List<ProfileEntity> profiles;
-  final bool isLoading;
-  final String? error;
-
-  ProfileSearchState copyWith({
-    List<ProfileEntity>? profiles,
-    bool? isLoading,
+@freezed
+class ProfileSearchState with _$ProfileSearchState {
+  const factory ProfileSearchState({
+    @Default([]) List<ProfileEntity> profiles,
+    @Default(false) bool isLoading,
     String? error,
-  }) {
-    return ProfileSearchState(
-      profiles: profiles ?? this.profiles,
-      isLoading: isLoading ?? this.isLoading,
-      error: error ?? this.error,
-    );
-  }
+  }) = _ProfileSearchState;
 }
 
 /// Notifier para busca de perfis
