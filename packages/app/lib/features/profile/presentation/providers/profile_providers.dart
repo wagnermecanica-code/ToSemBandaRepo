@@ -108,7 +108,8 @@ class ProfileState {
 }
 
 /// ProfileNotifier - Gerencia estado global de perfis
-class ProfileNotifier extends AsyncNotifier<ProfileState> {
+@riverpod
+class ProfileNotifier extends _$ProfileNotifier {
   /// Stream para observar mudanças no perfil ativo
   Stream<ProfileState> get stream => _streamController.stream;
 
@@ -245,10 +246,6 @@ class ProfileNotifier extends AsyncNotifier<ProfileState> {
 /// ============================================
 /// GLOBAL PROVIDERS - Mantidos para compatibilidade
 /// ============================================
-
-/// Provider principal do Profile (AsyncNotifier)
-final profileProvider =
-    AsyncNotifierProvider<ProfileNotifier, ProfileState>(ProfileNotifier.new);
 
 /// Provider para perfil ativo atual (null-safe)
 @riverpod

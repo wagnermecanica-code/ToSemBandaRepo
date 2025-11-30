@@ -391,16 +391,73 @@ final class GetActiveProfileUseCaseProvider extends $FunctionalProvider<
 String _$getActiveProfileUseCaseHash() =>
     r'ff0cd8cefe580986652728d9eb1fdbd1023ab032';
 
+/// ProfileNotifier - Gerencia estado global de perfis
+
+@ProviderFor(ProfileNotifier)
+const profileProvider = ProfileNotifierProvider._();
+
+/// ProfileNotifier - Gerencia estado global de perfis
+final class ProfileNotifierProvider
+    extends $AsyncNotifierProvider<ProfileNotifier, ProfileState> {
+  /// ProfileNotifier - Gerencia estado global de perfis
+  const ProfileNotifierProvider._()
+      : super(
+          from: null,
+          argument: null,
+          retry: null,
+          name: r'profileProvider',
+          isAutoDispose: true,
+          dependencies: null,
+          $allTransitiveDependencies: null,
+        );
+
+  @override
+  String debugGetCreateSourceHash() => _$profileNotifierHash();
+
+  @$internal
+  @override
+  ProfileNotifier create() => ProfileNotifier();
+}
+
+String _$profileNotifierHash() => r'15adb3095ddb63754e94ece2080e7603e6b92f4c';
+
+/// ProfileNotifier - Gerencia estado global de perfis
+
+abstract class _$ProfileNotifier extends $AsyncNotifier<ProfileState> {
+  FutureOr<ProfileState> build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final created = build();
+    final ref = this.ref as $Ref<AsyncValue<ProfileState>, ProfileState>;
+    final element = ref.element as $ClassProviderElement<
+        AnyNotifier<AsyncValue<ProfileState>, ProfileState>,
+        AsyncValue<ProfileState>,
+        Object?,
+        Object?>;
+    element.handleValue(ref, created);
+  }
+}
+
+/// ============================================
+/// GLOBAL PROVIDERS - Mantidos para compatibilidade
+/// ============================================
 /// Provider para perfil ativo atual (null-safe)
 
 @ProviderFor(activeProfile)
 const activeProfileProvider = ActiveProfileProvider._();
 
+/// ============================================
+/// GLOBAL PROVIDERS - Mantidos para compatibilidade
+/// ============================================
 /// Provider para perfil ativo atual (null-safe)
 
 final class ActiveProfileProvider
     extends $FunctionalProvider<ProfileEntity?, ProfileEntity?, ProfileEntity?>
     with $Provider<ProfileEntity?> {
+  /// ============================================
+  /// GLOBAL PROVIDERS - Mantidos para compatibilidade
+  /// ============================================
   /// Provider para perfil ativo atual (null-safe)
   const ActiveProfileProvider._()
       : super(

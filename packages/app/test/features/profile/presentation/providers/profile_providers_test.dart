@@ -246,6 +246,12 @@ void main() {
   });
 }
 
+/// Mock class for ProfileRemoteDataSource
+class _MockProfileRemoteDataSource implements ProfileRemoteDataSource {
+  @override
+  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
+}
+
 /// Mock class for testing provider overrides
 class _MockProfileRepository implements ProfileRepository {
   @override
