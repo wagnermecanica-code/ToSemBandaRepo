@@ -42,7 +42,7 @@ jobs:
       - name: Install root dependencies
         run: flutter pub get
 
-      - name: Bootstrap monorepo
+      - name: Bootstrap monorepo # Melos 3.0+
         run: dart run melos bootstrap
 
       - name: Run build_runner
@@ -102,7 +102,7 @@ jobs:
       - name: Install root dependencies
         run: flutter pub get
 
-      - name: Bootstrap monorepo
+      - name: Bootstrap monorepo # Melos 3.0+
         run: dart run melos bootstrap
 
       - name: Run build_runner
@@ -164,7 +164,7 @@ jobs:
       - name: Install root dependencies
         run: flutter pub get
 
-      - name: Bootstrap monorepo
+      - name: Bootstrap monorepo # Melos 3.0+
         run: dart run melos bootstrap
 
       - name: Run build_runner
