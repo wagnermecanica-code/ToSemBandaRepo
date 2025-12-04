@@ -38,16 +38,14 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pub-
 
-      - name: Install dependencies
-        run: |
-          flutter --version
-          cd packages/core_ui && flutter pub get
-          cd ../app && flutter pub get
+      - name: Install Melos
+        run: dart pub global activate melos
+
+      - name: Bootstrap monorepo
+        run: melos bootstrap
 
       - name: Run build_runner
-        run: |
-          cd packages/app
-          dart run build_runner build --delete-conflicting-outputs
+        run: melos run build_runner
 
       - name: Verify formatting
         run: |
@@ -100,15 +98,14 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pods-
 
-      - name: Install dependencies
-        run: |
-          cd packages/core_ui && flutter pub get
-          cd ../app && flutter pub get
+      - name: Install Melos
+        run: dart pub global activate melos
+
+      - name: Bootstrap monorepo
+        run: melos bootstrap
 
       - name: Run build_runner
-        run: |
-          cd packages/app
-          dart run build_runner build --delete-conflicting-outputs
+        run: melos run build_runner
 
       - name: Pod install
         run: |
@@ -163,15 +160,14 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
-      - name: Install dependencies
-        run: |
-          cd packages/core_ui && flutter pub get
-          cd ../app && flutter pub get
+      - name: Install Melos
+        run: dart pub global activate melos
+
+      - name: Bootstrap monorepo
+        run: melos bootstrap
 
       - name: Run build_runner
-        run: |
-          cd packages/app
-          dart run build_runner build --delete-conflicting-outputs
+        run: melos run build_runner
 
       - name: Build Android APK
         run: |
